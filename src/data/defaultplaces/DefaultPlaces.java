@@ -38,4 +38,14 @@ public class DefaultPlaces {
         return defaultListPlaces.stream().sorted(comparadorMultiple).collect(Collectors.toList());        
         //PlacesData.ImportDefaultLocationsList(defaultListPlace);  
     }
+    
+     public static Place searchPlaceDefaultPlaces(int placeID) {
+         List<Place>list=defaultListPlaces();
+         for (Place place : list) {
+            if (place.getID() == placeID) {
+                return place;
+            }
+        }
+        return null;
+    }    
 }

@@ -1,20 +1,21 @@
 package data.controller;
 
 import com.model.User;
+import com.model.Vehicle;
 import java.util.ArrayList;
 import java.util.List;
 
 public class UserData {
 
     private static final ArrayList<User> usersList = new ArrayList();
-    private static final List<User> activeUser= new ArrayList(1);
+    private static User activeUser= null;
 
     public static User getActiveUser() {
-        return activeUser.get(0);
+        return activeUser;
     }
 
     public static void setActiveUser(User user) {
-        activeUser.add(0, user);
+        activeUser= user;
     }
    
     
@@ -23,12 +24,16 @@ public class UserData {
     }
     
 
-    public static void AddAdmin() {
+    public static void addAdmin() {
         User Admin = new User("Camilo", "camilo@", "3144777990", "123");
+        Admin.addVehicle(new Vehicle("Motocicleta", "Pulsar 220", 120, 220));
+        Admin.addVehicle(new Vehicle("Motocicleta", "Boxer 100", 200, 570));
+        Admin.addVehicle(new Vehicle("Motocicleta", "Gs 500", 80, 320));
+        Admin.addVehicle(new Vehicle("Motocicleta", "Z1000", 40, 675));
         usersList.add(Admin);
     }
     
-    public static User ActiveUser(String email) {
+    public static User activeUser(String email) {
         for (User user : usersList) {
             if (user.getEmail().equalsIgnoreCase(email)) {
                 return user;

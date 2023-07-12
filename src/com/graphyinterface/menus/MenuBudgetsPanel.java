@@ -191,17 +191,16 @@ public class MenuBudgetsPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_touristPlacesButtonActionPerformed
 
     private void savedPlacesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_savedPlacesButtonActionPerformed
-        BAddBudgetPanelOption_2 addBudgetsBox= new BAddBudgetPanelOption_2();
-        Home.setSizePanels(addBudgetsBox);
+        BSavedBudgetPanelOption savedBudgetsBox= new BSavedBudgetPanelOption();
+        Home.setSizePanels(savedBudgetsBox);
         
         this.removeAll();
-        this.add(addBudgetsBox,BorderLayout.CENTER);
+        this.add(savedBudgetsBox,BorderLayout.CENTER);
         this.revalidate();
         this.repaint(); 
     }//GEN-LAST:event_savedPlacesButtonActionPerformed
 
     private void BoxTouristPlacesMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BoxTouristPlacesMouseMoved
-        java.awt.event.MouseEvent evt2;
         if(!evt.equals(evt)){
            BoxTouristPlaces.setBorder(BorderFactory.createLineBorder(Color.CYAN, 5)); 
         }else{

@@ -246,7 +246,7 @@ public class VSavedVehiclesPanelOption extends javax.swing.JPanel {
             User user = UserData.getActiveUser();
             int resp=Home.optionMsg("Seguro que desea eliminar?");
             if(resp == JOptionPane.YES_OPTION){
-                user.DelVehicle(vehicleId);
+                user.delVehicle(vehicleId);
                 modelo.removeRow(tblMySavedPlaces.getSelectedRow());
                 System.out.println("***Delete"); 
             }   
@@ -259,7 +259,7 @@ public class VSavedVehiclesPanelOption extends javax.swing.JPanel {
         }else{
             int vehicleId= Integer.parseInt(tblMySavedPlaces.getValueAt(tblMySavedPlaces.getSelectedRow(), 0).toString());
             User user = UserData.getActiveUser();
-            Vehicle selectedVehicle = user.SearchVehicleID(vehicleId);
+            Vehicle selectedVehicle = user.searchVehicleID(vehicleId);
             new VSavedVehiclesPanelEditScreen(selectedVehicle, user).setVisible(true);
         }
         

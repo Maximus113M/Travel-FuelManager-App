@@ -243,7 +243,7 @@ DefaultTableModel modelo2;
         }else{
             int placeId=Integer.parseInt(modelo.getValueAt(tblAllPlaces.getSelectedRow(), 0).toString());
             User user = UserData.getActiveUser();
-            Place selectedPlace = user.SearchPlaceID(placeId);
+            Place selectedPlace = user.searchPlaceID(placeId);
             BAddBudgetPanelOption.setSelectedPlace(selectedPlace);
             Home.msgSucessfulAction("El Destino ha sido Seleccionado");
             this.dispose();

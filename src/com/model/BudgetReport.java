@@ -5,27 +5,34 @@ import java.util.Locale;
 public class BudgetReport {
     
     private int reportId;
+    private String reportName;
     private String vehicleType;
     private String vehicleModel;
     private int vehicleId;
     private String namePlace;
+    private String statePlace;
     private int placeId;
     private double distance;
     private String nameCity;
     private double fuelPrice; //Maybe change double to int
     private double travelPrice;
+    double travelFullTrip;
 
-    public BudgetReport(int reportId, String vehicleType, String vehicleModel, int vehicleId, String namePlace,String nameCity, double distance,int placeId, double fuelPrice, double travelPrice) {
+    public BudgetReport(int reportId, String reportName , String vehicleType, String vehicleModel, int vehicleId, 
+            String namePlace,String nameCity, String statePlace, double distance,int placeId, double fuelPrice, double travelPrice) {
         this.reportId = reportId;
-        this.vehicleType = vehicleType.toUpperCase(Locale.ITALY);//Investigate
-        this.vehicleModel = vehicleModel.toUpperCase();
+        this.reportName= reportName;
+        this.vehicleType = vehicleType;
+        this.vehicleModel = vehicleModel;
         this.vehicleId = vehicleId;
-        this.namePlace = namePlace.toUpperCase();
-        this.nameCity= nameCity.toUpperCase();
+        this.namePlace = namePlace;
+        this.nameCity= nameCity;
+        this.statePlace=statePlace;
         this.distance = distance;
         this.placeId = placeId;
         this.fuelPrice = fuelPrice;
-        this.travelPrice= travelPrice;
+        this.travelPrice= Math.round(travelPrice);
+        this.travelFullTrip=Math.round(travelPrice*2);
     }
 
     public int getReportId() {
@@ -34,6 +41,14 @@ public class BudgetReport {
 
     public void setReportId(int reportId) {
         this.reportId = reportId;
+    }
+
+    public String getReportName() {
+        return reportName;
+    }
+
+    public void setReportName(String reportName) {
+        this.reportName = reportName;
     }
 
     public String getVehicleType() {
@@ -92,6 +107,14 @@ public class BudgetReport {
         this.nameCity = nameCity;
     }
 
+    public String getStatePlace() {
+        return statePlace;
+    }
+
+    public void setStatePlace(String statePlace) {
+        this.statePlace = statePlace;
+    }
+
     public double getFuelPrice() {
         return fuelPrice;
     }
@@ -107,13 +130,15 @@ public class BudgetReport {
     public void setTravelPrice(double travelPrice) {
         this.travelPrice = travelPrice;
     }
+
+    public double getTravelFullTrip() {
+        return travelFullTrip;
+    }
     
-   
-   
 
     @Override
     public String toString() {
-        return "               ► " + "NUMERO DE REPORTE: " + reportId + "\n\n                   TIPO DE VEHÍCULO: " + vehicleType + "\n                   MODELO: " + vehicleModel + "\n                   REFERENCIA DE VEHÍCULO: " + vehicleId + "\n                   DESTINO TURISTICO: " + namePlace + "\n                   ID DEL DESTINO: " + 
+        return "               ► " + "NUMERO DE REPORTE: " + reportId +" - " + reportName +"\n\n                   TIPO DE VEHÍCULO: " + vehicleType + "\n                   MODELO: " + vehicleModel + "\n                   REFERENCIA DE VEHÍCULO: " + vehicleId + "\n                   DESTINO TURISTICO: " + namePlace + "\n                   ID DEL DESTINO: " + 
                 placeId + "\n                   CIUDAD: " + nameCity + "\n                   DISTACIA DEL DESTINO: " + distance + "\n                   VALOR DEL COMBUSTIBLE: " + fuelPrice + "\n                   VALOR ESTIMADO DE VIAJE: " + (int)travelPrice +"\n\n";
     }
     

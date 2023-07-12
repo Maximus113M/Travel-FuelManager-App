@@ -3,6 +3,9 @@ package com.model;
 
 //import java.util.Objects;
 
+import data.functions.GenericFunctions;
+
+
 
 public class Place /*implements Comparable<Destino>*/ {
    private String namePlace;
@@ -13,10 +16,10 @@ public class Place /*implements Comparable<Destino>*/ {
    
    
     public Place(String nameplace,String ciudad,String departamento,double distance, int id) {
-        this.namePlace = nameplace.toUpperCase();
-        this.ciudad=ciudad.toUpperCase();
+        this.namePlace = GenericFunctions.capitalizeWords(nameplace);
+        this.ciudad=GenericFunctions.capitalizeWords(ciudad);
         this.distance = distance;
-        this.departamento= departamento.toUpperCase();
+        this.departamento= GenericFunctions.capitalizeWords(departamento);
         this.ID=id;
     }
 

@@ -8,12 +8,12 @@ import java.util.List;
 
 public class VehicleData { 
 
-    public static List<Vehicle> AddDefaultVehicle() {
+    public static List<Vehicle> addDefaultVehicle() {
         List<Vehicle> myVehicles = new ArrayList(30);
-        myVehicles.add(new Vehicle("Moto", "Pulsar 220", 120, 220));
-        myVehicles.add(new Vehicle("Moto", "Boxer 100", 200, 570));
-        myVehicles.add(new Vehicle("Moto", "Gs 500", 80, 320));
-        myVehicles.add(new Vehicle("Moto", "Z1000", 40, 675));
+        myVehicles.add(new Vehicle("Motocicleta", "Pulsar 220", 120, 220));
+        myVehicles.add(new Vehicle("Motocicleta", "Boxer 100", 200, 570));
+        myVehicles.add(new Vehicle("Motocicleta", "Gs 500", 80, 320));
+        myVehicles.add(new Vehicle("Motocicleta", "Z1000", 40, 675));
         return myVehicles;
     }
 

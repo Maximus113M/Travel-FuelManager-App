@@ -4,6 +4,7 @@ import com.model.User;
 import data.controller.UserData;
 import java.awt.Color;
 import com.graphyinterface.Home;
+import data.controller.VehicleData;
 
 public class LogIn extends javax.swing.JFrame {
 
@@ -116,7 +117,7 @@ public class LogIn extends javax.swing.JFrame {
         jButtonLogIn.setBackground(new java.awt.Color(242, 242, 242));
         jButtonLogIn.setFont(new java.awt.Font("Roboto Black", 0, 12)); // NOI18N
         jButtonLogIn.setText("INGRESAR");
-        jButtonLogIn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonLogIn.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButtonLogIn.setPreferredSize(new java.awt.Dimension(89, 35));
         jButtonLogIn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -127,7 +128,7 @@ public class LogIn extends javax.swing.JFrame {
         jButtonCheckIn.setBackground(new java.awt.Color(242, 242, 242));
         jButtonCheckIn.setFont(new java.awt.Font("Roboto Black", 0, 12)); // NOI18N
         jButtonCheckIn.setText("REGISTRARSE");
-        jButtonCheckIn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonCheckIn.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButtonCheckIn.setPreferredSize(new java.awt.Dimension(112, 35));
         jButtonCheckIn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -211,9 +212,7 @@ public class LogIn extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(BackGround, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 6, Short.MAX_VALUE))
+            .addComponent(BackGround, javax.swing.GroupLayout.DEFAULT_SIZE, 546, Short.MAX_VALUE)
         );
 
         pack();
@@ -233,7 +232,7 @@ public class LogIn extends javax.swing.JFrame {
         String userPassword = String.valueOf(jPasswordField.getPassword());
 
         if (UserData.validateUser(userEmail, userPassword)) {
-            User user = UserData.ActiveUser(userEmail);
+            User user = UserData.activeUser(userEmail);
             new Home(user).setVisible(true);
             
             UserData.setActiveUser(user);
@@ -303,7 +302,7 @@ public class LogIn extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(LogIn.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        UserData.AddAdmin();
+        UserData.addAdmin();
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {

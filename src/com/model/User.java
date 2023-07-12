@@ -1,22 +1,24 @@
-
 package com.model;
 
+import data.defaultplaces.DefaultPlaces;
 import data.functions.GenericFunctions;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
 public class User {
+
     private String name;
     private String email;
     private String number;
     private String password;
-    private final List<Place> mySavedPlaces= new ArrayList();
+    private final List<Place> mySavedPlaces = new ArrayList();
     private final List<Vehicle> myVehicles = new ArrayList(30);
     private final ArrayList<BudgetReport> budgetReports = new ArrayList();
-    private final Vehicle[] defaultVehicle= new Vehicle[1];
-    
-    private int loginTimes=0;
+    private Vehicle defaultVehicle = null;
+    private double fuelPrice = 12000;
+
+    private int loginTimes = 0;
 
     public User(String name, String email, String number, String password) {
         this.name = name;
@@ -24,7 +26,7 @@ public class User {
         this.number = number;
         this.password = password;
     }
-    
+
     public String getName() {
         return name;
     }
@@ -57,6 +59,14 @@ public class User {
         this.password = password;
     }
 
+    public double getFuelPrice() {
+        return fuelPrice;
+    }
+
+    public void setFuelPrice(double fuelPrice) {
+        this.fuelPrice = fuelPrice;
+    }
+
     public int getLoginTimes() {
         return loginTimes;
     }
@@ -64,46 +74,52 @@ public class User {
     public void setLoginTimes(int loginTimes) {
         this.loginTimes = loginTimes;
     }
-    
-    //THIS FUNCTION EXPORT  PLACE LIST
-     public List<Place> ExportPlacesList() {
-        return mySavedPlaces;    
+
+    //THIS FUNCTION EXPORT MY PLACE LIST
+    public List<Place> exportMyPlacesList() {
+        return mySavedPlaces;
     }
-    
+
     //THIS FUNCTION VALIDATE IF THE ID IS IN
-    public boolean SearchDuplicatePlace(int placeID) {
+    public boolean searchDuplicatePlace(int placeID) {
         for (Place place : mySavedPlaces) {
             if (place.getID() == placeID) {
                 return true;
             }
         }
         return false;
-    } 
-    
-    public Place SearchPlaceID(int placeID) {
-        for (Place destino : mySavedPlaces) {
-            if (destino.getID() == placeID) {
-                return destino;
+    }
+
+    //This functions get a place from list index
+    public Place searchPlaceID(int placeID) {
+        Place placeDefaultPlaces = DefaultPlaces.searchPlaceDefaultPlaces(placeID);
+        if (placeDefaultPlaces != null) {
+            return placeDefaultPlaces;
+        } else {
+            for (Place place : mySavedPlaces) {
+                if (place.getID() == placeID) {
+                    return place;
+                }
             }
         }
         return null;
-    }    
-    
+    }
+
     //THIS FUNCTION ADD new Place to arrayList 
-    public void AddToMySavedList(Place place) {
+    public void addToMySavedList(Place place) {
         mySavedPlaces.add(place);
         System.out.println("***anhadido");
     }
 
     //THIS CHECK if empty state
-    public boolean EmptyPlaceList() {
+    public boolean emptyPlaceList() {
         return mySavedPlaces.isEmpty();
     }
 
     //THIS FUNCTION remove a location to the list
-    public void DelPlaces(int placeId) {
+    public void delPlaces(int placeId) {
         for (Place place : mySavedPlaces) {
-            if (place.getID()== placeId){
+            if (place.getID() == placeId) {
                 System.out.println(place);
                 mySavedPlaces.remove(mySavedPlaces.indexOf(place));
                 System.out.println("Eliminado");
@@ -111,71 +127,56 @@ public class User {
             }
         }
     }
-    
+
     //THIS CLEAR myTouristPlaces LIST
-    public void DelPlacesList() {
+    public void delPlacesList() {
         mySavedPlaces.clear();
     }
 
     //THIS FUNCTION print Places List
-    public void PrintPlaces() {
-        if (!EmptyPlaceList()) {
+    public void printPlaces() {
+        if (!emptyPlaceList()) {
             Comparator<Place> comparadorMultiple = Comparator.comparing(Place::getDepartamento).thenComparing(Comparator.comparing(Place::getNamePlace)).thenComparing(Comparator.comparing(Place::getDistance));
             mySavedPlaces.stream().sorted(comparadorMultiple).forEach(System.out::println);
-        } 
+        }
+    }
+
+    public Place searchIndex(int index) {
+        if (!emptyPlaceList()) {
+            return mySavedPlaces.get(index);
+        }
+        return null;
     }
 
     //THIS FUNCTION is to search by name
-    public void Search_byName(String namePlace) {
-        boolean found = false;
-        if (!EmptyPlaceList()) {
-            for (Place place : mySavedPlaces) {
-                if (place.getNamePlace().equalsIgnoreCase(namePlace)) {
-                    System.out.println("Encontrado");
-                    System.out.println(place);
-                    found = true;
-                }
-            }
-        } else {
-            System.out.println("No encontrado");
-        }
-        
-        if (!found && !EmptyPlaceList()) {
-            System.out.println("***Vacio");
-        }
-    }
-    
-    public Place getPlaceByName(String namePleace){
-        if (!EmptyPlaceList()) {
+    public Place getPlaceByName(String namePleace) {
+        if (!emptyPlaceList()) {
             for (Place place : mySavedPlaces) {
                 if (place.getNamePlace().equalsIgnoreCase(namePleace)) {
                     return place;
                 }
             }
         }
-        System.out.println("***null");
         return null;
     }
-    
 
     //---------------------------------------- VEHICLES ---------------------------------------------------//
-    
-    public List<Vehicle> ExportMyVehiclesList(){
+    public List<Vehicle> exportMyVehiclesList() {
         return myVehicles;
-    }     
+    }
 
     //THIS FUNCTION VALIDATE IF THE ID IS IN
-    public Vehicle SearchVehicleID(int vehicleID) {
-        for (Vehicle vehicles : myVehicles) {
-            if (vehicles.getReference() == vehicleID) {
-                return vehicles;
+    public Vehicle searchVehicleID(int vehicleID) {
+        for (Vehicle vehicle : myVehicles) {
+            if (vehicle.getReference() == vehicleID) {
+                return vehicle;
             }
         }
         return null;
     }
 
     //THIS FUNCTION RETURN TRUE if the Vehicle Id is found(Is use by "GenerateVehicleID")
-    public boolean DuplicateVehiculeReference(int newReference) {
+    public boolean duplicateVehiculeReference(int newReference) {
         for (Vehicle vehicle : myVehicles) {
             if (vehicle.getReference() == newReference) {
                 return true;
@@ -185,12 +186,12 @@ public class User {
     }
 
     //THIS GENERATE A NOT DUPLICATE ID
-    public int GenerateVehicleReference() {
+    public int generateVehicleReference() {
         boolean successfulId = false;
         int IdNumber = 0;
         do {
             int newIDNumber = GenericFunctions.GenerateRandomID();
-            if (!DuplicateVehiculeReference(newIDNumber)) {
+            if (!duplicateVehiculeReference(newIDNumber)) {
                 IdNumber = newIDNumber;
                 successfulId = true;
             }
@@ -200,24 +201,24 @@ public class User {
     }
 
     //This check if empty state
-    public boolean EmptyVehiclesList() {
+    public boolean emptyVehiclesList() {
         return myVehicles.isEmpty();
     }
 
-    public boolean MaximumSizeVehiclesList() {
+    public boolean maximumSizeVehiclesList() {
         return myVehicles.size() > 29;
     }
 
     //This ADD Vehicles to arrayList 
-    public void AddVehicle(Vehicle newVehicle) {
+    public void addVehicle(Vehicle newVehicle) {
         boolean found = false;
         for (Vehicle vehicle : myVehicles) {
             if (vehicle.getType().equalsIgnoreCase(newVehicle.getType()) && vehicle.getModel().equalsIgnoreCase(newVehicle.getModel()) && vehicle.getPerformance() == newVehicle.getPerformance()) {
                 found = true;
-               // Interface.DuplicateObject();
+                // Interface.DuplicateObject();
             }
         }
-        if (!found && !newVehicle.getModel().equalsIgnoreCase("")&&newVehicle.getPerformance()>0) {
+        if (!found && !newVehicle.getModel().equalsIgnoreCase("") && newVehicle.getPerformance() > 0) {
             myVehicles.add(newVehicle);
         } else {
             //Interface.InvalidData();
@@ -226,7 +227,7 @@ public class User {
     }
 
 //This function remove a Vehicle to the list
-    public void DelVehicle(int Reference) {
+    public void delVehicle(int Reference) {
         for (Vehicle vehicle : myVehicles) {
             if (vehicle.getReference() == Reference) {
                 System.out.println("                " + vehicle);
@@ -235,13 +236,13 @@ public class User {
             }
         }
     }
-    
-    public void DelVehicleList() {
+
+    public void delVehicleList() {
         myVehicles.clear();
     }
 
-    public void PrintVehiclesList() {
-        if (!EmptyVehiclesList()) {
+    public void printVehiclesList() {
+        if (!emptyVehiclesList()) {
             Comparator<Vehicle> comparadorMultiple = Comparator.comparing(Vehicle::getType).thenComparing(Comparator.comparing(Vehicle::getModel));
             myVehicles.stream().sorted(comparadorMultiple).forEach(System.out::println);
             GenericFunctions.WaitAction_Argument(3);
@@ -251,68 +252,70 @@ public class User {
     }
 
     public Vehicle getDefaultVehicle() {
-        return defaultVehicle[0];
+        return defaultVehicle;
     }
-    
+
     public void setDefaultVehicle(Vehicle vehicle) {
-        defaultVehicle[0]=vehicle;
+        defaultVehicle = vehicle;
     }
-    
+
     //---------------------------------------- Budgets ---------------------------------------------------//
-    
-    public ArrayList<BudgetReport> getBudgetReports() {
+    public List<BudgetReport> getBudgetReports() {
         return budgetReports;
     }
 
-    public void ImportDefaultReports(List<BudgetReport> list) {
+    public void importDefaultReports(List<BudgetReport> list) {
         budgetReports.addAll(list);
     }
-    
+
     //THIS FUNCTION ADD New Reports to arrayList 
-    public BudgetReport AutoCompleteReports(int vehicleId, int placeId,double fuelPrice) {
-        Vehicle vehicleFound = SearchVehicleID(vehicleId);
-        Place placeFound = SearchPlaceID(placeId);
-        
-        if (vehicleFound != null && placeFound != null) {
+    public BudgetReport autoCompleteReports(String reportName, int vehicleId, Place place, double fuelPrice) {
+        Vehicle vehicleFound = searchVehicleID(vehicleId);
+
+        if (vehicleFound != null && place != null) {
             Vehicle selectedVehicle = vehicleFound;
-            Place selectedPlace = placeFound;
-            
+            Place selectedPlace = place;
+
             //INF
-            int reportId = GenerateReportID();
+            int reportId = generateReportID();
+            String reportNames= GenericFunctions.capitalizeWords(reportName);
             String vehicleType = selectedVehicle.getType();
             String vehicleModel = selectedVehicle.getModel();
             int vehicleReference = selectedVehicle.getReference();
             String nameLocation = selectedPlace.getNamePlace();
             String nameCity = selectedPlace.getCiudad();
+            String statePlace=selectedPlace.getDepartamento();
             double distanceLocation = selectedPlace.getDistance();
             int placeReference = selectedPlace.getID();
-            double travelPrice = (selectedPlace.getDistance()/selectedVehicle.getPerformance())*fuelPrice;
+            double travelPrice = (selectedPlace.getDistance() / selectedVehicle.getPerformance()) * fuelPrice;
+            
 
-            BudgetReport newReport = new BudgetReport(reportId, vehicleType, vehicleModel, vehicleReference, nameLocation, nameCity, distanceLocation, placeReference, fuelPrice, travelPrice);
+            BudgetReport newReport = new BudgetReport(reportId,reportNames ,vehicleType, vehicleModel, vehicleReference, nameLocation, nameCity, statePlace,distanceLocation, placeReference, fuelPrice, travelPrice);
             System.out.println(newReport);
             return newReport;
         }
-        return null;     
+        return null;
     }
 
-   
-//THIS FUNCTION RETURN TRUE if the Report Id is found(Is use by "GenerateReportID")
-    public boolean DuplicateReportID(double randomNumber) {
-        for (BudgetReport reports : budgetReports) {
-            if (reports.getReportId() == randomNumber) {
-                return true;
+//THIS FUNCTION RETURN TRUE if the Report Id is found(Is use by "generateReportID")
+    public boolean duplicateReportID(double randomNumber) {
+        if (!emptyBudgetsList()) {
+            for (BudgetReport reports : budgetReports) {
+                if (reports.getReportId() == randomNumber) {
+                    return true;
+                }
             }
         }
         return false;
     }
 
-    //THIS GENERATE A NOT DUPLICATE ID
-    public int GenerateReportID() {
+    //THIS GENERATE A NOT DUPLICATE ID uses by autoCompleteReport
+    public int generateReportID() {
         boolean successfulId = false;
         int IdNumber = 0;
         do {
             int newIDNumber = GenericFunctions.GenerateRandomID();
-            if (!DuplicateReportID(newIDNumber)) {
+            if (!duplicateReportID(newIDNumber)) {
                 IdNumber = newIDNumber;
                 successfulId = true;
             }
@@ -322,49 +325,41 @@ public class User {
     }
 
     //THIS FUNCTION ADD New Reports to arrayList 
-    public void AddReports(BudgetReport report) {
-        budgetReports.add(report);   
+    public void addReports(BudgetReport report) {
+        budgetReports.add(report);
     }
 
     //THIS CHECK if empty state
-    public boolean EmptyBudgetsList() {
+    public boolean emptyBudgetsList() {
         return budgetReports.isEmpty();
     }
 
     //THIS FUNCTION remove a Budget to the list
-    public void DelReport(int id) {
+    public void delReport(int id) {
         for (BudgetReport reports : budgetReports) {
             if (reports.getReportId() == id) {
                 System.out.println(reports);
                 budgetReports.remove(budgetReports.indexOf(reports));
                 break;
             }
-        }    
+        }
     }
-    
+
     //THIS CLEAR BUDGETSLIST
-     public void DelBudgetsList() {
+    public void delBudgetsList() {
         budgetReports.clear();
-    } 
+    }
 
     //THIS FUNCTION print Places List
-   /* public void PrintBudgestList() {
-        if (!EmptyBudgetsList()) {
+    /* public void PrintBudgestList() {
+        if (!emptyBudgetsList()) {
             Comparator<BudgetReport> comparadorMultiple = Comparator.comparing(BudgetReport::getReportId).thenComparing(BudgetReport::getVehicleType);
             budgetReports.stream().sorted(comparadorMultiple).forEach(System.out::println);
         }    
     }*/
-    
-    
     @Override
     public String toString() {
-        return "               ► USUARIO: "+ name + "\n\n                   CORREO: " + email + "\n                   N. TELEFONO: " + number + "\n                   INICIOS DE SESION: " + loginTimes + "\n\n";
+        return "               ► USUARIO: " + name + "\n\n                   CORREO: " + email + "\n                   N. TELEFONO: " + number + "\n                   INICIOS DE SESION: " + loginTimes + "\n\n";
     }
-    
-    
-    
-    
-    
-    
-    
+
 }

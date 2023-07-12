@@ -49,7 +49,7 @@ public class Home extends javax.swing.JFrame {
     }
 
     public static void msgNotSelected(String message) {
-        JOptionPane.showMessageDialog(null, message, "Item no seleccionado", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(null, message, "Item No Seleccionado", JOptionPane.INFORMATION_MESSAGE);
     }
 
     public static int optionMsg(String message) {
@@ -71,10 +71,10 @@ public class Home extends javax.swing.JFrame {
     
 
     public static void loadTableSavedVehicles(User user, JTable table) {
-        List<Vehicle> mySavedVehicles = user.ExportMyVehiclesList();
+        List<Vehicle> mySavedVehicles = user.exportMyVehiclesList();
         DefaultTableModel modelo = (DefaultTableModel) table.getModel();
 
-        if (!user.EmptyVehiclesList()) {
+        if (!user.emptyVehiclesList()) {
             for (Vehicle vehicle : mySavedVehicles) {
                 System.out.println("***" + vehicle);
                 String[] fila = {String.valueOf(vehicle.getReference()), vehicle.getType(), vehicle.getModel(), String.valueOf(vehicle.getPerformance())};
@@ -86,10 +86,10 @@ public class Home extends javax.swing.JFrame {
     }
 
     public static void loadTableSavedPlaces(User user, JTable table) {
-        List<Place> mySavedPlaces = user.ExportPlacesList();
+        List<Place> mySavedPlaces = user.exportMyPlacesList();
         DefaultTableModel modelo = (DefaultTableModel) table.getModel();
 
-        if (!user.EmptyPlaceList()) {
+        if (!user.emptyPlaceList()) {
             for (Place places : mySavedPlaces) {
                 System.out.println("***" + places);
                 String[] fila = {String.valueOf(places.getID()), places.getNamePlace(), places.getCiudad(), places.getDepartamento() ,String.valueOf(places.getDistance()+" km")};
@@ -188,9 +188,10 @@ public class Home extends javax.swing.JFrame {
         jMenuTitle.setFont(new java.awt.Font("Roboto Black", 0, 32)); // NOI18N
         jMenuTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jMenuTitle.setText("MENÚ");
-        jMenuTitle.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
-            public void mouseMoved(java.awt.event.MouseEvent evt) {
-                jMenuTitleMouseMoved(evt);
+        jMenuTitle.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jMenuTitle.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenuTitleMouseClicked(evt);
             }
         });
 
@@ -200,13 +201,13 @@ public class Home extends javax.swing.JFrame {
         jMyPerfileButton.setFont(new java.awt.Font("Roboto Black", 0, 16)); // NOI18N
         jMyPerfileButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/Images/Edit.png"))); // NOI18N
         jMyPerfileButton.setText(" Mi perfíl      ");
-        jMyPerfileButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jMyPerfileButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         jBudgetButton.setBackground(new java.awt.Color(242, 242, 242));
         jBudgetButton.setFont(new java.awt.Font("Roboto Black", 0, 16)); // NOI18N
         jBudgetButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/Images/BudgetPNG.png"))); // NOI18N
         jBudgetButton.setText(" Presupuestos  ");
-        jBudgetButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jBudgetButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jBudgetButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBudgetButtonActionPerformed(evt);
@@ -217,7 +218,7 @@ public class Home extends javax.swing.JFrame {
         jMyVehicleButton.setFont(new java.awt.Font("Roboto Black", 0, 16)); // NOI18N
         jMyVehicleButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/Images/CarPng_1.png"))); // NOI18N
         jMyVehicleButton.setText(" Mi vehículo      ");
-        jMyVehicleButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jMyVehicleButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jMyVehicleButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMyVehicleButtonActionPerformed(evt);
@@ -228,7 +229,7 @@ public class Home extends javax.swing.JFrame {
         jTouristPlacesButton.setFont(new java.awt.Font("Roboto Black", 0, 16)); // NOI18N
         jTouristPlacesButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/Images/LogoPNG40.png"))); // NOI18N
         jTouristPlacesButton.setText("Destinos Turisticos");
-        jTouristPlacesButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jTouristPlacesButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jTouristPlacesButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTouristPlacesButtonActionPerformed(evt);
@@ -239,7 +240,7 @@ public class Home extends javax.swing.JFrame {
         jLogOutButton.setFont(new java.awt.Font("Roboto Black", 0, 16)); // NOI18N
         jLogOutButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/Images/LogOut.png"))); // NOI18N
         jLogOutButton.setText(" Cerrar Sesion ");
-        jLogOutButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jLogOutButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLogOutButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jLogOutButtonActionPerformed(evt);
@@ -345,10 +346,10 @@ public class Home extends javax.swing.JFrame {
         showMenusPanel(menuVehicles);
     }//GEN-LAST:event_jMyVehicleButtonActionPerformed
 
-    private void jMenuTitleMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuTitleMouseMoved
+    private void jMenuTitleMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuTitleMouseClicked
         DefaultHome home = new DefaultHome();
         showMenusPanel(home);
-    }//GEN-LAST:event_jMenuTitleMouseMoved
+    }//GEN-LAST:event_jMenuTitleMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

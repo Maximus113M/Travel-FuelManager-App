@@ -19,6 +19,8 @@ import java.awt.Color;
  */
 public class VAddVehiclesPanelOption extends javax.swing.JPanel {
 
+    private User activeUser = UserData.getActiveUser();
+    
     public VAddVehiclesPanelOption() {
         initComponents();
     }
@@ -139,6 +141,12 @@ public class VAddVehiclesPanelOption extends javax.swing.JPanel {
         modelTitle.setFont(new java.awt.Font("Roboto", 3, 14)); // NOI18N
         modelTitle.setText("MODELO");
 
+        jTextVehicleModel.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextVehicleModelKeyTyped(evt);
+            }
+        });
+
         performanceTitle.setFont(new java.awt.Font("Roboto", 3, 14)); // NOI18N
         performanceTitle.setText("RENDIMIENTO");
 
@@ -161,11 +169,6 @@ public class VAddVehiclesPanelOption extends javax.swing.JPanel {
 
         jCheckBoxSelectDefault.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
         jCheckBoxSelectDefault.setText("  Seleccionar por Defecto");
-        jCheckBoxSelectDefault.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBoxSelectDefaultActionPerformed(evt);
-            }
-        });
 
         jSaveVehicleButton.setBackground(new java.awt.Color(0, 0, 0));
         jSaveVehicleButton.setFont(new java.awt.Font("Roboto Black", 0, 14)); // NOI18N
@@ -200,15 +203,15 @@ public class VAddVehiclesPanelOption extends javax.swing.JPanel {
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGap(52, 52, 52)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(comboBoxTypeVehicle, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(typeTitle, javax.swing.GroupLayout.DEFAULT_SIZE, 202, Short.MAX_VALUE)
+                                    .addComponent(comboBoxTypeVehicle, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(typeTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(modelTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jTextVehicleModel)
                                     .addComponent(performanceTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jTextVehiclePerformance)
+                                    .addComponent(jTextVehiclePerformance, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(jPanel2Layout.createSequentialGroup()
                                         .addGap(23, 23, 23)
-                                        .addComponent(jCheckBoxSelectDefault)))))
+                                        .addComponent(jCheckBoxSelectDefault))
+                                    .addComponent(jTextVehicleModel, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(0, 47, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addContainerGap()
@@ -289,11 +292,10 @@ public class VAddVehiclesPanelOption extends javax.swing.JPanel {
             String model = jTextVehicleModel.getText();
             double performance = Double.parseDouble(jTextVehiclePerformance.getText());
             
-            User user = UserData.getActiveUser();
-            Vehicle newVehicle = new Vehicle(type, model, performance, user.GenerateVehicleReference());
-            user.AddVehicle(newVehicle);
+            Vehicle newVehicle = new Vehicle(type, model, performance, activeUser.generateVehicleReference());
+            activeUser.addVehicle(newVehicle);
             if(jCheckBoxSelectDefault.isSelected()){
-                user.setDefaultVehicle(newVehicle);
+                activeUser.setDefaultVehicle(newVehicle);
             }
             System.out.println("***Vehiculo anhadido");
             Home.msgSucessfulAction("Vehiculo Guardado");
@@ -303,8 +305,9 @@ public class VAddVehiclesPanelOption extends javax.swing.JPanel {
             jTextVehiclePerformance.setForeground(Color.lightGray);
             jTextVehiclePerformance.setText("Km/Galon");
             jWarning.setText(" ");
+            jCheckBoxSelectDefault.setSelected(false);
             
-            System.out.println("defaultVehicle "+ user.getDefaultVehicle());
+            System.out.println("defaultVehicle "+ activeUser.getDefaultVehicle());
          
         } else {
             Toolkit.getDefaultToolkit().beep();
@@ -332,9 +335,12 @@ public class VAddVehiclesPanelOption extends javax.swing.JPanel {
         Home.inputOnlyNumber(evt);
     }//GEN-LAST:event_jTextVehiclePerformanceKeyTyped
 
-    private void jCheckBoxSelectDefaultActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxSelectDefaultActionPerformed
-        
-    }//GEN-LAST:event_jCheckBoxSelectDefaultActionPerformed
+    private void jTextVehicleModelKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextVehicleModelKeyTyped
+        if(jTextVehicleModel.getText().length() > 25){
+            evt.consume();
+            Toolkit.getDefaultToolkit().beep();
+        }
+    }//GEN-LAST:event_jTextVehicleModelKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

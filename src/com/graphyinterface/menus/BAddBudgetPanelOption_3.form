@@ -55,7 +55,7 @@
     </Property>
     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
       <Border info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
-        <MatteColorBorder bottom="21" left="0" right="19" top="21"/>
+        <MatteColorBorder bottom="21" left="0" right="19" top="10"/>
       </Border>
     </Property>
     <Property name="opaque" type="boolean" value="false"/>
@@ -113,18 +113,20 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="backArrow" min="-2" pref="35" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="sectionTitle" pref="637" max="32767" attributes="0"/>
+                  <Component id="sectionTitle" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="sectionTitle" min="-2" max="-2" attributes="0"/>
-                      <Component id="backArrow" min="-2" pref="30" max="-2" attributes="0"/>
-                  </Group>
+                  <Component id="sectionTitle" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="0" pref="15" max="32767" attributes="0"/>
+              </Group>
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="backArrow" min="-2" pref="30" max="-2" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -176,35 +178,36 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
-                  <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="1" attributes="0">
-                      <Component id="typeTitle" alignment="1" min="-2" pref="184" max="-2" attributes="0"/>
-                      <Group type="103" alignment="1" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="modelTitle" min="-2" pref="184" max="-2" attributes="0"/>
-                          <Component id="fuelTitle" alignment="1" max="32767" attributes="0"/>
-                          <Component id="jTextFuelPrice" alignment="0" pref="190" max="32767" attributes="0"/>
-                          <Component id="touristPlaces" min="-2" max="-2" attributes="0"/>
-                          <Component id="savedPlaces" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="SelectedPlace" alignment="0" max="32767" attributes="0"/>
-                          <Component id="selectDefaultVehicle" alignment="0" max="32767" attributes="0"/>
-                          <Component id="comboBoxChooseVehicle" alignment="0" max="32767" attributes="0"/>
-                      </Group>
-                  </Group>
-                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-              </Group>
-              <Group type="102" attributes="0">
                   <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="formTitle" min="-2" pref="245" max="-2" attributes="0"/>
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="formTitle" min="-2" pref="239" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jWarning" min="-2" pref="231" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="70" max="-2" attributes="0"/>
-                          <Component id="jSaveVehicleButton" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="jWarning" alignment="0" min="-2" pref="231" max="-2" attributes="0"/>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace min="-2" pref="64" max="-2" attributes="0"/>
+                                  <Component id="jSaveBudgetButton" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                      <Component id="fuelTitle" alignment="1" max="32767" attributes="0"/>
+                                      <Component id="jTextFuelPrice" alignment="1" max="32767" attributes="0"/>
+                                      <Component id="touristPlaces" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="savedPlaces" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="comboBoxChooseVehicle" alignment="1" min="-2" pref="190" max="-2" attributes="0"/>
+                                      <Component id="selectedPlaceTitle" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="modelTitle" alignment="0" min="-2" pref="184" max="-2" attributes="0"/>
+                                      <Component id="categorieTitle" alignment="1" max="32767" attributes="0"/>
+                                      <Group type="102" alignment="1" attributes="0">
+                                          <Component id="selectDefaultVehicle" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Component id="reportName" max="32767" attributes="0"/>
+                                      <Component id="SelectedPlace" alignment="0" min="-2" pref="190" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                          </Group>
                       </Group>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
@@ -216,29 +219,33 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="formTitle" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="typeTitle" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+                  <Component id="reportName" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Component id="categorieTitle" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="touristPlaces" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="savedPlaces" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
-                  <Component id="SelectedPlace" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" pref="33" max="32767" attributes="0"/>
+                  <Component id="selectedPlaceTitle" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="SelectedPlace" min="-2" pref="22" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="modelTitle" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="comboBoxChooseVehicle" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="selectDefaultVehicle" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="28" max="32767" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="fuelTitle" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
                   <Component id="jTextFuelPrice" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
-                  <Component id="jSaveVehicleButton" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Component id="jSaveBudgetButton" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jWarning" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -250,15 +257,15 @@
               <Font name="Roboto Black" size="18" style="0"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
-            <Property name="text" type="java.lang.String" value="AGREGAR PRESUPUESTO"/>
+            <Property name="text" type="java.lang.String" value="A&#xd1;ADIR PRESUPUESTO"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="typeTitle">
+        <Component class="javax.swing.JLabel" name="categorieTitle">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Roboto" size="14" style="3"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="SELECCIONAR DESTINO"/>
+            <Property name="text" type="java.lang.String" value="SELECCIONAR CATEGORIA"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="modelTitle">
@@ -280,7 +287,7 @@
         <Component class="javax.swing.JTextField" name="jTextFuelPrice">
           <Properties>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="cc" green="cc" red="cc" type="rgb"/>
+              <Color blue="66" green="66" red="66" type="rgb"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="text" type="java.lang.String" value="Precio/Galon"/>
@@ -297,13 +304,14 @@
               <Font name="Roboto" size="12" style="0"/>
             </Property>
             <Property name="text" type="java.lang.String" value=" Vehiculo por Defecto"/>
+            <Property name="toolTipText" type="java.lang.String" value="Seleccionar por defecto"/>
             <Property name="horizontalAlignment" type="int" value="0"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="selectDefaultVehicleActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="jSaveVehicleButton">
+        <Component class="javax.swing.JButton" name="jSaveBudgetButton">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="0" green="0" red="0" type="rgb"/>
@@ -320,13 +328,13 @@
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jSaveVehicleButtonActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jSaveBudgetButtonActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jWarning">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Segoe UI" size="14" style="0"/>
+              <Font name="Segoe UI" size="14" style="2"/>
             </Property>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="33" green="33" red="ff" type="rgb"/>
@@ -338,13 +346,11 @@
         <Component class="javax.swing.JComboBox" name="comboBoxChooseVehicle">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="4">
+              <StringArray count="1">
                 <StringItem index="0" value="Seleccionar"/>
-                <StringItem index="1" value="Carro"/>
-                <StringItem index="2" value="Motocicleta"/>
-                <StringItem index="3" value="Camioneta"/>
               </StringArray>
             </Property>
+            <Property name="inheritsPopupMenu" type="boolean" value="true"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="comboBoxChooseVehicleActionPerformed"/>
@@ -355,6 +361,9 @@
         </Component>
         <Component class="javax.swing.JRadioButton" name="touristPlaces">
           <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Roboto" size="12" style="0"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Destinos Turisticos"/>
           </Properties>
           <Events>
@@ -363,13 +372,42 @@
         </Component>
         <Component class="javax.swing.JRadioButton" name="savedPlaces">
           <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Roboto" size="12" style="0"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Destinos Guardos"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="savedPlacesActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="SelectedPlace">
           <Properties>
             <Property name="editable" type="boolean" value="false"/>
+            <Property name="horizontalAlignment" type="int" value="2"/>
           </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="selectedPlaceTitle">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Roboto" size="14" style="3"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="DESTINO SELECCIONADO"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="reportName">
+          <Properties>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="99" green="99" red="99" type="rgb"/>
+            </Property>
+            <Property name="horizontalAlignment" type="int" value="0"/>
+            <Property name="text" type="java.lang.String" value="NOMBRE DE PRESUPUESTO"/>
+          </Properties>
+          <Events>
+            <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="reportNameFocusGained"/>
+            <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="reportNameFocusLost"/>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="reportNameKeyTyped"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
@@ -394,7 +432,7 @@
               <Border info="org.netbeans.modules.form.compat2.border.CompoundBorderInfo">
                 <CompoundBorder>
                   <Border PropertyName="outside" info="org.netbeans.modules.form.compat2.border.MatteIconBorderInfo">
-                    <MatteIconBorder bottom="90" left="20" right="20" top="15">
+                    <MatteIconBorder bottom="70" left="20" right="20" top="20">
                       <Image PropertyName="icon" iconType="3" name="/com/Images/FondoBosqueCarretera.jpg"/>
                     </MatteIconBorder>
                   </Border>
@@ -411,22 +449,21 @@
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
           <SubComponents>
-            <Component class="javax.swing.JList" name="jList">
+            <Component class="javax.swing.JList" name="jListPlaces">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Segoe UI" size="14" style="0"/>
+                  <Font name="Serif" size="14" style="0"/>
                 </Property>
                 <Property name="model" type="javax.swing.ListModel" editor="org.netbeans.modules.form.editors2.ListModelEditor">
-                  <StringArray count="5">
-                    <StringItem index="0" value="ID  NOMBRE  CIUDAD  DISTANCIA"/>
-                    <StringItem index="1" value="Item 2"/>
-                    <StringItem index="2" value="Item 3"/>
-                    <StringItem index="3" value="Item 4"/>
-                    <StringItem index="4" value="Item 5"/>
+                  <StringArray count="1">
+                    <StringItem index="0" value="&#x2665;&#x2666;&#x2665;&#x2666;&#x2665;&#x2666;&#x2665;&#x2666;&#x2665;&#x2666;&#x2665;&#x2666;&#x2665;&#x2666;&#x2665;&#x2666;&#x2665;&#x2666;&#x2665;&#x2666;&#x2665;&#x2666;&#x2665;&#x2666;&#x2665;&#x2666;&#x2665;&#x2666;&#x2665;&#x2666;&#x2665;&#x2666;&#x2665;&#x2666;&#x2665;&#x2666;&#x2665;&#x2666;&#x2665;"/>
                   </StringArray>
                 </Property>
                 <Property name="selectionMode" type="int" value="0"/>
               </Properties>
+              <Events>
+                <EventHandler event="valueChanged" listener="javax.swing.event.ListSelectionListener" parameters="javax.swing.event.ListSelectionEvent" handler="jListPlacesValueChanged"/>
+              </Events>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
               </AuxValues>

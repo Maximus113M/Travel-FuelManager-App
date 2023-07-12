@@ -1,6 +1,8 @@
 
 package com.model;
 
+import data.functions.GenericFunctions;
+
 public class Vehicle {
     private String type;
     private String model;
@@ -8,8 +10,8 @@ public class Vehicle {
     private int reference;
 
     public Vehicle(String tipo, String modelo, double rendimientoCombustible,int refencia) {
-        this.type= tipo.toUpperCase();
-        this.model = modelo.toUpperCase();
+        this.type= tipo;
+        this.model = GenericFunctions.capitalizeSentence(modelo);
         this.performance = rendimientoCombustible;
         this.reference= refencia;
     }

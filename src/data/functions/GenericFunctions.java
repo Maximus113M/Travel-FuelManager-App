@@ -30,6 +30,23 @@ public class GenericFunctions {
     int randomNumber =(int) (Math.random() * 1000) + 1;    
     return randomNumber;
     }
+    
+    public static String capitalizeSentence(String word){
+       String firstLetter=word.substring(0, 1).toUpperCase();
+       String anotherLetters=word.substring(1).toLowerCase();
+       return firstLetter.concat(anotherLetters);
+    }
+    
+    public static String capitalizeWords(String word){
+        String[] splitWord = word.split(" ");
+        String finalWord="";
+        for (String words : splitWord) {
+            String firstLetter=words.substring(0, 1).toUpperCase();
+            String anotherLetters=words.substring(1).toLowerCase();
+            finalWord= finalWord.concat(firstLetter.concat(anotherLetters)+" ");
+        }
+        return finalWord;
+    }
 
     
 }

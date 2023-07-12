@@ -242,7 +242,7 @@ public class PSavedPlacesPanelOption extends javax.swing.JPanel {
             User user = UserData.getActiveUser();
             int resp=Home.optionMsg("Seguro que desea eliminar?");
             if(resp == JOptionPane.YES_OPTION){
-                user.DelPlaces(placeId);
+                user.delPlaces(placeId);
                 modelo.removeRow(tblMySavedPlaces.getSelectedRow());
                 System.out.println("***Delete");
             }    
@@ -260,7 +260,7 @@ public class PSavedPlacesPanelOption extends javax.swing.JPanel {
         }else{
             int placeId= Integer.parseInt(tblMySavedPlaces.getValueAt(tblMySavedPlaces.getSelectedRow(), 0).toString());
             User user = UserData.getActiveUser();
-            Place selectedPlace = user.SearchPlaceID(placeId);
+            Place selectedPlace = user.searchPlaceID(placeId);
             new PSavedPlacesPanelEditScreen(selectedPlace).setVisible(true);
         }
     }//GEN-LAST:event_editVehicleButtonActionPerformed

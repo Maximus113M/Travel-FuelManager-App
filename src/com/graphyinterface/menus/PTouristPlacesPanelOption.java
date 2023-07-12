@@ -243,8 +243,8 @@ public class PTouristPlacesPanelOption extends javax.swing.JPanel {
             System.out.println("***" + selectedId);
             Place placeSelected = PlacesData.SearchPlaceID(selectedId, DefaultPlaces.defaultListPlaces());
 
-            if (!UserData.getActiveUser().SearchDuplicatePlace(placeSelected.getID())) {
-                UserData.getActiveUser().AddToMySavedList(placeSelected);
+            if (!UserData.getActiveUser().searchDuplicatePlace(placeSelected.getID())) {
+                UserData.getActiveUser().addToMySavedList(placeSelected);
                 Home.defaultWarningLabel("El destino ya ha sido añadido", warningLabel);
                 Home.msgSucessfulAction("El Destino ha sido Guardado");
             } else {

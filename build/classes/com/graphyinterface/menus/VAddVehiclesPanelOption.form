@@ -199,16 +199,16 @@
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                      <Component id="comboBoxTypeVehicle" max="32767" attributes="0"/>
-                                      <Component id="typeTitle" pref="202" max="32767" attributes="0"/>
+                                      <Component id="comboBoxTypeVehicle" min="-2" pref="202" max="-2" attributes="0"/>
+                                      <Component id="typeTitle" max="32767" attributes="0"/>
                                       <Component id="modelTitle" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="jTextVehicleModel" max="32767" attributes="0"/>
                                       <Component id="performanceTitle" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="jTextVehiclePerformance" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="jTextVehiclePerformance" alignment="0" min="-2" pref="202" max="-2" attributes="0"/>
                                       <Group type="102" alignment="0" attributes="0">
                                           <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
                                           <Component id="jCheckBoxSelectDefault" min="-2" max="-2" attributes="0"/>
                                       </Group>
+                                      <Component id="jTextVehicleModel" alignment="0" min="-2" pref="202" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
@@ -293,6 +293,9 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="jTextVehicleModel">
+          <Events>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTextVehicleModelKeyTyped"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="performanceTitle">
           <Properties>
@@ -323,9 +326,6 @@
             </Property>
             <Property name="text" type="java.lang.String" value="  Seleccionar por Defecto"/>
           </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jCheckBoxSelectDefaultActionPerformed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="jSaveVehicleButton">
           <Properties>
