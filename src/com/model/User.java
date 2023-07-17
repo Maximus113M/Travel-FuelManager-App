@@ -17,12 +17,13 @@ public class User {
     private final ArrayList<BudgetReport> budgetReports = new ArrayList();
     private Vehicle defaultVehicle = null;
     private double fuelPrice = 12000;
+    private int defaultNumber=0;
 
     private int loginTimes = 0;
 
     public User(String name, String email, String number, String password) {
         this.name = name;
-        this.email = email;
+        this.email = GenericFunctions.capitalizeWord(email);
         this.number = number;
         this.password = password;
     }
@@ -73,6 +74,14 @@ public class User {
 
     public void setLoginTimes(int loginTimes) {
         this.loginTimes = loginTimes;
+    }
+
+    public int getDefaultNumber() {
+        return defaultNumber;
+    }
+
+    public void incrementDefaultNumber() {
+        this.defaultNumber++;
     }
 
     //THIS FUNCTION EXPORT MY PLACE LIST
@@ -278,7 +287,7 @@ public class User {
 
             //INF
             int reportId = generateReportID();
-            String reportNames= GenericFunctions.capitalizeWords(reportName);
+            String reportNames= GenericFunctions.capitalizeSentences(reportName);
             String vehicleType = selectedVehicle.getType();
             String vehicleModel = selectedVehicle.getModel();
             int vehicleReference = selectedVehicle.getReference();

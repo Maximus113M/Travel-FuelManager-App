@@ -10,6 +10,7 @@ import com.model.Place;
 import com.model.User;
 import com.model.Vehicle;
 import data.controller.UserData;
+import data.functions.GenericFunctions;
 import java.awt.BorderLayout;
 import java.awt.Toolkit;
 import javax.swing.JPanel;
@@ -422,7 +423,7 @@ public class BAddBudgetPanelOption_2 extends javax.swing.JPanel {
     }//GEN-LAST:event_jTextFuelPriceFocusLost
 
     private void jTextFuelPriceKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFuelPriceKeyTyped
-        Home.inputOnlyNumber(evt);
+        GenericFunctions.inputOnlyNumber(evt);
     }//GEN-LAST:event_jTextFuelPriceKeyTyped
 
     private void selectDefaultVehicleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectDefaultVehicleActionPerformed

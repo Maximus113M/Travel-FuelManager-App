@@ -3,6 +3,7 @@ package com.graphyinterface.menus;
 import com.graphyinterface.Home;
 import com.model.User;
 import com.model.Vehicle;
+import data.functions.GenericFunctions;
 import java.awt.Color;
 
 public class VSavedVehiclesPanelEditScreen extends javax.swing.JFrame {
@@ -212,7 +213,7 @@ public class VSavedVehiclesPanelEditScreen extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextVehiclePerformanceFocusLost
 
     private void jTextVehiclePerformanceKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextVehiclePerformanceKeyTyped
-        Home.inputOnlyNumber(evt);
+        GenericFunctions.inputOnlyNumber(evt);
     }//GEN-LAST:event_jTextVehiclePerformanceKeyTyped
 
     private void jSaveVehicleButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jSaveVehicleButtonActionPerformed

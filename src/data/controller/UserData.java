@@ -8,7 +8,7 @@ import java.util.List;
 public class UserData {
 
     private static final ArrayList<User> usersList = new ArrayList();
-    private static User activeUser= null;
+    public static User activeUser= null;
 
     public static User getActiveUser() {
         return activeUser;

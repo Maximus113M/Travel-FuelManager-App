@@ -1,5 +1,6 @@
 package com.model;
 
+import data.functions.GenericFunctions;
 import java.util.Locale;
 
 public class BudgetReport {
@@ -17,6 +18,7 @@ public class BudgetReport {
     private double fuelPrice; //Maybe change double to int
     private double travelPrice;
     double travelFullTrip;
+    String reportDate;
 
     public BudgetReport(int reportId, String reportName , String vehicleType, String vehicleModel, int vehicleId, 
             String namePlace,String nameCity, String statePlace, double distance,int placeId, double fuelPrice, double travelPrice) {
@@ -33,6 +35,7 @@ public class BudgetReport {
         this.fuelPrice = fuelPrice;
         this.travelPrice= Math.round(travelPrice);
         this.travelFullTrip=Math.round(travelPrice*2);
+        this.reportDate=GenericFunctions.todayDateAndHour();
     }
 
     public int getReportId() {
@@ -133,6 +136,10 @@ public class BudgetReport {
 
     public double getTravelFullTrip() {
         return travelFullTrip;
+    }
+
+    public String getReportDate() {
+        return reportDate;
     }
     
 

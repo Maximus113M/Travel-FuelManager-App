@@ -19,6 +19,8 @@ public class DefaultVehicles extends javax.swing.JPanel {
      */
     public DefaultVehicles() {
         initComponents();
+        this.setLayout(null);
+        
     }
 
     /**
@@ -82,6 +84,7 @@ public class DefaultVehicles extends javax.swing.JPanel {
         setBackground(new java.awt.Color(255, 255, 255));
         setBorder(javax.swing.BorderFactory.createMatteBorder(21, 0, 21, 19, new java.awt.Color(0, 0, 0)));
         setPreferredSize(new java.awt.Dimension(528, 510));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jTabbedPane1.setBackground(new java.awt.Color(255, 255, 255));
         jTabbedPane1.setTabPlacement(javax.swing.JTabbedPane.RIGHT);
@@ -294,16 +297,7 @@ public class DefaultVehicles extends javax.swing.JPanel {
 
         jTabbedPane1.addTab("   ELIMINAR VEHICULOS   ", jPanel3);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
+        add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 21, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void jCheckBoxSelectDefaultActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxSelectDefaultActionPerformed

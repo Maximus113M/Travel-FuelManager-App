@@ -11,7 +11,7 @@ public class Vehicle {
 
     public Vehicle(String tipo, String modelo, double rendimientoCombustible,int refencia) {
         this.type= tipo;
-        this.model = GenericFunctions.capitalizeSentence(modelo);
+        this.model = GenericFunctions.capitalizeWord(modelo);
         this.performance = rendimientoCombustible;
         this.reference= refencia;
     }

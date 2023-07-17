@@ -2,6 +2,7 @@ package com.graphyinterface.menus;
 
 import com.graphyinterface.Home;
 import com.model.Place;
+import data.functions.GenericFunctions;
 import java.awt.Color;
 
 public class PSavedPlacesPanelEditScreen extends javax.swing.JFrame {
@@ -215,7 +216,7 @@ public class PSavedPlacesPanelEditScreen extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextDistanceFocusLost
 
     private void jTextDistanceKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextDistanceKeyTyped
-        Home.inputOnlyNumber(evt);
+        GenericFunctions.inputOnlyNumber(evt);
     }//GEN-LAST:event_jTextDistanceKeyTyped
 
     /**

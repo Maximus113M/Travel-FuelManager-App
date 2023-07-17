@@ -25,7 +25,7 @@ public class PSavedPlacesPanelOption extends javax.swing.JPanel {
         initComponents();
         this.setSize(715, 560);
         modelo= (DefaultTableModel)tblMySavedPlaces.getModel();
-        Home.loadTableSavedPlaces(UserData.getActiveUser(), tblMySavedPlaces);
+        Home.loadSavedPlacesTable(UserData.getActiveUser(), tblMySavedPlaces);
     }
 
     /**
@@ -251,7 +251,7 @@ public class PSavedPlacesPanelOption extends javax.swing.JPanel {
 
     private void refreshVehicleTblButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshVehicleTblButtonActionPerformed
         modelo.setNumRows(0);
-        Home.loadTableSavedPlaces(UserData.getActiveUser(), tblMySavedPlaces);
+        Home.loadSavedPlacesTable(UserData.getActiveUser(), tblMySavedPlaces);
     }//GEN-LAST:event_refreshVehicleTblButtonActionPerformed
 
     private void editVehicleButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editVehicleButtonActionPerformed

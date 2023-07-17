@@ -4,12 +4,17 @@ import com.graphyinterface.menus.DefaultHome;
 import com.graphyinterface.menus.MenuTouristPlacesPanel;
 import com.graphyinterface.menus.MenuBudgetsPanel;
 import com.graphyinterface.menus.MenuVehiclesPanel;
+import com.graphyinterface.menus.Perfile;
 import com.model.Place;
 import com.model.User;
 import com.model.Vehicle;
 import data.controller.UserData;
+import data.functions.GenericFunctions;
 import java.awt.BorderLayout;
+import java.awt.Graphics;
+import java.awt.Image;
 import java.util.List;
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -23,12 +28,12 @@ public class Home extends javax.swing.JFrame {
         this.setSize(1000, 600);
         this.setLocationRelativeTo(null);
         jGreetingHome.setText("¡Hola " + user.getName() + ", Bienvenido!");
+        dateField2.setText(GenericFunctions.todayDate());
     }
 
     public void showMenusPanel(JPanel p) {
-        p.setSize(715, 560);
-        p.setLocation(0, 0);
-
+        setSizePanels(p);
+        
         jContent.removeAll();
         jContent.add(p, BorderLayout.CENTER);
         jContent.revalidate();
@@ -39,13 +44,18 @@ public class Home extends javax.swing.JFrame {
         p.setSize(715, 560);
         p.setLocation(0, 0);
     }
-
+    
+    //
     public static void msgSucessfulAction(String message) {
         JOptionPane.showMessageDialog(null, message, "Proceso Completado", JOptionPane.INFORMATION_MESSAGE);
     }
 
     public static void msgWarning(String message) {
         JOptionPane.showMessageDialog(null, message, "Advertencia", JOptionPane.CANCEL_OPTION);
+    }
+    
+    public static void msgError(String message) {
+        JOptionPane.showMessageDialog(null, message, "Advertencia", JOptionPane.ERROR_MESSAGE);
     }
 
     public static void msgNotSelected(String message) {
@@ -61,7 +71,8 @@ public class Home extends javax.swing.JFrame {
     public static boolean msgIsNotSelectedFila(JTable tbl) {
         return tbl.getSelectedRow() < 0 || tbl.getSelectedColumnCount() < 0;
     }
-
+    
+    //This return to deafult the warningLabel
     public static void defaultWarningLabel(String word, JLabel warning) {
         if (warning.getText().equals(word)) {
             warning.setText(" ");
@@ -69,8 +80,8 @@ public class Home extends javax.swing.JFrame {
     }
     
     
-
-    public static void loadTableSavedVehicles(User user, JTable table) {
+    //This function load my vehicle Table 
+    public static void loadSavedVehiclesTable(User user, JTable table) {
         List<Vehicle> mySavedVehicles = user.exportMyVehiclesList();
         DefaultTableModel modelo = (DefaultTableModel) table.getModel();
 
@@ -84,8 +95,9 @@ public class Home extends javax.swing.JFrame {
             System.out.println("Lista vacia");
         }
     }
-
-    public static void loadTableSavedPlaces(User user, JTable table) {
+    
+    //This function load my tourist places Table 
+    public static void loadSavedPlacesTable(User user, JTable table) {
         List<Place> mySavedPlaces = user.exportMyPlacesList();
         DefaultTableModel modelo = (DefaultTableModel) table.getModel();
 
@@ -100,12 +112,6 @@ public class Home extends javax.swing.JFrame {
         }
     }
     
-    public static void inputOnlyNumber(java.awt.event.KeyEvent evt) {
-        if (evt.getKeyChar() < 48 || evt.getKeyChar() > 57) {
-            evt.consume();
-        }
-    }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -129,14 +135,14 @@ public class Home extends javax.swing.JFrame {
         jTouristPlacesButton = new javax.swing.JButton();
         jLogOutButton = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
+        dateField2 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(1000, 600));
         setResizable(false);
 
         jBackGround.setBackground(new java.awt.Color(102, 102, 102));
         jBackGround.setPreferredSize(new java.awt.Dimension(985, 560));
-        jBackGround.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jContent.setBackground(new java.awt.Color(241, 241, 241));
         jContent.setBorder(javax.swing.BorderFactory.createMatteBorder(21, 0, 21, 19, new java.awt.Color(0, 0, 0)));
@@ -148,25 +154,26 @@ public class Home extends javax.swing.JFrame {
 
         jGreetingHome.setFont(new java.awt.Font("Roboto Black", 2, 24)); // NOI18N
         jGreetingHome.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jGreetingHome.setText(" ¡Hola, Bienvenido!");
+        jGreetingHome.setText("¡Gestiona tus viajes!");
 
         jSeparator2.setForeground(new java.awt.Color(0, 0, 0));
-        jSeparator2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+        jSeparator2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
 
         javax.swing.GroupLayout jContentLayout = new javax.swing.GroupLayout(jContent);
         jContent.setLayout(jContentLayout);
         jContentLayout.setHorizontalGroup(
             jContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jContentLayout.createSequentialGroup()
-                .addGap(208, 208, 208)
-                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(207, Short.MAX_VALUE))
-            .addGroup(jContentLayout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(jContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jGreetingHome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jImageBackGround, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jContentLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jGreetingHome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jContentLayout.createSequentialGroup()
+                        .addGap(208, 208, 208)
+                        .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
+            .addComponent(jImageBackGround, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 696, Short.MAX_VALUE)
         );
         jContentLayout.setVerticalGroup(
             jContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -179,13 +186,13 @@ public class Home extends javax.swing.JFrame {
                 .addComponent(jImageBackGround, javax.swing.GroupLayout.PREFERRED_SIZE, 471, Short.MAX_VALUE))
         );
 
-        jBackGround.add(jContent, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 0, 715, 560));
-
         jMenuOptions.setBackground(new java.awt.Color(255, 255, 255));
-        jMenuOptions.setBorder(javax.swing.BorderFactory.createMatteBorder(20, 20, 20, 20, new java.awt.Color(0, 0, 0)));
+        jMenuOptions.setBorder(javax.swing.BorderFactory.createMatteBorder(20, 10, 20, 10, new java.awt.Color(0, 0, 0)));
         jMenuOptions.setPreferredSize(new java.awt.Dimension(293, 510));
+        jMenuOptions.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jMenuTitle.setFont(new java.awt.Font("Roboto Black", 0, 32)); // NOI18N
+        jMenuTitle.setFont(new java.awt.Font("Roboto Black", 3, 34)); // NOI18N
+        jMenuTitle.setForeground(new java.awt.Color(255, 255, 255));
         jMenuTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jMenuTitle.setText("MENÚ");
         jMenuTitle.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -194,115 +201,107 @@ public class Home extends javax.swing.JFrame {
                 jMenuTitleMouseClicked(evt);
             }
         });
+        jMenuOptions.add(jMenuTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 35, 250, 26));
 
-        jSeparator1.setForeground(new java.awt.Color(0, 0, 0));
+        jSeparator1.setForeground(new java.awt.Color(255, 255, 255));
+        jMenuOptions.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(61, 67, 150, 16));
 
         jMyPerfileButton.setBackground(new java.awt.Color(242, 242, 242));
-        jMyPerfileButton.setFont(new java.awt.Font("Roboto Black", 0, 16)); // NOI18N
+        jMyPerfileButton.setFont(new java.awt.Font("Roboto Black", 2, 16)); // NOI18N
         jMyPerfileButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/Images/Edit.png"))); // NOI18N
         jMyPerfileButton.setText(" Mi perfíl      ");
+        jMyPerfileButton.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
         jMyPerfileButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jMyPerfileButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMyPerfileButtonActionPerformed(evt);
+            }
+        });
+        jMenuOptions.add(jMyPerfileButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(27, 293, 215, 50));
 
         jBudgetButton.setBackground(new java.awt.Color(242, 242, 242));
-        jBudgetButton.setFont(new java.awt.Font("Roboto Black", 0, 16)); // NOI18N
+        jBudgetButton.setFont(new java.awt.Font("Roboto Black", 2, 16)); // NOI18N
         jBudgetButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/Images/BudgetPNG.png"))); // NOI18N
         jBudgetButton.setText(" Presupuestos  ");
+        jBudgetButton.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
         jBudgetButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jBudgetButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBudgetButtonActionPerformed(evt);
             }
         });
+        jMenuOptions.add(jBudgetButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(27, 225, 215, 50));
 
         jMyVehicleButton.setBackground(new java.awt.Color(242, 242, 242));
-        jMyVehicleButton.setFont(new java.awt.Font("Roboto Black", 0, 16)); // NOI18N
+        jMyVehicleButton.setFont(new java.awt.Font("Roboto Black", 2, 16)); // NOI18N
         jMyVehicleButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/Images/CarPng_1.png"))); // NOI18N
         jMyVehicleButton.setText(" Mi vehículo      ");
+        jMyVehicleButton.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
         jMyVehicleButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jMyVehicleButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMyVehicleButtonActionPerformed(evt);
             }
         });
+        jMenuOptions.add(jMyVehicleButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(27, 157, 215, 50));
 
         jTouristPlacesButton.setBackground(new java.awt.Color(242, 242, 242));
-        jTouristPlacesButton.setFont(new java.awt.Font("Roboto Black", 0, 16)); // NOI18N
+        jTouristPlacesButton.setFont(new java.awt.Font("Roboto Black", 2, 16)); // NOI18N
         jTouristPlacesButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/Images/LogoPNG40.png"))); // NOI18N
         jTouristPlacesButton.setText("Destinos Turisticos");
+        jTouristPlacesButton.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
         jTouristPlacesButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jTouristPlacesButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTouristPlacesButtonActionPerformed(evt);
             }
         });
+        jMenuOptions.add(jTouristPlacesButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(27, 89, 215, 50));
 
         jLogOutButton.setBackground(new java.awt.Color(242, 242, 242));
-        jLogOutButton.setFont(new java.awt.Font("Roboto Black", 0, 16)); // NOI18N
+        jLogOutButton.setFont(new java.awt.Font("Roboto Black", 2, 16)); // NOI18N
         jLogOutButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/Images/LogOut.png"))); // NOI18N
         jLogOutButton.setText(" Cerrar Sesion ");
+        jLogOutButton.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
         jLogOutButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLogOutButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jLogOutButtonActionPerformed(evt);
             }
         });
+        jMenuOptions.add(jLogOutButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(27, 361, 215, 50));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 22)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("● ● ●");
+        jMenuOptions.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 430, 250, -1));
 
-        javax.swing.GroupLayout jMenuOptionsLayout = new javax.swing.GroupLayout(jMenuOptions);
-        jMenuOptions.setLayout(jMenuOptionsLayout);
-        jMenuOptionsLayout.setHorizontalGroup(
-            jMenuOptionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jMenuOptionsLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jBudgetButton, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32))
-            .addGroup(jMenuOptionsLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jMenuOptionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jMyPerfileButton, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jMyVehicleButton, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLogOutButton, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(jMenuOptionsLayout.createSequentialGroup()
-                .addGroup(jMenuOptionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jMenuOptionsLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jMenuTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jMenuOptionsLayout.createSequentialGroup()
-                        .addGap(39, 39, 39)
-                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jMenuOptionsLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jTouristPlacesButton, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jMenuOptionsLayout.setVerticalGroup(
-            jMenuOptionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jMenuOptionsLayout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addComponent(jMenuTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTouristPlacesButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(22, 22, 22)
-                .addComponent(jMyVehicleButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(22, 22, 22)
-                .addComponent(jBudgetButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(22, 22, 22)
-                .addComponent(jMyPerfileButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(22, 22, 22)
-                .addComponent(jLogOutButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(46, 46, 46)
-                .addComponent(jLabel2)
-                .addContainerGap(37, Short.MAX_VALUE))
-        );
+        dateField2.setBackground(new java.awt.Color(0, 0, 0));
+        dateField2.setFont(new java.awt.Font("Serif", 3, 20)); // NOI18N
+        dateField2.setForeground(new java.awt.Color(255, 255, 255));
+        dateField2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        dateField2.setText("12/07/2023");
+        jMenuOptions.add(dateField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 470, 210, -1));
 
-        jBackGround.add(jMenuOptions, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 270, 560));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/Images/fondoMaderaNegra.jpg"))); // NOI18N
+        jMenuOptions.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 250, 520));
+
+        javax.swing.GroupLayout jBackGroundLayout = new javax.swing.GroupLayout(jBackGround);
+        jBackGround.setLayout(jBackGroundLayout);
+        jBackGroundLayout.setHorizontalGroup(
+            jBackGroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jBackGroundLayout.createSequentialGroup()
+                .addComponent(jMenuOptions, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(jContent, javax.swing.GroupLayout.PREFERRED_SIZE, 715, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        jBackGroundLayout.setVerticalGroup(
+            jBackGroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jMenuOptions, javax.swing.GroupLayout.PREFERRED_SIZE, 560, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jContent, javax.swing.GroupLayout.PREFERRED_SIZE, 560, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -351,13 +350,20 @@ public class Home extends javax.swing.JFrame {
         showMenusPanel(home);
     }//GEN-LAST:event_jMenuTitleMouseClicked
 
+    private void jMyPerfileButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMyPerfileButtonActionPerformed
+        Perfile perfile= new Perfile();
+        showMenusPanel(perfile);
+    }//GEN-LAST:event_jMyPerfileButtonActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel dateField2;
     private javax.swing.JPanel jBackGround;
     private javax.swing.JButton jBudgetButton;
     private javax.swing.JPanel jContent;
     private javax.swing.JLabel jGreetingHome;
     private javax.swing.JLabel jImageBackGround;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JButton jLogOutButton;
     private javax.swing.JPanel jMenuOptions;
@@ -368,4 +374,23 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JButton jTouristPlacesButton;
     // End of variables declaration//GEN-END:variables
+
+    class BackGroundPanel extends JPanel
+    {
+        private Image imagen;
+        
+        @Override
+        public void paint(Graphics g){
+            imagen= new ImageIcon(getClass().getResource("/com.Images/FondoBosque2.jpg")).getImage();
+            
+            g.drawImage(imagen,0,0, getWidth(), getHeight(), this);
+            
+            setOpaque(false);
+            super.paint(g);
+        }    
+    }
+
+
+
+
 }

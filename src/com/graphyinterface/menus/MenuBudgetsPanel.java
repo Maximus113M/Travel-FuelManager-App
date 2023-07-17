@@ -41,6 +41,7 @@ public class MenuBudgetsPanel extends javax.swing.JPanel {
         savedPlacesButton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         titleMyVehicles = new javax.swing.JLabel();
+        imageBackGround = new javax.swing.JLabel();
 
         jContent.setBackground(new java.awt.Color(255, 255, 255));
         jContent.setBorder(javax.swing.BorderFactory.createMatteBorder(21, 0, 21, 19, new java.awt.Color(0, 0, 0)));
@@ -76,9 +77,6 @@ public class MenuBudgetsPanel extends javax.swing.JPanel {
         BoxTouristPlaces.setBackground(new java.awt.Color(204, 204, 204));
         BoxTouristPlaces.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 5, true));
         BoxTouristPlaces.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
-            public void mouseDragged(java.awt.event.MouseEvent evt) {
-                BoxTouristPlacesMouseDragged(evt);
-            }
             public void mouseMoved(java.awt.event.MouseEvent evt) {
                 BoxTouristPlacesMouseMoved(evt);
             }
@@ -140,47 +138,55 @@ public class MenuBudgetsPanel extends javax.swing.JPanel {
         BoxSavePlacesLayout.setVerticalGroup(
             BoxSavePlacesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, BoxSavePlacesLayout.createSequentialGroup()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 251, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(savedPlacesButton, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         titleMyVehicles.setBackground(new java.awt.Color(255, 51, 0));
-        titleMyVehicles.setFont(new java.awt.Font("Serif", 2, 28)); // NOI18N
+        titleMyVehicles.setFont(new java.awt.Font("Serif", 3, 28)); // NOI18N
+        titleMyVehicles.setForeground(new java.awt.Color(232, 232, 232));
         titleMyVehicles.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         titleMyVehicles.setText("CREA TUS PRESUPUESTOS");
         titleMyVehicles.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
+        imageBackGround.setBackground(new java.awt.Color(232, 232, 232));
+        imageBackGround.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        imageBackGround.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/Images/zyro-image (1) (1).png"))); // NOI18N
+        imageBackGround.setPreferredSize(new java.awt.Dimension(696, 600));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
+                .addGap(386, 386, 386)
+                .addComponent(BoxSavePlaces, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(128, 128, 128)
+                .addComponent(titleMyVehicles, javax.swing.GroupLayout.PREFERRED_SIZE, 439, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
                 .addGap(100, 100, 100)
-                .addComponent(BoxTouristPlaces, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(BoxSavePlaces, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(100, 100, 100))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(128, Short.MAX_VALUE)
-                .addComponent(titleMyVehicles, javax.swing.GroupLayout.PREFERRED_SIZE, 439, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(129, 129, 129))
+                .addComponent(BoxTouristPlaces, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(imageBackGround, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addComponent(titleMyVehicles)
-                .addGap(45, 45, 45)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(BoxSavePlaces, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(BoxTouristPlaces, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(73, Short.MAX_VALUE))
+                .addGap(117, 117, 117)
+                .addComponent(BoxSavePlaces, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(31, 31, 31)
+                .addComponent(titleMyVehicles))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(117, 117, 117)
+                .addComponent(BoxTouristPlaces, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(imageBackGround, javax.swing.GroupLayout.PREFERRED_SIZE, 520, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void touristPlacesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_touristPlacesButtonActionPerformed
-        BAddBudgetPanelOption_3 addBudgetsBox= new BAddBudgetPanelOption_3();
+        BAddBudgetPanelOption addBudgetsBox= new BAddBudgetPanelOption();
         Home.setSizePanels(addBudgetsBox);
         
         this.removeAll();
@@ -210,15 +216,12 @@ public class MenuBudgetsPanel extends javax.swing.JPanel {
         //BoxTouristPlaces.setBorder(BorderFactory.createLineBorder(Color.CYAN, 5));
     }//GEN-LAST:event_BoxTouristPlacesMouseMoved
 
-    private void BoxTouristPlacesMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BoxTouristPlacesMouseDragged
-   
-    }//GEN-LAST:event_BoxTouristPlacesMouseDragged
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel BoxSavePlaces;
     private javax.swing.JPanel BoxTouristPlaces;
     private javax.swing.JLabel addVehiclesLog;
+    private javax.swing.JLabel imageBackGround;
     private javax.swing.JPanel jContent;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

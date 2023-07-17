@@ -16,10 +16,10 @@ public class Place /*implements Comparable<Destino>*/ {
    
    
     public Place(String nameplace,String ciudad,String departamento,double distance, int id) {
-        this.namePlace = GenericFunctions.capitalizeWords(nameplace);
-        this.ciudad=GenericFunctions.capitalizeWords(ciudad);
+        this.namePlace = GenericFunctions.capitalizeSentences(nameplace);
+        this.ciudad=GenericFunctions.capitalizeSentences(ciudad);
         this.distance = distance;
-        this.departamento= GenericFunctions.capitalizeWords(departamento);
+        this.departamento= GenericFunctions.capitalizeSentences(departamento);
         this.ID=id;
     }
 

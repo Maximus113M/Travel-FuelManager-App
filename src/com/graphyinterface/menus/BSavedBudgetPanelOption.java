@@ -22,24 +22,25 @@ public class BSavedBudgetPanelOption extends javax.swing.JPanel {
 
     public BSavedBudgetPanelOption() {
         initComponents();
-        loadList();
-        descriptionReport.setText("\n                                  ••• DETALLES •••\n"
-                + "\n\n\n\n\n\n\n\n\n\n\n\n\n\n                                          ••• FIN •••");
-
-    }
-
-    public void loadList() {
-        model.clear();
-        model.addElement("♥♦♥♦♥♦♥♦♥♦♥♦♥♦♥♦♥♦♥♦♥♦♥♦♥♦♥♦♥♦♥♦♥♦♥♦♥♦♥♦♥♦♥♦♥");
-        jReportList.setModel(model);
         loadReportList();
+        dafaultDescriptionReport();
+
     }
-    
-    public void loadReportList(){
+
+    public void loadReportList() {
+        model.clear();
+        model.addElement("♥♦♥♦♥♦♥♦♥♦♥♦♥♦♥♦♥♦♥♦♥");
+        jReportList.setModel(model);
         for (BudgetReport report : activeUser.getBudgetReports()) {
-            model.addElement(report.getReportId() + " - " + report.getReportName() + " (" + report.getStatePlace() + ")");
+            model.addElement(report.getReportId() + " - " + report.getReportName() + " -" + 
+                    report.getReportDate().substring(0, report.getReportDate().lastIndexOf(",")));
             jReportList.setModel(model);
         }
+    }
+    
+    public void dafaultDescriptionReport(){
+        descriptionReport.setText("\n                                  ••• DETALLES •••\n"
+                + "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n                                         ••• FIN •••");     
     }
 
     public void refreshPlaceField(int id) {
@@ -53,7 +54,7 @@ public class BSavedBudgetPanelOption extends javax.swing.JPanel {
                 + "\n   Id Reporte:  " + selectedReport.getReportId() + "\n   Destino: " + selectedReport.getNamePlace() + "\n   Ciudad: " + selectedReport.getNameCity()
                 + "\n   Departamento: " + selectedReport.getStatePlace() + "\n   Distancia:  " + selectedReport.getDistance() + " Km" + "\n   Id Vehiculo:  " + selectedReport.getVehicleId() + " (" + selectedReport.getVehicleType() + ")"
                 + "\n   Vehiculo:  " + selectedReport.getVehicleModel() + "\n   Valor Combustible:  $" + selectedReport.getFuelPrice() + "\n   Valor de Ida:  $" + selectedReport.getTravelPrice()
-                + "\n   Valor de Ida y Vuelta:  $" + selectedReport.getTravelFullTrip() + "\n\n\n                                          ••• FIN •••");
+                + "\n   Valor de Ida y Vuelta:  $" + selectedReport.getTravelFullTrip() + "\n   Fecha de Reporte: "+selectedReport.getReportDate()+"\n\n\n                                         ••• FIN •••");
 
     }
 
@@ -183,18 +184,15 @@ public class BSavedBudgetPanelOption extends javax.swing.JPanel {
             }
         });
 
-        jScrollPane2.setBorder(null);
         jScrollPane2.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
-        jReportList.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jReportList.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
         jReportList.setFont(new java.awt.Font("Serif", 0, 14)); // NOI18N
         jReportList.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "♥♦♥♦♥♦♥♦♥♦♥♦♥♦♥♦♥♦♥♦" };
+            String[] strings = { "♥♦♥♦♥♦♥♦♥♦♥♦♥♦♥♦♥♦♥♦♥" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
-        jReportList.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        jReportList.setPreferredSize(new java.awt.Dimension(221, 20));
         jReportList.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
             public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
                 jReportListValueChanged(evt);
@@ -213,9 +211,9 @@ public class BSavedBudgetPanelOption extends javax.swing.JPanel {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(60, 60, 60)
+                        .addGap(58, 58, 58)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGap(11, 11, 11)
@@ -228,13 +226,13 @@ public class BSavedBudgetPanelOption extends javax.swing.JPanel {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(formTitle)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 325, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jDelReportButton, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jDelAllReportsButton, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addContainerGap(37, Short.MAX_VALUE))
         );
 
         jScrollPane1.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createMatteBorder(20, 21, 60, 21, new javax.swing.ImageIcon(getClass().getResource("/com/Images/FondoBosque2.jpg"))), javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3))); // NOI18N
@@ -290,23 +288,13 @@ public class BSavedBudgetPanelOption extends javax.swing.JPanel {
         this.repaint();
     }//GEN-LAST:event_backArrowMousePressed
 
-    private void jReportListValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_jReportListValueChanged
-        if (!jReportList.isSelectionEmpty() && jReportList.getSelectedIndex() != 0) {
-            String selectedValue = jReportList.getSelectedValue();
-            String[] splitValue = selectedValue.split(" - ");
-            System.out.println("***id " + splitValue[0]);
-            int idReport = Integer.parseInt(splitValue[0]);
-            refreshPlaceField(idReport);
-            jReportList.setToolTipText(jReportList.getSelectedValue());
-        }
-    }//GEN-LAST:event_jReportListValueChanged
-
     private void jDelAllReportsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jDelAllReportsButtonActionPerformed
         if(!activeUser.emptyBudgetsList()){
             int resp = Home.optionMsg("Esta Apunto de Eliminar Todos los Reportes, \n      Desea continuar?");
             if (resp == JOptionPane.YES_OPTION) {
                 activeUser.delBudgetsList();
                 loadReportList();
+                dafaultDescriptionReport();
                 Home.msgSucessfulAction("Reportes Eliminados");
             }
         }else{
@@ -325,12 +313,24 @@ public class BSavedBudgetPanelOption extends javax.swing.JPanel {
                 int idReport = Integer.parseInt(splitValue[0]);
                 activeUser.delReport(idReport);
                 loadReportList();
+                dafaultDescriptionReport();
                 Home.msgSucessfulAction("Reporte Eliminado");
             }
         } else {
               Home.msgNotSelected("Seleccione un Reporte");
         }
     }//GEN-LAST:event_jDelReportButtonActionPerformed
+
+    private void jReportListValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_jReportListValueChanged
+        if (!jReportList.isSelectionEmpty() && jReportList.getSelectedIndex() != 0) {
+            String selectedValue = jReportList.getSelectedValue();
+            String[] splitValue = selectedValue.split(" - ");
+            System.out.println("***id " + splitValue[0]);
+            int idReport = Integer.parseInt(splitValue[0]);
+            refreshPlaceField(idReport);
+            jReportList.setToolTipText(jReportList.getSelectedValue());
+        }
+    }//GEN-LAST:event_jReportListValueChanged
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
