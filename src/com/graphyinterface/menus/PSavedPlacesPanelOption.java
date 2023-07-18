@@ -75,7 +75,7 @@ public class PSavedPlacesPanelOption extends javax.swing.JPanel {
         );
 
         setBackground(new java.awt.Color(255, 255, 255));
-        setBorder(javax.swing.BorderFactory.createMatteBorder(21, 0, 21, 19, new java.awt.Color(0, 0, 0)));
+        setBorder(javax.swing.BorderFactory.createMatteBorder(10, 0, 21, 19, new java.awt.Color(0, 0, 0)));
         setOpaque(false);
         setPreferredSize(new java.awt.Dimension(715, 560));
 
@@ -216,7 +216,7 @@ public class PSavedPlacesPanelOption extends javax.swing.JPanel {
                     .addComponent(editVehicleButton, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jWarning)
-                .addContainerGap(37, Short.MAX_VALUE))
+                .addContainerGap(48, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 

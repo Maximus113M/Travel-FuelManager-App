@@ -5,6 +5,7 @@
 package com.graphyinterface.menus;
 
 import com.graphyinterface.Home;
+import com.graphyinterface.PQuickBudgets;
 import com.model.Place;
 import data.controller.PlacesData;
 import data.controller.UserData;
@@ -16,15 +17,17 @@ import java.util.List;
 import javax.swing.JPanel;
 
 public class PTouristPlacesPanelOption extends javax.swing.JPanel {
+    
+    private DefaultTableModel model;
 
     public PTouristPlacesPanelOption(List<Place> defaultPlaces, DefaultTableModel modelo) {
         initComponents();
         this.setSize(715, 560);
-        modelo = (DefaultTableModel) tblTouristPlaces.getModel();
+        model = (DefaultTableModel) tblTouristPlaces.getModel();
 
         for (Place place : defaultPlaces) {
             String[] fila = {String.valueOf(place.getID()), place.getNamePlace(), place.getCiudad(), place.getDepartamento(), String.valueOf(place.getDistance()) + " km"};
-            modelo.addRow(fila);
+            model.addRow(fila);
         }
     }
 
@@ -80,7 +83,7 @@ public class PTouristPlacesPanelOption extends javax.swing.JPanel {
         );
 
         setBackground(new java.awt.Color(255, 255, 255));
-        setBorder(javax.swing.BorderFactory.createMatteBorder(21, 0, 21, 19, new java.awt.Color(0, 0, 0)));
+        setBorder(javax.swing.BorderFactory.createMatteBorder(10, 0, 21, 19, new java.awt.Color(0, 0, 0)));
         setOpaque(false);
         setPreferredSize(new java.awt.Dimension(715, 560));
 
@@ -167,6 +170,11 @@ public class PTouristPlacesPanelOption extends javax.swing.JPanel {
         savePlaceButton.setForeground(new java.awt.Color(255, 255, 255));
         savePlaceButton.setText("GENERAR PRESUPUESTO");
         savePlaceButton.setPreferredSize(new java.awt.Dimension(190, 35));
+        savePlaceButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                savePlaceButtonActionPerformed(evt);
+            }
+        });
 
         searchButton.setBackground(new java.awt.Color(0, 0, 0));
         searchButton.setFont(new java.awt.Font("Roboto Black", 0, 14)); // NOI18N
@@ -216,7 +224,7 @@ public class PTouristPlacesPanelOption extends javax.swing.JPanel {
                     .addComponent(savePlaceButton, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(warningLabel)
-                .addContainerGap(38, Short.MAX_VALUE))
+                .addContainerGap(49, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -252,6 +260,11 @@ public class PTouristPlacesPanelOption extends javax.swing.JPanel {
             }
         }
     }//GEN-LAST:event_searchButtonActionPerformed
+
+    private void savePlaceButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_savePlaceButtonActionPerformed
+        if(modelo)
+        new PQuickBudgets().se
+    }//GEN-LAST:event_savePlaceButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

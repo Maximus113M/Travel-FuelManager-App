@@ -37,9 +37,7 @@
           <Group type="102" attributes="0">
               <EmptySpace min="100" pref="100" max="-2" attributes="0"/>
               <Component id="BoxAddVehicles" min="-2" max="-2" attributes="0"/>
-          </Group>
-          <Group type="102" attributes="0">
-              <EmptySpace min="386" pref="386" max="-2" attributes="0"/>
+              <EmptySpace min="76" pref="76" max="-2" attributes="0"/>
               <Component id="BoxSavedVehicles" min="-2" max="-2" attributes="0"/>
           </Group>
           <Component id="imageBackGround" min="-2" pref="700" max="-2" attributes="0"/>
@@ -51,11 +49,10 @@
               <EmptySpace min="31" pref="31" max="-2" attributes="0"/>
               <Component id="titleMyVehicles" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="45" pref="45" max="-2" attributes="0"/>
-              <Component id="BoxAddVehicles" min="-2" max="-2" attributes="0"/>
-          </Group>
-          <Group type="102" attributes="0">
-              <EmptySpace min="117" pref="117" max="-2" attributes="0"/>
-              <Component id="BoxSavedVehicles" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="BoxAddVehicles" min="-2" max="-2" attributes="0"/>
+                  <Component id="BoxSavedVehicles" min="-2" max="-2" attributes="0"/>
+              </Group>
           </Group>
           <Component id="imageBackGround" min="-2" pref="520" max="-2" attributes="0"/>
       </Group>
@@ -65,7 +62,7 @@
     <Container class="javax.swing.JPanel" name="BoxAddVehicles">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="cc" green="cc" red="cc" type="rgb"/>
+          <Color blue="0" green="0" red="0" type="rgb"/>
         </Property>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
@@ -129,6 +126,9 @@
     </Container>
     <Container class="javax.swing.JPanel" name="BoxSavedVehicles">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="0" green="0" red="0" type="rgb"/>
+        </Property>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
             <LineBorder roundedCorners="true" thickness="5"/>

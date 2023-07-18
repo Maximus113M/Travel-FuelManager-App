@@ -199,15 +199,15 @@
                                       <Component id="selectedPlaceTitle" alignment="0" max="32767" attributes="0"/>
                                       <Component id="modelTitle" alignment="0" min="-2" pref="184" max="-2" attributes="0"/>
                                       <Component id="categorieTitle" alignment="1" max="32767" attributes="0"/>
-                                      <Group type="102" alignment="1" attributes="0">
-                                          <Component id="selectDefaultVehicle" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
-                                      </Group>
                                       <Component id="reportName" max="32767" attributes="0"/>
                                       <Component id="SelectedPlace" alignment="0" min="-2" pref="190" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
+                          <Component id="selectDefaultVehicle" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
@@ -227,7 +227,7 @@
                   <Component id="touristPlaces" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="savedPlaces" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace type="separate" pref="33" max="32767" attributes="0"/>
+                  <EmptySpace type="separate" pref="29" max="32767" attributes="0"/>
                   <Component id="selectedPlaceTitle" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="SelectedPlace" min="-2" pref="22" max="-2" attributes="0"/>
@@ -287,10 +287,11 @@
         <Component class="javax.swing.JTextField" name="jTextFuelPrice">
           <Properties>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="66" green="66" red="66" type="rgb"/>
+              <Color blue="33" green="33" red="33" type="rgb"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="text" type="java.lang.String" value="Precio/Galon"/>
+            <Property name="toolTipText" type="java.lang.String" value="Ingresa el Precio si ha Cambiado"/>
           </Properties>
           <Events>
             <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jTextFuelPriceFocusGained"/>
@@ -303,8 +304,8 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Roboto" size="12" style="0"/>
             </Property>
-            <Property name="text" type="java.lang.String" value=" Vehiculo por Defecto"/>
-            <Property name="toolTipText" type="java.lang.String" value="Seleccionar por defecto"/>
+            <Property name="text" type="java.lang.String" value=" Vehiculo Predeterminado"/>
+            <Property name="toolTipText" type="java.lang.String" value="Seleccionar tu Vehiculo Favorito"/>
             <Property name="horizontalAlignment" type="int" value="0"/>
           </Properties>
           <Events>
@@ -385,6 +386,7 @@
           <Properties>
             <Property name="editable" type="boolean" value="false"/>
             <Property name="horizontalAlignment" type="int" value="2"/>
+            <Property name="autoscrolls" type="boolean" value="false"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="selectedPlaceTitle">

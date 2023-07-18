@@ -46,7 +46,7 @@ public class MenuVehiclesPanel extends javax.swing.JPanel {
         setOpaque(false);
         setPreferredSize(new java.awt.Dimension(715, 560));
 
-        BoxAddVehicles.setBackground(new java.awt.Color(204, 204, 204));
+        BoxAddVehicles.setBackground(new java.awt.Color(0, 0, 0));
         BoxAddVehicles.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 5, true));
         BoxAddVehicles.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseDragged(java.awt.event.MouseEvent evt) {
@@ -87,6 +87,7 @@ public class MenuVehiclesPanel extends javax.swing.JPanel {
                 .addComponent(addVehicleButton, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
+        BoxSavedVehicles.setBackground(new java.awt.Color(0, 0, 0));
         BoxSavedVehicles.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 5, true));
 
         savedVehiclesButton.setBackground(new java.awt.Color(0, 0, 0));
@@ -135,9 +136,8 @@ public class MenuVehiclesPanel extends javax.swing.JPanel {
                 .addComponent(titleMyVehicles, javax.swing.GroupLayout.PREFERRED_SIZE, 439, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(100, 100, 100)
-                .addComponent(BoxAddVehicles, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(386, 386, 386)
+                .addComponent(BoxAddVehicles, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(76, 76, 76)
                 .addComponent(BoxSavedVehicles, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addComponent(imageBackGround, javax.swing.GroupLayout.PREFERRED_SIZE, 700, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
@@ -147,10 +147,9 @@ public class MenuVehiclesPanel extends javax.swing.JPanel {
                 .addGap(31, 31, 31)
                 .addComponent(titleMyVehicles)
                 .addGap(45, 45, 45)
-                .addComponent(BoxAddVehicles, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(117, 117, 117)
-                .addComponent(BoxSavedVehicles, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(BoxAddVehicles, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(BoxSavedVehicles, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
             .addComponent(imageBackGround, javax.swing.GroupLayout.PREFERRED_SIZE, 520, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
     }// </editor-fold>//GEN-END:initComponents

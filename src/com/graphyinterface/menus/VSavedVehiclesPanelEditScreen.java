@@ -96,7 +96,8 @@ public class VSavedVehiclesPanelEditScreen extends javax.swing.JFrame {
         });
 
         jCheckBoxSelectDefault.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
-        jCheckBoxSelectDefault.setText("  Seleccionar por Defecto");
+        jCheckBoxSelectDefault.setText("Vehiculo Predeterminado");
+        jCheckBoxSelectDefault.setToolTipText("Seleccionar por Defecto");
         jCheckBoxSelectDefault.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
         jSaveVehicleButton.setBackground(new java.awt.Color(0, 0, 0));
@@ -120,6 +121,10 @@ public class VSavedVehiclesPanelEditScreen extends javax.swing.JFrame {
         editFormPanelLayout.setHorizontalGroup(
             editFormPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(editFormPanelLayout.createSequentialGroup()
+                .addGap(84, 84, 84)
+                .addComponent(jSaveVehicleButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(editFormPanelLayout.createSequentialGroup()
                 .addGroup(editFormPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(editFormPanelLayout.createSequentialGroup()
                         .addGap(30, 30, 30)
@@ -133,17 +138,14 @@ public class VSavedVehiclesPanelEditScreen extends javax.swing.JFrame {
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(editFormPanelLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addGroup(editFormPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(sectionTitle, javax.swing.GroupLayout.DEFAULT_SIZE, 256, Short.MAX_VALUE)
-                            .addComponent(jCheckBoxSelectDefault, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(sectionTitle, javax.swing.GroupLayout.DEFAULT_SIZE, 256, Short.MAX_VALUE))
                     .addGroup(editFormPanelLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(editFormPanelLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jCheckBoxSelectDefault, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(editFormPanelLayout.createSequentialGroup()
-                .addGap(84, 84, 84)
-                .addComponent(jSaveVehicleButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         editFormPanelLayout.setVerticalGroup(
             editFormPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -162,9 +164,9 @@ public class VSavedVehiclesPanelEditScreen extends javax.swing.JFrame {
                 .addComponent(performanceTitle)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTextVehiclePerformance, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
                 .addComponent(jCheckBoxSelectDefault)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addComponent(jSaveVehicleButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel1)

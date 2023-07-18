@@ -218,8 +218,17 @@ public class Perfile extends javax.swing.JPanel {
         jUserLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jUserLabel.setText("MaximusMeridio@gmail.edu.co");
 
+        jInputPassword.setForeground(new java.awt.Color(204, 204, 204));
         jInputPassword.setText("jPasswordField1");
         jInputPassword.setToolTipText("Ingrese su Contraseña");
+        jInputPassword.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jInputPasswordFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jInputPasswordFocusLost(evt);
+            }
+        });
 
         jPasswordField1.setEditable(false);
         jPasswordField1.setBorder(null);
@@ -407,6 +416,20 @@ public class Perfile extends javax.swing.JPanel {
     private void phoneNumberFieldKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_phoneNumberFieldKeyTyped
         GenericFunctions.inputOnlyNumber(evt);
     }//GEN-LAST:event_phoneNumberFieldKeyTyped
+
+    private void jInputPasswordFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jInputPasswordFocusGained
+        if(String.valueOf(jInputPassword.getPassword()).equals("jPasswordField1")){
+            jInputPassword.setText("");
+            jInputPassword.setForeground(Color.BLACK);
+        }
+    }//GEN-LAST:event_jInputPasswordFocusGained
+
+    private void jInputPasswordFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jInputPasswordFocusLost
+        if(String.valueOf(jInputPassword.getPassword()).equals("")){
+            jInputPassword.setText("jPasswordField1");
+            jInputPassword.setForeground(Color.lightGray);
+        }
+    }//GEN-LAST:event_jInputPasswordFocusLost
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

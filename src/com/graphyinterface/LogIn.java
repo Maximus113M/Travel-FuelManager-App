@@ -96,11 +96,6 @@ public class LogIn extends javax.swing.JFrame {
                 jPasswordFieldFocusLost(evt);
             }
         });
-        jPasswordField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jPasswordFieldActionPerformed(evt);
-            }
-        });
 
         jSeparator2.setBackground(new java.awt.Color(0, 0, 0));
         jSeparator2.setForeground(new java.awt.Color(0, 0, 0));
@@ -222,10 +217,6 @@ public class LogIn extends javax.swing.JFrame {
     private void jTextUserEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextUserEmailActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextUserEmailActionPerformed
-
-    private void jPasswordFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jPasswordFieldActionPerformed
 
     private void jButtonLogInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLogInActionPerformed
         String userEmail = jTextUserEmail.getText();

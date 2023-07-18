@@ -209,9 +209,10 @@ public class BAddBudgetPanelOption extends javax.swing.JPanel {
         fuelTitle.setFont(new java.awt.Font("Roboto", 3, 14)); // NOI18N
         fuelTitle.setText("VALOR DE COMBUSTIBLE");
 
-        jTextFuelPrice.setForeground(new java.awt.Color(102, 102, 102));
+        jTextFuelPrice.setForeground(new java.awt.Color(51, 51, 51));
         jTextFuelPrice.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jTextFuelPrice.setText("Precio/Galon");
+        jTextFuelPrice.setToolTipText("Ingresa el Precio si ha Cambiado");
         jTextFuelPrice.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 jTextFuelPriceFocusGained(evt);
@@ -227,8 +228,8 @@ public class BAddBudgetPanelOption extends javax.swing.JPanel {
         });
 
         selectDefaultVehicle.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
-        selectDefaultVehicle.setText(" Vehiculo por Defecto");
-        selectDefaultVehicle.setToolTipText("Seleccionar por defecto");
+        selectDefaultVehicle.setText(" Vehiculo Predeterminado");
+        selectDefaultVehicle.setToolTipText("Seleccionar tu Vehiculo Favorito");
         selectDefaultVehicle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         selectDefaultVehicle.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -278,6 +279,7 @@ public class BAddBudgetPanelOption extends javax.swing.JPanel {
 
         SelectedPlace.setEditable(false);
         SelectedPlace.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        SelectedPlace.setAutoscrolls(false);
 
         selectedPlaceTitle.setFont(new java.awt.Font("Roboto", 3, 14)); // NOI18N
         selectedPlaceTitle.setText("DESTINO SELECCIONADO");
@@ -324,11 +326,11 @@ public class BAddBudgetPanelOption extends javax.swing.JPanel {
                                     .addComponent(selectedPlaceTitle, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(modelTitle, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(categorieTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addComponent(selectDefaultVehicle)
-                                        .addGap(25, 25, 25))
                                     .addComponent(reportName)
-                                    .addComponent(SelectedPlace, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                    .addComponent(SelectedPlace, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(39, 39, 39)
+                        .addComponent(selectDefaultVehicle)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -344,7 +346,7 @@ public class BAddBudgetPanelOption extends javax.swing.JPanel {
                 .addComponent(touristPlaces)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(savedPlaces)
-                .addGap(18, 33, Short.MAX_VALUE)
+                .addGap(18, 29, Short.MAX_VALUE)
                 .addComponent(selectedPlaceTitle)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(SelectedPlace, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
