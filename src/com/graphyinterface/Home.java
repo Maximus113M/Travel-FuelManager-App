@@ -282,7 +282,7 @@ public class Home extends javax.swing.JFrame {
         dateField2.setForeground(new java.awt.Color(255, 255, 255));
         dateField2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         dateField2.setText("12/07/2023");
-        jMenuOptions.add(dateField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 470, 210, -1));
+        jMenuOptions.add(dateField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 470, 230, -1));
 
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/Images/fondoMaderaNegra.jpg"))); // NOI18N

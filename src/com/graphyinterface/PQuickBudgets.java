@@ -4,6 +4,10 @@
  */
 package com.graphyinterface;
 
+import com.model.Place;
+import com.model.User;
+import com.model.Vehicle;
+import data.controller.UserData;
 import data.functions.GenericFunctions;
 import java.awt.Color;
 
@@ -13,12 +17,21 @@ import java.awt.Color;
  */
 public class PQuickBudgets extends javax.swing.JFrame {
 
-    /**
-     * Creates new form PQuickBudgets
-     */
-    public PQuickBudgets(String place) {
+    Place place = null;
+    User activeUser = UserData.getActiveUser();
+
+    public PQuickBudgets(Place seletedPlace) {
         initComponents();
-        selectedPlace.setText(place);
+        place = seletedPlace;
+        this.setLocationRelativeTo(null);
+        selectedPlaceName.setText(place.getNamePlace());
+        for (Vehicle vehicle : activeUser.exportMyVehiclesList()) {
+            comboBoxChooseVehicle.addItem(vehicle.getReference() + " - " + vehicle.getType() + " - " + vehicle.getModel());
+        }
+        jTextFuelPrice.setText(String.valueOf(activeUser.getFuelPrice()));
+        if (activeUser.getDefaultVehicle() == null) {
+            selectDefaultVehicle.setEnabled(false);
+        }
     }
 
     /**
@@ -39,28 +52,30 @@ public class PQuickBudgets extends javax.swing.JFrame {
         jTextFuelPrice = new javax.swing.JTextField();
         jSaveVehicleButton = new javax.swing.JButton();
         typeTitle1 = new javax.swing.JLabel();
-        selectedPlace = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        selectedPlaceName = new javax.swing.JLabel();
+        jCloseButton = new javax.swing.JButton();
         typeTitle2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        reportName = new javax.swing.JTextField();
+        jWarning = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
-        setPreferredSize(new java.awt.Dimension(460, 615));
+        setPreferredSize(new java.awt.Dimension(390, 580));
         setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 15), javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createMatteBorder(20, 20, 20, 20, new javax.swing.ImageIcon(getClass().getResource("/com/Images/FONDO GRIS.jpg"))), javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 5)))); // NOI18N
+        jPanel1.setPreferredSize(new java.awt.Dimension(390, 579));
 
-        typeTitle.setFont(new java.awt.Font("Serif", 3, 18)); // NOI18N
+        typeTitle.setFont(new java.awt.Font("Serif", 3, 17)); // NOI18N
         typeTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         typeTitle.setText("DESTINO SELECCIONADO");
 
-        modelTitle.setFont(new java.awt.Font("Serif", 3, 18)); // NOI18N
+        modelTitle.setFont(new java.awt.Font("Serif", 3, 17)); // NOI18N
         modelTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         modelTitle.setText("SELECCIONAR VEHICULO");
 
-        comboBoxChooseVehicle.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", "Carro", "Motocicleta", "Camioneta" }));
+        comboBoxChooseVehicle.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar" }));
         comboBoxChooseVehicle.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 comboBoxChooseVehicleActionPerformed(evt);
@@ -76,11 +91,11 @@ public class PQuickBudgets extends javax.swing.JFrame {
             }
         });
 
-        fuelTitle.setFont(new java.awt.Font("Serif", 3, 18)); // NOI18N
+        fuelTitle.setFont(new java.awt.Font("Serif", 3, 17)); // NOI18N
         fuelTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         fuelTitle.setText("VALOR DE COMBUSTIBLE");
 
-        jTextFuelPrice.setForeground(new java.awt.Color(204, 204, 204));
+        jTextFuelPrice.setForeground(new java.awt.Color(51, 51, 51));
         jTextFuelPrice.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jTextFuelPrice.setText("Precio/Galon");
         jTextFuelPrice.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -108,58 +123,83 @@ public class PQuickBudgets extends javax.swing.JFrame {
             }
         });
 
-        typeTitle1.setFont(new java.awt.Font("Serif", 1, 32)); // NOI18N
+        typeTitle1.setFont(new java.awt.Font("Serif", 1, 30)); // NOI18N
         typeTitle1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        typeTitle1.setText("CREAR PRESUPUESTO");
+        typeTitle1.setText("PRESUPUESTO");
 
-        selectedPlace.setFont(new java.awt.Font("Serif", 2, 16)); // NOI18N
-        selectedPlace.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        selectedPlace.setText("DESTINO SELECCIONADO");
+        selectedPlaceName.setFont(new java.awt.Font("Serif", 2, 15)); // NOI18N
+        selectedPlaceName.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        selectedPlaceName.setText("DESTINO SELECCIONADO");
 
-        jButton1.setBackground(new java.awt.Color(0, 0, 0));
-        jButton1.setFont(new java.awt.Font("Roboto Black", 0, 16)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("CERRAR");
+        jCloseButton.setBackground(new java.awt.Color(0, 0, 0));
+        jCloseButton.setFont(new java.awt.Font("Roboto Black", 0, 16)); // NOI18N
+        jCloseButton.setForeground(new java.awt.Color(255, 255, 255));
+        jCloseButton.setText("CERRAR");
+        jCloseButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCloseButtonActionPerformed(evt);
+            }
+        });
 
-        typeTitle2.setFont(new java.awt.Font("Serif", 3, 18)); // NOI18N
+        typeTitle2.setFont(new java.awt.Font("Serif", 3, 17)); // NOI18N
         typeTitle2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         typeTitle2.setText("NOMBRE DEL PRESUPUESTO");
 
-        jTextField1.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
+        reportName.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        reportName.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        reportName.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
+        reportName.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                reportNameKeyTyped(evt);
+            }
+        });
+
+        jWarning.setFont(new java.awt.Font("Serif", 0, 14)); // NOI18N
+        jWarning.setForeground(new java.awt.Color(255, 0, 0));
+        jWarning.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jWarning.setText(" ");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(0, 81, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jTextFuelPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(89, 89, 89))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jSaveVehicleButton, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(selectDefaultVehicle, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(comboBoxChooseVehicle, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(80, 80, 80))))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(60, 60, 60))
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(typeTitle1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(selectedPlace, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(fuelTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(typeTitle, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(typeTitle2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(modelTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(typeTitle1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(selectedPlaceName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(typeTitle, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(typeTitle2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(modelTitle, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(fuelTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(jWarning, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(35, 35, 35)
+                                .addComponent(jCloseButton, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(10, 10, 10)
+                                .addComponent(jSaveVehicleButton, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(41, 41, 41)
+                                .addComponent(comboBoxChooseVehicle, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 29, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(83, 83, 83)
+                                .addComponent(selectDefaultVehicle))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(52, 52, 52)
+                                .addComponent(jTextFuelPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(61, 61, 61)
+                .addComponent(reportName, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -169,41 +209,39 @@ public class PQuickBudgets extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(typeTitle)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(selectedPlace)
+                .addComponent(selectedPlaceName)
                 .addGap(18, 18, 18)
                 .addComponent(typeTitle2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+                .addComponent(reportName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
                 .addComponent(modelTitle)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(comboBoxChooseVehicle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(selectDefaultVehicle)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addComponent(fuelTitle)
-                .addGap(8, 8, 8)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTextFuelPrice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(34, 34, 34)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jSaveVehicleButton, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(85, 85, 85))
+                .addGap(3, 3, 3)
+                .addComponent(jWarning)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jCloseButton, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jSaveVehicleButton, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(60, 60, 60))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 455, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 600, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 37, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 580, Short.MAX_VALUE)
         );
 
         pack();
@@ -214,7 +252,22 @@ public class PQuickBudgets extends javax.swing.JFrame {
     }//GEN-LAST:event_comboBoxChooseVehicleActionPerformed
 
     private void selectDefaultVehicleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectDefaultVehicleActionPerformed
-
+        if (selectDefaultVehicle.isSelected()) {
+            for (int i = 0; i < activeUser.exportMyVehiclesList().size(); i++) {
+                String vehicle = comboBoxChooseVehicle.getItemAt(i + 1);
+                String[] vehicleSplit = vehicle.split(" - ");
+                if (activeUser.getDefaultVehicle().getReference() == Integer.parseInt(vehicleSplit[0])) {
+                    System.out.println("found vehicle");
+                    comboBoxChooseVehicle.setSelectedIndex(i + 1);
+                    comboBoxChooseVehicle.setEnabled(false);
+                    comboBoxChooseVehicle.setToolTipText(comboBoxChooseVehicle.getItemAt(i + 1));
+                    break;
+                }
+            }
+        } else {
+            comboBoxChooseVehicle.setEnabled(true);
+            comboBoxChooseVehicle.setToolTipText(null);
+        }
     }//GEN-LAST:event_selectDefaultVehicleActionPerformed
 
     private void jTextFuelPriceFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFuelPriceFocusGained
@@ -236,48 +289,57 @@ public class PQuickBudgets extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextFuelPriceKeyTyped
 
     private void jSaveVehicleButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jSaveVehicleButtonActionPerformed
-        //if (!comboBoxChooseVehicle.getSelectedItem().equals("Seleccionar") && !.getText().equals("") && !jTextFuelPrice.getText().equals("Km/Galon") && !jTextFuelPrice.getText().equals("")) {
-
-            /*String vehicle = comboBoxChooseVehicle.getSelectedItem().toString();
-            String model = jTextVehicleModel.getText();
-            double performance = Double.parseDouble(jTextFuelPrice.getText());
-
-            User user = UserData.getActiveUser();
-            BudgetReport AutoCompleteReports( vehicleId,  placeId, fuelPrice);
-            user.AddVehicle(newVehicle);
-            if(jCheckBoxSelectDefaultVehicle.isSelected()){
-                user.setDefaultVehicle(newVehicle);
+        if (comboBoxChooseVehicle.getSelectedIndex() != 0 && Double.parseDouble(jTextFuelPrice.getText()) > 0) {
+            activeUser.setFuelPrice(Double.parseDouble(jTextFuelPrice.getText()));
+            String selectedVehicle = String.valueOf(comboBoxChooseVehicle.getSelectedItem());
+            String[] splitVehicle = selectedVehicle.split(" - ");
+            System.out.println("***VEH id= " + splitVehicle[0]);
+            
+            //get DefaultName if need
+            if (reportName.getText().isBlank() || reportName.getText().equalsIgnoreCase("NOMBRE DE PRESUPUESTO")) {
+                reportName.setText("Default_Report (" + activeUser.getDefaultNumber() + ")");
+                activeUser.incrementDefaultNumber();
             }
-            System.out.println("***Vehiculo anhadido");
-            Home.msgSucessfulAction("Vehiculo Guardado");
+            
+            activeUser.addReports(activeUser.autoCompleteReports(reportName.getText(),
+                    Integer.parseInt(splitVehicle[0]), place, activeUser.getFuelPrice()));
 
-            comboBoxChoosePlace.setSelectedIndex(0);
-            jTextVehicleModel.setText("");
-            jTextFuelPrice.setForeground(Color.lightGray);
-            jTextFuelPrice.setText("Km/Galon");
-            jWarning.setText(" ");
-
-            System.out.println("defaultVehicle "+ user.getDefaultVehicle());
-
-        } else {
-            Toolkit.getDefaultToolkit().beep();
-            jWarning.setText("Complete todos los campos");
-            */
-            // }
+            Home.msgSucessfulAction("Presupuesto Guardado");
+            this.dispose();
+        }else{
+            if (Double.parseDouble(jTextFuelPrice.getText()) <= 0) {
+                jWarning.setText("El valor debe ser mayor a 0");
+                jTextFuelPrice.setText(String.valueOf(activeUser.getFuelPrice()));
+            }else{
+                Home.msgWarning("Complete todos los campos");
+                jWarning.setText("Datos Incorrectos");
+            }    
+        }
     }//GEN-LAST:event_jSaveVehicleButtonActionPerformed
+
+    private void jCloseButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCloseButtonActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_jCloseButtonActionPerformed
+
+    private void reportNameKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_reportNameKeyTyped
+        if (reportName.getText().length() > 20) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_reportNameKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> comboBoxChooseVehicle;
     private javax.swing.JLabel fuelTitle;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jCloseButton;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JButton jSaveVehicleButton;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextFuelPrice;
+    private javax.swing.JLabel jWarning;
     private javax.swing.JLabel modelTitle;
+    private javax.swing.JTextField reportName;
     private javax.swing.JCheckBox selectDefaultVehicle;
-    private javax.swing.JLabel selectedPlace;
+    private javax.swing.JLabel selectedPlaceName;
     private javax.swing.JLabel typeTitle;
     private javax.swing.JLabel typeTitle1;
     private javax.swing.JLabel typeTitle2;

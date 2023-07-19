@@ -3,6 +3,7 @@ package data.functions;
 //lista.stream().sorted().forEach(System.out::println);
 
 import java.time.LocalDateTime;
+import com.model.Day;
 
 //touristPlaces.stream().sorted(Comparator.comparing(Destino::getNameplace)).forEach(System.out::println);
 //touristPlaces.stream().filter(Destino->!Destino.getNameplace().equalsIgnoreCase("Hola")).sorted(Comparator.comparingDouble(Destino::getDistance));
@@ -12,8 +13,19 @@ public class GenericFunctions {
     
     public static LocalDateTime today = LocalDateTime.now();
     
-    public static String todayDate(){
-        return today.getDayOfWeek()+", " + today.getDayOfMonth()+"/"+today.getMonthValue()+"/"+today.getYear();
+    public static String dayOfWeek(){
+        String[]days={"Lunes","Martes","Miércoles","Jueves","Viernes","Sábado","Domingo"};
+        for(Day day: Day.values()){
+           if(today.getDayOfWeek().toString().equalsIgnoreCase(day.toString())){
+               int ordinal = day.ordinal();
+               return days[ordinal];
+           } 
+        }
+        return "NotData";      
+    }
+    
+    public static String todayDate(){     
+        return dayOfWeek()+", " + today.getDayOfMonth()+"/"+today.getMonthValue()+"/"+today.getYear();
     }
     
     public static String todayDateAndHour(){

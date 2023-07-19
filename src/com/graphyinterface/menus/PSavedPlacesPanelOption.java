@@ -5,6 +5,7 @@
 package com.graphyinterface.menus;
 
 import com.graphyinterface.Home;
+import com.graphyinterface.PQuickBudgets;
 import com.model.Place;
 import com.model.User;
 import data.controller.UserData;
@@ -45,7 +46,7 @@ public class PSavedPlacesPanelOption extends javax.swing.JPanel {
         jWarning = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblMySavedPlaces = new javax.swing.JTable();
-        editVehicleButton = new javax.swing.JButton();
+        createNewPlaceButton = new javax.swing.JButton();
         searchVehicleButton = new javax.swing.JButton();
         refreshVehicleTblButton = new javax.swing.JButton();
         delVehicleButton = new javax.swing.JButton();
@@ -146,13 +147,13 @@ public class PSavedPlacesPanelOption extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(tblMySavedPlaces);
 
-        editVehicleButton.setBackground(new java.awt.Color(0, 0, 0));
-        editVehicleButton.setFont(new java.awt.Font("Roboto Black", 0, 14)); // NOI18N
-        editVehicleButton.setForeground(new java.awt.Color(255, 255, 255));
-        editVehicleButton.setText("EDITAR");
-        editVehicleButton.addActionListener(new java.awt.event.ActionListener() {
+        createNewPlaceButton.setBackground(new java.awt.Color(0, 0, 0));
+        createNewPlaceButton.setFont(new java.awt.Font("Roboto Black", 0, 14)); // NOI18N
+        createNewPlaceButton.setForeground(new java.awt.Color(255, 255, 255));
+        createNewPlaceButton.setText("NUEVO DESTINO");
+        createNewPlaceButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                editVehicleButtonActionPerformed(evt);
+                createNewPlaceButtonActionPerformed(evt);
             }
         });
 
@@ -160,6 +161,7 @@ public class PSavedPlacesPanelOption extends javax.swing.JPanel {
         searchVehicleButton.setFont(new java.awt.Font("Roboto Black", 0, 14)); // NOI18N
         searchVehicleButton.setForeground(new java.awt.Color(255, 255, 255));
         searchVehicleButton.setText("BUSCAR");
+        searchVehicleButton.setEnabled(false);
 
         refreshVehicleTblButton.setBackground(new java.awt.Color(0, 0, 0));
         refreshVehicleTblButton.setFont(new java.awt.Font("Roboto Black", 0, 14)); // NOI18N
@@ -193,7 +195,7 @@ public class PSavedPlacesPanelOption extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(searchVehicleButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(editVehicleButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(createNewPlaceButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(delVehicleButton, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -213,7 +215,7 @@ public class PSavedPlacesPanelOption extends javax.swing.JPanel {
                     .addComponent(searchVehicleButton, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(refreshVehicleTblButton, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(delVehicleButton, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(editVehicleButton, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(createNewPlaceButton, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jWarning)
                 .addContainerGap(48, Short.MAX_VALUE))
@@ -254,22 +256,26 @@ public class PSavedPlacesPanelOption extends javax.swing.JPanel {
         Home.loadSavedPlacesTable(UserData.getActiveUser(), tblMySavedPlaces);
     }//GEN-LAST:event_refreshVehicleTblButtonActionPerformed
 
-    private void editVehicleButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editVehicleButtonActionPerformed
-        if(tblMySavedPlaces.getSelectedRow()<0){
+    private void createNewPlaceButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createNewPlaceButtonActionPerformed
+        new PCreatePlacesPanel().setVisible(true);
+        
+        
+        
+      /*  if(tblMySavedPlaces.getSelectedRow()<0){
             Home.msgNotSelected("Seleccione un Destino");
         }else{
             int placeId= Integer.parseInt(tblMySavedPlaces.getValueAt(tblMySavedPlaces.getSelectedRow(), 0).toString());
             User user = UserData.getActiveUser();
             Place selectedPlace = user.searchPlaceID(placeId);
             new PSavedPlacesPanelEditScreen(selectedPlace).setVisible(true);
-        }
-    }//GEN-LAST:event_editVehicleButtonActionPerformed
+        }*/
+    }//GEN-LAST:event_createNewPlaceButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel arrowBack;
+    private javax.swing.JButton createNewPlaceButton;
     private javax.swing.JButton delVehicleButton;
-    private javax.swing.JButton editVehicleButton;
     private javax.swing.JPanel jContent;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;

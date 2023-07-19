@@ -53,7 +53,7 @@ public class BAddBudgetPanelOption extends javax.swing.JPanel {
             String[] splitPlace = place.split(" - ");
             SelectedPlace.setText(splitPlace[0] + " - " + splitPlace[2]);
             SelectedPlace.setToolTipText(splitPlace[0] + " - " + splitPlace[2]);
-            
+
         }
     }
 
@@ -248,8 +248,8 @@ public class BAddBudgetPanelOption extends javax.swing.JPanel {
             }
         });
 
-        jWarning.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
-        jWarning.setForeground(new java.awt.Color(255, 51, 51));
+        jWarning.setFont(new java.awt.Font("Serif", 0, 14)); // NOI18N
+        jWarning.setForeground(new java.awt.Color(255, 0, 0));
         jWarning.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jWarning.setText(" ");
 
@@ -346,7 +346,7 @@ public class BAddBudgetPanelOption extends javax.swing.JPanel {
                 .addComponent(touristPlaces)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(savedPlaces)
-                .addGap(18, 29, Short.MAX_VALUE)
+                .addGap(18, 18, Short.MAX_VALUE)
                 .addComponent(selectedPlaceTitle)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(SelectedPlace, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -424,8 +424,8 @@ public class BAddBudgetPanelOption extends javax.swing.JPanel {
     }//GEN-LAST:event_backArrowMousePressed
 
     private void jSaveBudgetButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jSaveBudgetButtonActionPerformed
-        activeUser.setFuelPrice(Double.parseDouble(jTextFuelPrice.getText()));
-        if (!SelectedPlace.getText().isBlank() && comboBoxChooseVehicle.getSelectedIndex() != 0) {
+        if (!SelectedPlace.getText().isBlank() && comboBoxChooseVehicle.getSelectedIndex() != 0 && Double.parseDouble(jTextFuelPrice.getText()) > 0) {
+            activeUser.setFuelPrice(Double.parseDouble(jTextFuelPrice.getText()));
             String selectedVehicle = String.valueOf(comboBoxChooseVehicle.getSelectedItem());
             String[] splitVehicle = selectedVehicle.split(" - ");
             System.out.println("***VEH id= " + splitVehicle[0]);
@@ -439,8 +439,8 @@ public class BAddBudgetPanelOption extends javax.swing.JPanel {
                 selectedPlace = activeUser.searchIndex(selectedIndex);
             }
             //default name if the report with no name
-            if(reportName.getText().isBlank() || reportName.getText().equalsIgnoreCase("NOMBRE DE PRESUPUESTO")){
-                reportName.setText("Default_Report ("+activeUser.getDefaultNumber()+")");
+            if (reportName.getText().isBlank() || reportName.getText().equalsIgnoreCase("NOMBRE DE PRESUPUESTO")) {
+                reportName.setText("Default_Report (" + activeUser.getDefaultNumber() + ")");
                 activeUser.incrementDefaultNumber();
             }
             activeUser.addReports(activeUser.autoCompleteReports(reportName.getText(),
@@ -454,8 +454,13 @@ public class BAddBudgetPanelOption extends javax.swing.JPanel {
             selectDefaultVehicle.setSelected(false);
 
         } else {
-            Home.msgWarning("Complete todos los campos");
-            jWarning.setText("Datos Incorrectos");
+            if (Double.parseDouble(jTextFuelPrice.getText()) <= 0) {
+                jWarning.setText("El valor debe ser mayor a 0");
+                jTextFuelPrice.setText(String.valueOf(activeUser.getFuelPrice()));
+            }else{
+                Home.msgWarning("Complete todos los campos");
+                jWarning.setText("Datos Incorrectos");
+            }    
         }
     }//GEN-LAST:event_jSaveBudgetButtonActionPerformed
 
@@ -482,7 +487,7 @@ public class BAddBudgetPanelOption extends javax.swing.JPanel {
                 String vehicle = comboBoxChooseVehicle.getItemAt(i + 1);
                 String[] vehicleSplit = vehicle.split(" - ");
                 if (activeUser.getDefaultVehicle().getReference() == Integer.parseInt(vehicleSplit[0])) {
-                    System.out.println("found");
+                    System.out.println("found vehicle");
                     comboBoxChooseVehicle.setSelectedIndex(i + 1);
                     comboBoxChooseVehicle.setEnabled(false);
                     comboBoxChooseVehicle.setToolTipText(comboBoxChooseVehicle.getItemAt(i + 1));
@@ -530,7 +535,7 @@ public class BAddBudgetPanelOption extends javax.swing.JPanel {
     }//GEN-LAST:event_reportNameFocusLost
 
     private void reportNameKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_reportNameKeyTyped
-        if(reportName.getText().length() > 20){
+        if (reportName.getText().length() > 20) {
             evt.consume();
         }
     }//GEN-LAST:event_reportNameKeyTyped

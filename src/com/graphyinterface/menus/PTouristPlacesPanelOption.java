@@ -17,7 +17,7 @@ import java.util.List;
 import javax.swing.JPanel;
 
 public class PTouristPlacesPanelOption extends javax.swing.JPanel {
-    
+
     private DefaultTableModel model;
 
     public PTouristPlacesPanelOption(List<Place> defaultPlaces, DefaultTableModel modelo) {
@@ -54,9 +54,9 @@ public class PTouristPlacesPanelOption extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         tblTouristPlaces = new javax.swing.JTable();
         warningLabel = new javax.swing.JLabel();
-        savePlaceButton = new javax.swing.JButton();
+        createBudgetsButton = new javax.swing.JButton();
+        saveButton = new javax.swing.JButton();
         searchButton = new javax.swing.JButton();
-        makeReportButton = new javax.swing.JButton();
 
         jContent.setBackground(new java.awt.Color(255, 255, 255));
         jContent.setBorder(javax.swing.BorderFactory.createMatteBorder(21, 0, 21, 19, new java.awt.Color(0, 0, 0)));
@@ -165,33 +165,34 @@ public class PTouristPlacesPanelOption extends javax.swing.JPanel {
         warningLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         warningLabel.setText(" ");
 
-        savePlaceButton.setBackground(new java.awt.Color(0, 0, 0));
-        savePlaceButton.setFont(new java.awt.Font("Roboto Black", 0, 14)); // NOI18N
-        savePlaceButton.setForeground(new java.awt.Color(255, 255, 255));
-        savePlaceButton.setText("GENERAR PRESUPUESTO");
-        savePlaceButton.setPreferredSize(new java.awt.Dimension(190, 35));
-        savePlaceButton.addActionListener(new java.awt.event.ActionListener() {
+        createBudgetsButton.setBackground(new java.awt.Color(0, 0, 0));
+        createBudgetsButton.setFont(new java.awt.Font("Roboto Black", 0, 14)); // NOI18N
+        createBudgetsButton.setForeground(new java.awt.Color(255, 255, 255));
+        createBudgetsButton.setText("GENERAR PRESUPUESTO");
+        createBudgetsButton.setPreferredSize(new java.awt.Dimension(190, 35));
+        createBudgetsButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                savePlaceButtonActionPerformed(evt);
+                createBudgetsButtonActionPerformed(evt);
+            }
+        });
+
+        saveButton.setBackground(new java.awt.Color(0, 0, 0));
+        saveButton.setFont(new java.awt.Font("Roboto Black", 0, 14)); // NOI18N
+        saveButton.setForeground(new java.awt.Color(255, 255, 255));
+        saveButton.setText("GUARDAR DESTINO");
+        saveButton.setPreferredSize(new java.awt.Dimension(195, 35));
+        saveButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saveButtonActionPerformed(evt);
             }
         });
 
         searchButton.setBackground(new java.awt.Color(0, 0, 0));
         searchButton.setFont(new java.awt.Font("Roboto Black", 0, 14)); // NOI18N
         searchButton.setForeground(new java.awt.Color(255, 255, 255));
-        searchButton.setText("GUARDAR DESTINO");
-        searchButton.setPreferredSize(new java.awt.Dimension(195, 35));
-        searchButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                searchButtonActionPerformed(evt);
-            }
-        });
-
-        makeReportButton.setBackground(new java.awt.Color(0, 0, 0));
-        makeReportButton.setFont(new java.awt.Font("Roboto Black", 0, 14)); // NOI18N
-        makeReportButton.setForeground(new java.awt.Color(255, 255, 255));
-        makeReportButton.setText("BUSCAR");
-        makeReportButton.setPreferredSize(new java.awt.Dimension(81, 35));
+        searchButton.setText("BUSCAR");
+        searchButton.setEnabled(false);
+        searchButton.setPreferredSize(new java.awt.Dimension(81, 35));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -200,15 +201,15 @@ public class PTouristPlacesPanelOption extends javax.swing.JPanel {
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jScrollPane1)
             .addGroup(layout.createSequentialGroup()
-                .addGap(50, 50, 50)
+                .addGap(40, 40, 40)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(warningLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(searchButton, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(saveButton, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(48, 48, 48)
-                        .addComponent(makeReportButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(searchButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(48, 48, 48)
-                        .addComponent(savePlaceButton, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(createBudgetsButton, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -219,9 +220,9 @@ public class PTouristPlacesPanelOption extends javax.swing.JPanel {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(35, 35, 35)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(saveButton, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(searchButton, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(makeReportButton, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(savePlaceButton, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(createBudgetsButton, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(warningLabel)
                 .addContainerGap(49, Short.MAX_VALUE))
@@ -241,7 +242,7 @@ public class PTouristPlacesPanelOption extends javax.swing.JPanel {
         warningLabel.setText(" ");
     }//GEN-LAST:event_tblTouristPlacesMouseClicked
 
-    private void searchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButtonActionPerformed
+    private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
         if (Home.msgIsNotSelectedFila(tblTouristPlaces)) {
             Home.msgNotSelected("Seleccione un Destino");
             System.out.println("no selected");
@@ -259,23 +260,29 @@ public class PTouristPlacesPanelOption extends javax.swing.JPanel {
                 warningLabel.setText("El destino ya ha sido añadido");
             }
         }
-    }//GEN-LAST:event_searchButtonActionPerformed
+    }//GEN-LAST:event_saveButtonActionPerformed
 
-    private void savePlaceButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_savePlaceButtonActionPerformed
-        if(modelo)
-        new PQuickBudgets().se
-    }//GEN-LAST:event_savePlaceButtonActionPerformed
+    private void createBudgetsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createBudgetsButtonActionPerformed
+        if (Home.msgIsNotSelectedFila(tblTouristPlaces)) {
+            Home.msgNotSelected("Seleccione un Destino");
+            System.out.println("no selected");
+        } else {
+            Place seletedPlace= UserData.activeUser.searchPlaceID(Integer.parseInt(model.getValueAt(tblTouristPlaces.getSelectedRow(), 0).toString()));
+            new PQuickBudgets(seletedPlace).setVisible(true);
+        }
+
+    }//GEN-LAST:event_createBudgetsButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton createBudgetsButton;
     private javax.swing.JLabel jArrowBack;
     private javax.swing.JPanel jContent;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JButton makeReportButton;
-    private javax.swing.JButton savePlaceButton;
+    private javax.swing.JButton saveButton;
     private javax.swing.JButton searchButton;
     private javax.swing.JTable tblTouristPlaces;
     private javax.swing.JLabel warningLabel;

@@ -86,7 +86,7 @@
               <EmptySpace max="32767" attributes="0"/>
               <Component id="searchVehicleButton" min="-2" pref="100" max="-2" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
-              <Component id="editVehicleButton" min="-2" pref="100" max="-2" attributes="0"/>
+              <Component id="createNewPlaceButton" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
               <Component id="delVehicleButton" min="-2" pref="150" max="-2" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
@@ -109,7 +109,7 @@
                   <Component id="searchVehicleButton" alignment="3" min="-2" pref="45" max="-2" attributes="0"/>
                   <Component id="refreshVehicleTblButton" alignment="3" min="-2" pref="45" max="-2" attributes="0"/>
                   <Component id="delVehicleButton" alignment="3" min="-2" pref="45" max="-2" attributes="0"/>
-                  <Component id="editVehicleButton" alignment="3" min="-2" pref="45" max="-2" attributes="0"/>
+                  <Component id="createNewPlaceButton" alignment="3" min="-2" pref="45" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="jWarning" min="-2" max="-2" attributes="0"/>
@@ -225,7 +225,7 @@
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JButton" name="editVehicleButton">
+    <Component class="javax.swing.JButton" name="createNewPlaceButton">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="0" green="0" red="0" type="rgb"/>
@@ -236,10 +236,10 @@
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="ff" red="ff" type="rgb"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="EDITAR"/>
+        <Property name="text" type="java.lang.String" value="NUEVO DESTINO"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="editVehicleButtonActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="createNewPlaceButtonActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="searchVehicleButton">
@@ -254,6 +254,7 @@
           <Color blue="ff" green="ff" red="ff" type="rgb"/>
         </Property>
         <Property name="text" type="java.lang.String" value="BUSCAR"/>
+        <Property name="enabled" type="boolean" value="false"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="refreshVehicleTblButton">

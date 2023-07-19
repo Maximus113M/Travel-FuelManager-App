@@ -55,11 +55,11 @@ public class LogIn extends javax.swing.JFrame {
         jLogInSection.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         jTitle.setBackground(new java.awt.Color(236, 109, 32));
-        jTitle.setFont(new java.awt.Font("Roboto Black", 1, 20)); // NOI18N
+        jTitle.setFont(new java.awt.Font("Serif", 0, 26)); // NOI18N
         jTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jTitle.setText("INICIO DE SESIÓN");
 
-        jLabelTitleUser.setFont(new java.awt.Font("Roboto Black", 0, 14)); // NOI18N
+        jLabelTitleUser.setFont(new java.awt.Font("Serif", 2, 16)); // NOI18N
         jLabelTitleUser.setText("USUARIO");
 
         jTextUserEmail.setForeground(new java.awt.Color(204, 204, 204));
@@ -82,7 +82,7 @@ public class LogIn extends javax.swing.JFrame {
         jSeparator1.setBackground(new java.awt.Color(0, 0, 0));
         jSeparator1.setForeground(new java.awt.Color(0, 0, 0));
 
-        jLabelTitlePassword.setFont(new java.awt.Font("Roboto Black", 0, 14)); // NOI18N
+        jLabelTitlePassword.setFont(new java.awt.Font("Serif", 2, 16)); // NOI18N
         jLabelTitlePassword.setText("CONTRASEÑA");
 
         jPasswordField.setForeground(new java.awt.Color(204, 204, 204));
@@ -110,7 +110,7 @@ public class LogIn extends javax.swing.JFrame {
         jLabel5.setText("jLabel5");
 
         jButtonLogIn.setBackground(new java.awt.Color(242, 242, 242));
-        jButtonLogIn.setFont(new java.awt.Font("Roboto Black", 0, 12)); // NOI18N
+        jButtonLogIn.setFont(new java.awt.Font("Roboto Black", 0, 14)); // NOI18N
         jButtonLogIn.setText("INGRESAR");
         jButtonLogIn.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButtonLogIn.setPreferredSize(new java.awt.Dimension(89, 35));
@@ -121,7 +121,7 @@ public class LogIn extends javax.swing.JFrame {
         });
 
         jButtonCheckIn.setBackground(new java.awt.Color(242, 242, 242));
-        jButtonCheckIn.setFont(new java.awt.Font("Roboto Black", 0, 12)); // NOI18N
+        jButtonCheckIn.setFont(new java.awt.Font("Roboto Black", 0, 14)); // NOI18N
         jButtonCheckIn.setText("REGISTRARSE");
         jButtonCheckIn.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButtonCheckIn.setPreferredSize(new java.awt.Dimension(112, 35));
@@ -131,6 +131,7 @@ public class LogIn extends javax.swing.JFrame {
             }
         });
 
+        jLogInState.setFont(new java.awt.Font("Serif", 0, 14)); // NOI18N
         jLogInState.setForeground(new java.awt.Color(255, 102, 102));
         jLogInState.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
@@ -187,7 +188,7 @@ public class LogIn extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLogInState, javax.swing.GroupLayout.DEFAULT_SIZE, 6, Short.MAX_VALUE)
+                .addComponent(jLogInState, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addComponent(jButtonLogIn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)

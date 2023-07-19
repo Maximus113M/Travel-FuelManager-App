@@ -48,7 +48,7 @@ public class MenuTouristPlacesPanel extends javax.swing.JPanel {
         setPreferredSize(new java.awt.Dimension(715, 560));
 
         BoxTouristPlaces.setBackground(new java.awt.Color(204, 204, 204));
-        BoxTouristPlaces.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 5, true));
+        BoxTouristPlaces.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 5));
         BoxTouristPlaces.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseDragged(java.awt.event.MouseEvent evt) {
                 BoxTouristPlacesMouseDragged(evt);
@@ -88,7 +88,7 @@ public class MenuTouristPlacesPanel extends javax.swing.JPanel {
                 .addComponent(touristPlacesButton, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        BoxSavePlaces.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 5, true));
+        BoxSavePlaces.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 5));
 
         savedPlacesButton.setBackground(new java.awt.Color(0, 0, 0));
         savedPlacesButton.setFont(new java.awt.Font("Roboto Black", 0, 14)); // NOI18N
