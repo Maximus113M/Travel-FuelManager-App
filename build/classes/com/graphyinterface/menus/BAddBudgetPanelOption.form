@@ -190,24 +190,33 @@
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                      <Component id="fuelTitle" alignment="1" max="32767" attributes="0"/>
-                                      <Component id="jTextFuelPrice" alignment="1" max="32767" attributes="0"/>
-                                      <Component id="touristPlaces" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="savedPlaces" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="comboBoxChooseVehicle" alignment="1" min="-2" pref="190" max="-2" attributes="0"/>
-                                      <Component id="selectedPlaceTitle" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="modelTitle" alignment="0" min="-2" pref="184" max="-2" attributes="0"/>
-                                      <Component id="categorieTitle" alignment="1" max="32767" attributes="0"/>
-                                      <Component id="reportName" max="32767" attributes="0"/>
-                                      <Component id="SelectedPlace" alignment="0" min="-2" pref="190" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Group type="102" attributes="0">
+                                          <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                              <Component id="touristPlaces" alignment="0" min="-2" max="-2" attributes="0"/>
+                                              <Component id="savedPlaces" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                      </Group>
+                                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                          <Component id="categorieTitle" alignment="1" max="32767" attributes="0"/>
+                                          <Component id="reportName" max="32767" attributes="0"/>
+                                      </Group>
+                                      <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                                          <Component id="fuelTitle" alignment="1" max="32767" attributes="0"/>
+                                          <Component id="jTextFuelPrice" alignment="1" max="32767" attributes="0"/>
+                                          <Component id="comboBoxChooseVehicle" alignment="0" pref="190" max="32767" attributes="0"/>
+                                          <Component id="selectedPlaceTitle" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="modelTitle" alignment="0" min="-2" pref="184" max="-2" attributes="0"/>
+                                          <Component id="SelectedPlace" alignment="0" max="32767" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
+                                          <Component id="selectDefaultVehicle" min="-2" max="-2" attributes="0"/>
+                                      </Group>
                                   </Group>
                               </Group>
                           </Group>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
-                          <Component id="selectDefaultVehicle" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
@@ -227,7 +236,7 @@
                   <Component id="touristPlaces" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="savedPlaces" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace type="separate" max="32767" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="selectedPlaceTitle" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="SelectedPlace" min="-2" pref="22" max="-2" attributes="0"/>
@@ -241,7 +250,7 @@
                   <Component id="fuelTitle" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jTextFuelPrice" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <EmptySpace pref="33" max="32767" attributes="0"/>
                   <Component id="jSaveBudgetButton" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jWarning" min="-2" max="-2" attributes="0"/>
@@ -292,6 +301,13 @@
             <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="text" type="java.lang.String" value="Precio/Galon"/>
             <Property name="toolTipText" type="java.lang.String" value="Ingresa el Precio si ha Cambiado"/>
+            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+              <Border info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
+                <MatteColorBorder bottom="1" left="0" right="0" top="0">
+                  <Color PropertyName="color" blue="b4" green="b4" red="b4" type="rgb"/>
+                </MatteColorBorder>
+              </Border>
+            </Property>
           </Properties>
           <Events>
             <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jTextFuelPriceFocusGained"/>
@@ -384,9 +400,18 @@
         </Component>
         <Component class="javax.swing.JTextField" name="SelectedPlace">
           <Properties>
-            <Property name="editable" type="boolean" value="false"/>
-            <Property name="horizontalAlignment" type="int" value="2"/>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Serif" size="13" style="0"/>
+            </Property>
+            <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="autoscrolls" type="boolean" value="false"/>
+            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+              <Border info="null"/>
+            </Property>
+            <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+              <Color id="Default Cursor"/>
+            </Property>
+            <Property name="focusable" type="boolean" value="false"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="selectedPlaceTitle">
@@ -399,11 +424,21 @@
         </Component>
         <Component class="javax.swing.JTextField" name="reportName">
           <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Serif" size="12" style="0"/>
+            </Property>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="99" green="99" red="99" type="rgb"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="text" type="java.lang.String" value="NOMBRE DE PRESUPUESTO"/>
+            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+              <Border info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
+                <MatteColorBorder bottom="1" left="0" right="0" top="0">
+                  <Color PropertyName="color" blue="b4" green="b4" red="b4" type="rgb"/>
+                </MatteColorBorder>
+              </Border>
+            </Property>
           </Properties>
           <Events>
             <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="reportNameFocusGained"/>

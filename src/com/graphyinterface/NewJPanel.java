@@ -140,18 +140,6 @@ public class NewJPanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void touristPlacesButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_touristPlacesButton4ActionPerformed
-        //PTouristPlacesPanelOption touristPlacesList= new PTouristPlacesPanelOption(DefaultPlaces.defaultListPlaces(), modelo);
-        /*touristPlacesList.setSize(528, 510);
-        touristPlacesList.setLocation(0,0);
-
-        this.removeAll();
-        this.add(touristPlacesList,BorderLayout.CENTER);
-        this.revalidate();
-        this.repaint();*/
-
-    }//GEN-LAST:event_touristPlacesButton4ActionPerformed
-
     private void BoxTouristPlaces4MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BoxTouristPlaces4MouseDragged
 
     }//GEN-LAST:event_BoxTouristPlaces4MouseDragged
@@ -174,6 +162,17 @@ public class NewJPanel extends javax.swing.JPanel {
         this.revalidate();
         this.repaint();
     }//GEN-LAST:event_savedPlacesButtonActionPerformed
+
+    private void touristPlacesButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_touristPlacesButton4ActionPerformed
+        //PTouristPlacesPanelOption touristPlacesList= new PTouristPlacesPanelOption(DefaultPlaces.defaultListPlaces(), modelo);
+        /*touristPlacesList.setSize(528, 510);
+        touristPlacesList.setLocation(0,0);
+
+        this.removeAll();
+        this.add(touristPlacesList,BorderLayout.CENTER);
+        this.revalidate();
+        this.repaint();*/
+    }//GEN-LAST:event_touristPlacesButton4ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

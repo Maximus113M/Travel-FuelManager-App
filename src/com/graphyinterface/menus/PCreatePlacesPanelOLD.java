@@ -2,25 +2,19 @@ package com.graphyinterface.menus;
 
 import com.graphyinterface.Home;
 import com.model.Place;
+import com.model.User;
+import data.controller.UserData;
 import data.functions.GenericFunctions;
 import java.awt.Color;
 
-public class PSavedPlacesPanelEditScreen extends javax.swing.JFrame {
-
-    private final Place place;
-
-    /**
-     * Creates new form VSavedVehiclesPanelEditScreen
-     */
-    public PSavedPlacesPanelEditScreen(Place selectedPlace) {
+public class PCreatePlacesPanelOLD extends javax.swing.JFrame {
+    
+    private final User activeUser= UserData.activeUser;
+    
+    public PCreatePlacesPanelOLD() {
         initComponents();
         this.setLocationRelativeTo(null);
-        place = selectedPlace;
-
-        jTextNamePlace.setText(selectedPlace.getNamePlace());
-        jTextCity.setText(selectedPlace.getCiudad());
-        jTextState.setText(selectedPlace.getDepartamento());
-        jTextDistance.setText(String.valueOf(selectedPlace.getDistance()));
+        
     }
 
     /**
@@ -45,31 +39,38 @@ public class PSavedPlacesPanelEditScreen extends javax.swing.JFrame {
         distanceTitle = new javax.swing.JLabel();
         jTextDistance = new javax.swing.JTextField();
         waring = new javax.swing.JLabel();
+        jSaveVehicleButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
 
-        editBackGround.setBorder(javax.swing.BorderFactory.createCompoundBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 4, true), javax.swing.BorderFactory.createMatteBorder(30, 30, 90, 30, new javax.swing.ImageIcon(getClass().getResource("/com/Images/FondoBosqueCarretera.jpg"))))); // NOI18N
+        editBackGround.setBorder(javax.swing.BorderFactory.createCompoundBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 4, true), javax.swing.BorderFactory.createMatteBorder(30, 30, 90, 30, new javax.swing.ImageIcon(getClass().getResource("/com/Images/Fondomariposas (1) (1).jpg"))))); // NOI18N
         editBackGround.setPreferredSize(new java.awt.Dimension(340, 495));
 
         editFormPanel.setBackground(new java.awt.Color(255, 255, 255));
         editFormPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         editFormPanel.setPreferredSize(new java.awt.Dimension(275, 372));
 
-        sectionTitle.setFont(new java.awt.Font("Roboto Black", 0, 16)); // NOI18N
+        sectionTitle.setFont(new java.awt.Font("Serif", 1, 20)); // NOI18N
         sectionTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        sectionTitle.setText("EDITA TUS DESTINOS");
+        sectionTitle.setText("AÑADE TUS DESTINOS");
 
-        namePlaceTitle.setFont(new java.awt.Font("Roboto", 3, 14)); // NOI18N
+        namePlaceTitle.setFont(new java.awt.Font("Serif", 3, 14)); // NOI18N
         namePlaceTitle.setText("NOMBRE DEL DESTINO");
 
-        cityTitle.setFont(new java.awt.Font("Roboto", 3, 14)); // NOI18N
+        cityTitle.setFont(new java.awt.Font("Serif", 3, 14)); // NOI18N
         cityTitle.setText("CIUDAD");
 
-        stateTitle.setFont(new java.awt.Font("Roboto", 3, 14)); // NOI18N
+        jTextCity.setFont(new java.awt.Font("Serif", 0, 13)); // NOI18N
+        jTextCity.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        jTextCity.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(180, 180, 180)));
+
+        stateTitle.setFont(new java.awt.Font("Serif", 3, 14)); // NOI18N
         stateTitle.setText("DEPARTAMENTO");
 
-        jTextState.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextState.setFont(new java.awt.Font("Serif", 0, 13)); // NOI18N
+        jTextState.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        jTextState.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(180, 180, 180)));
 
         jSaveVehicleButton.setBackground(new java.awt.Color(0, 0, 0));
         jSaveVehicleButton.setFont(new java.awt.Font("Roboto Black", 0, 14)); // NOI18N
@@ -82,10 +83,19 @@ public class PSavedPlacesPanelEditScreen extends javax.swing.JFrame {
             }
         });
 
-        distanceTitle.setFont(new java.awt.Font("Roboto", 3, 14)); // NOI18N
+        jTextNamePlace.setFont(new java.awt.Font("Serif", 0, 13)); // NOI18N
+        jTextNamePlace.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        jTextNamePlace.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(180, 180, 180)));
+
+        distanceTitle.setFont(new java.awt.Font("Serif", 3, 14)); // NOI18N
         distanceTitle.setText("DISTANCIA");
 
+        jTextDistance.setFont(new java.awt.Font("Serif", 0, 13)); // NOI18N
+        jTextDistance.setForeground(new java.awt.Color(153, 153, 153));
         jTextDistance.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextDistance.setText("Distancia desde Bucaramanga");
+        jTextDistance.setToolTipText("Distancia en Kilometros");
+        jTextDistance.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(180, 180, 180)));
         jTextDistance.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 jTextDistanceFocusGained(evt);
@@ -105,6 +115,17 @@ public class PSavedPlacesPanelEditScreen extends javax.swing.JFrame {
         waring.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         waring.setText(" ");
 
+        jSaveVehicleButton1.setBackground(new java.awt.Color(0, 0, 0));
+        jSaveVehicleButton1.setFont(new java.awt.Font("Roboto Black", 0, 14)); // NOI18N
+        jSaveVehicleButton1.setForeground(new java.awt.Color(255, 255, 255));
+        jSaveVehicleButton1.setText("CANCELAR");
+        jSaveVehicleButton1.setPreferredSize(new java.awt.Dimension(100, 35));
+        jSaveVehicleButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jSaveVehicleButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout editFormPanelLayout = new javax.swing.GroupLayout(editFormPanel);
         editFormPanel.setLayout(editFormPanelLayout);
         editFormPanelLayout.setHorizontalGroup(
@@ -115,31 +136,34 @@ public class PSavedPlacesPanelEditScreen extends javax.swing.JFrame {
                         .addContainerGap()
                         .addComponent(sectionTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(editFormPanelLayout.createSequentialGroup()
-                        .addGap(35, 35, 35)
+                        .addGap(37, 37, 37)
                         .addGroup(editFormPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(namePlaceTitle, javax.swing.GroupLayout.DEFAULT_SIZE, 202, Short.MAX_VALUE)
+                            .addComponent(namePlaceTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(cityTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jTextCity)
                             .addComponent(stateTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jTextState)
                             .addComponent(jTextNamePlace, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(distanceTitle, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jTextDistance)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, editFormPanelLayout.createSequentialGroup()
+                            .addComponent(jTextDistance, javax.swing.GroupLayout.DEFAULT_SIZE, 202, Short.MAX_VALUE)))
+                    .addGroup(editFormPanelLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(waring, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGroup(editFormPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(waring, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, editFormPanelLayout.createSequentialGroup()
+                                .addGap(27, 27, 27)
+                                .addComponent(jSaveVehicleButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jSaveVehicleButton, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(27, 27, 27)))))
                 .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, editFormPanelLayout.createSequentialGroup()
-                .addGap(0, 89, Short.MAX_VALUE)
-                .addComponent(jSaveVehicleButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(89, 89, 89))
         );
         editFormPanelLayout.setVerticalGroup(
             editFormPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(editFormPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(sectionTitle)
-                .addGap(18, 18, 18)
+                .addGap(20, 20, 20)
                 .addComponent(namePlaceTitle)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTextNamePlace, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -155,33 +179,37 @@ public class PSavedPlacesPanelEditScreen extends javax.swing.JFrame {
                 .addComponent(distanceTitle)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTextDistance, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addComponent(waring)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSaveVehicleButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(62, Short.MAX_VALUE))
+                .addGroup(editFormPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jSaveVehicleButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jSaveVehicleButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(52, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout editBackGroundLayout = new javax.swing.GroupLayout(editBackGround);
         editBackGround.setLayout(editBackGroundLayout);
         editBackGroundLayout.setHorizontalGroup(
             editBackGroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(editFormPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 282, Short.MAX_VALUE)
+            .addComponent(editFormPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         editBackGroundLayout.setVerticalGroup(
             editBackGroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(editFormPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 392, Short.MAX_VALUE)
+            .addGroup(editBackGroundLayout.createSequentialGroup()
+                .addComponent(editFormPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(editBackGround, javax.swing.GroupLayout.DEFAULT_SIZE, 350, Short.MAX_VALUE)
+            .addComponent(editBackGround, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(editBackGround, javax.swing.GroupLayout.DEFAULT_SIZE, 520, Short.MAX_VALUE)
+            .addComponent(editBackGround, javax.swing.GroupLayout.PREFERRED_SIZE, 481, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -189,14 +217,13 @@ public class PSavedPlacesPanelEditScreen extends javax.swing.JFrame {
 
     private void jSaveVehicleButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jSaveVehicleButtonActionPerformed
         if (jTextNamePlace.getText().isEmpty() || jTextCity.getText().isEmpty() || jTextState.getText().isEmpty() || jTextDistance.getText().isEmpty()) {
-            waring.setText("Campos vacios");
+            waring.setText("Complete los Campos Vacios");
         } else {
-            place.setNamePlace(jTextNamePlace.getText());
-            place.setCiudad(jTextCity.getText());
-            place.setDepartamento(jTextState.getText());
-            place.setDistance(Double.parseDouble(jTextDistance.getText()));
+            int ID=activeUser.GeneratePlaceID(); 
+            Place place= new Place(jTextNamePlace.getText(),jTextCity.getText(),jTextState.getText(),Double.parseDouble(jTextDistance.getText()),ID);
+            activeUser.addToMySavedList(place);
             waring.setText(" ");
-            Home.msgSucessfulAction("Datos Actualizados");
+            Home.msgSucessfulAction("Destino Creado");
             this.dispose();
         }
     }//GEN-LAST:event_jSaveVehicleButtonActionPerformed
@@ -219,6 +246,10 @@ public class PSavedPlacesPanelEditScreen extends javax.swing.JFrame {
         GenericFunctions.inputOnlyNumber(evt);
     }//GEN-LAST:event_jTextDistanceKeyTyped
 
+    private void jSaveVehicleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jSaveVehicleButton1ActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_jSaveVehicleButton1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -229,6 +260,7 @@ public class PSavedPlacesPanelEditScreen extends javax.swing.JFrame {
     private javax.swing.JPanel editBackGround;
     private javax.swing.JPanel editFormPanel;
     private javax.swing.JButton jSaveVehicleButton;
+    private javax.swing.JButton jSaveVehicleButton1;
     private javax.swing.JTextField jTextCity;
     private javax.swing.JTextField jTextDistance;
     private javax.swing.JTextField jTextNamePlace;

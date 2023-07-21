@@ -1,10 +1,13 @@
 package data.controller;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Arrays;
 import java.util.Comparator;
 import com.model.Place;
-import data.defaultplaces.DefaultPlaces;
-import java.util.List;
+import java.util.HashMap;
+
+
 
 //lista.stream().sorted().forEach(System.out::println);
 //touristPlaces.stream().sorted(Comparator.comparing(Destino::getNameplace)).forEach(System.out::println);
@@ -13,128 +16,102 @@ import java.util.List;
 //List<Curso>cursoList = cursos.stream().filter(curso->!curso.getNombre().equalsIgnoreCase("Ruby")).sorted(Comparator.comparingInt(Curso::getTiempo)).collect(Collectors.toList());
 public class PlacesData {
 
-    private static List<Place> myTouristPlaces = new ArrayList();
-
-    //THIS FUNCTION IMPORT DEFAULT PLACES
-    public static void ImportDefaultPlacesList(List<Place> list) {
-        myTouristPlaces.addAll(list);
-    }
-    //*** FUNCTIONS WAS IMPORT TO USER***
+    private static HashMap<String, List<String>> cities= new HashMap<>();
     
-    //THIS FUNCTION EXPORT  PLACE LIST
-    /* public static List<Place> ExportPlacesList() {
-        return myTouristPlaces;    
-    }
-    
-    //THIS FUNCTION VALIDATE IF THE ID IS IN
-    public static boolean SearchDuplicatePlace(int placeID) {
-        List<Place>defaultPlacesList= myTouristPlaces;
-        for (Place destino : defaultPlacesList) {
-            if (destino.getID() == placeID) {
-                return true;
-            }
-        }
-        return false;
-    } 
-    
-    //THIS FUNCTION ADD new Place to arrayList 
-    public static void AddPlaceToSavesList(Place destino) {
-        myTouristPlaces.add(destino);
-        
-    }
-
-    //THIS FUNCTION ADD new Place to arrayList 
-    public static void AddNewPlace(Place destino) {
-        if (!destino.getNamePlace().equals("") && !destino.getCiudad().equals("") && !destino.getDepartamento().equals("") && destino.getDistance() > 0) {
-            myTouristPlaces.add(destino);
-        }else{
-            System.out.println("No anhadido");
-        }
-    }
-
-    //THIS CHECK if empty state
-    public static boolean EmptyPlaceList() {
-        return myTouristPlaces.isEmpty();
-    }
-
-    //THIS FUNCTION remove a location to the list
-    public static void DelPlaces(String search) {
-        boolean found = false;
-        for (Place destino : myTouristPlaces) {
-            if (destino.getNamePlace().equalsIgnoreCase(search)) {
-                //Interface.Found();
-                System.out.println(destino);
-                myTouristPlaces.remove(myTouristPlaces.indexOf(destino));
-                found = true;
-                //Interface.SuccessfulAction();
-                break;
-            }
-        }
-        if (!found) {
-            //Interface.NotFound();
-        }
-
-    }
-    
-    //THIS CLEAR myTouristPlaces LIST
-    public static void DelPlacesList() {
-        myTouristPlaces.clear();
-    }
-
-    //THIS FUNCTION print Places List
-    public static void PrintPlaces() {
-        if (!EmptyPlaceList()) {
-            Comparator<Place> comparadorMultiple = Comparator.comparing(Place::getDepartamento).thenComparing(Comparator.comparing(Place::getNamePlace)).thenComparing(Comparator.comparing(Place::getDistance));
-            myTouristPlaces.stream().sorted(comparadorMultiple).forEach(System.out::println);
-        } else {
-            //nterface.Empty();
-        }
-    }
-
-    //THIS FUNCTION is to search by name
-    public static void Search_byName(String namePlace) {
-        boolean found = false;
-        if (!EmptyPlaceList()) {
-            for (Place destino : myTouristPlaces) {
-                if (destino.getNamePlace().equalsIgnoreCase(namePlace)) {
-                    System.out.println(" ");
-                    //Interface.Found();
-
-                    System.out.println(destino);
-                    found = true;
-                }
-            }
-        } else {
-            //Interface.Empty();
-        }
-        
-        if (!found && !EmptyPlaceList()) {
-            //Interface.NotFound();
-        }
+   public static void fillCities(){
+        List<String>amazonasCities= Arrays.asList("Leticia", "Puerto Nariño", "Puerto Leguízamo", "Puerto Asís", "La Chorrera", "El Encanto", "La Pedrera", "Puerto Caicedo", "San Miguel", "Puerto Guzmán");
+        cities.put("Amazonas",amazonasCities );       
+        List<String>antioquiaCities= Arrays.asList("Medellín", "Bello", "Itagüí", "Envigado", "Sabaneta", "Caldas", "Copacabana", "Giradota", "Rionegro", "El Carmen de Viboral", "El Santuario", "Guarne", "San Vicente Ferrer", "Guarne", "San Vicente Ferrer", "Marinilla");
+        cities.put("Antioquia",antioquiaCities );
+        List<String>araucaCities= Arrays.asList("Arauca", "Aramita", "Arauquita", "Cravo Norte", "Fortul", "Puerto Rondón", "Saravena", "Tame");
+        cities.put("Arauca",araucaCities );
+        List<String>atlánticoCities= Arrays.asList("Barranquilla", "Soledad", "Malambo", "Galapa", "Puerto Colombia", "Sabanalarga", "Baranoa", "Palmar de Varela", "Piojó", "Usiacurí");
+        cities.put("Atlántico",atlánticoCities );
+        List<String>bolivarCities= Arrays.asList("Cartagena de Indias", "Magangué", "Mompóx", "Turbaco", "San Jacinto", "El Carmen de Bolívar", "Sincelejo", "San Juan de Nepomuceno", "Montería", "Soledad");
+        cities.put("Bolívar",bolivarCities );
+        List<String>boyacáCities= Arrays.asList("Tunja", "Duitama", "Sogamoso", "Zipaquirá", "Paipa", "Chivata", "Villa de Leyva", "Ráquira", "Santa Rosa de Viterbo", "La Mesa de Los Santos");
+        cities.put("Boyacá",boyacáCities );
+        List<String>caldasCities= Arrays.asList("Manizales", "Chinchiná", "Aranzazu", "Aguadas", "Marmato", "La Dorada", "Neira", "Villamaría", "Anserma", "Pácora");
+        cities.put("Caldas",caldasCities );
+        List<String>caquetáCities= Arrays.asList("Florencia", "Cartagena del Chairá", "Curillo", "El Doncello", "El Paujil", "La Montañita", "Morelia", "Puerto Rico", "San Vicente del Caguán", "Solano");
+        cities.put("Caquetá",caquetáCities );
+        List<String>casanareCities= Arrays.asList("Yopal", "Aguazul", "Tauramena", "Trinidad", "Villanueva", "Paz de Ariporo", "Hato Corozal", "Maní", "Monterrey", "Nunchía");
+        cities.put("Casanare",casanareCities );
+        List<String>caucaCities= Arrays.asList("Popayán", "Cajibío", "Caloto", "Almaguer", "Guapi", "El Tambo", "Corinto", "Balboa", "Bolívar", "Buenos Aires", "La Vega", "Morales", "Guachené", "Puerto Tejada", "Totoró", "Toribio", "Puracé", "Inza", "Suarez", "Mercaderas", "Timbío", "Silvia", "Caldono", "Miranda", "Piendamó", "Santander de Quilichao", "Jambaló", "Páez", "La Sierra", "Sotará", "Timbiqui", "Villa Rica", "Padilla", "Patía", "Rosas", "San Sebastián", "Micay", "Santa Rosa", "Sucre", "Piamonte", "Florencia", "Argelia", "El Bordo, Argelia");
+        cities.put("Cauca",caucaCities );
+        List<String>cesarCities= Arrays.asList("Valledupar", "Agustín Codazzi", "Aguachica", "Bosconia", "Curumaní", "Gamarra", "La Paz", "Manaure", "Pailitas", "Pelaya", "San Martín", "San Diego", "San Alberto", "San Juan del Cesar", "Tamalameque");
+        cities.put("Cesar",cesarCities );
+        List<String> chocóCities= Arrays.asList("Quibdó", "Condoto", "Medio Baudó", "Juradó", "Unguía", "Tadó", "Bahía Solano", "Bahía de Portete", "Novita");
+        cities.put("Chocó",chocóCities );
+        List<String> córdobaCities= Arrays.asList("Montería", "Ciénaga de Oro", "Planeta Rica", "Córdoba", "Lorica", "San Pelayo", "Ayapel", "Moñitos", "San Bernardo del Viento", "Momil");
+        cities.put("Córdoba",córdobaCities );
+        List<String> cundinamarcaCities= Arrays.asList("Bogotá", "Zipaquirá", "Facatativá", "Soacha", "Cajicá", "Girardot", "Tocancipá", "Chía", "Mosquera", "Funza");
+        cities.put("Cundinamarca",cundinamarcaCities );
+        List<String> guainíaCities= Arrays.asList("Inírida", "Cacahual", "La Guadalupe", "Morichal Nuevo", "Pana Pana", "Puerto Colombia");
+        cities.put("Guainía",guainíaCities );
+        List<String> guaviareCities= Arrays.asList("San José del Guaviare", "Calamar", "El Retorno", "Miraflores");
+        cities.put("Guaviare",guaviareCities );
+        List<String> huilaCities= Arrays.asList("Neiva", "La Plata", "Garzón", "Aipe", "Gigante", "Tello", "Isnos", "Santa María", "Pitalito", "Oporapa");
+        cities.put("Huila",huilaCities );
+        List<String> laGuajiraCities= Arrays.asList("Riohacha", "Maicao", "Uribia", "Manaure", "El Molino", "Barrancas", "Hatonuevo", "La Jagua del Pilar", "Dibulla", "Albania", "San Juan del Cesar", "Fonseca", "Distracción", "Villanueva", "Urumita");
+        cities.put("La Guajira",laGuajiraCities );
+        List<String> magdalenaCities= Arrays.asList("Santa Marta", "Ciénaga", "Palonegro", "El Banco", "Sabana de Torres", "Galerazamba", "Aracataca", "Fundacion", "Barrancabermeja", "Magangue");
+        cities.put("Magdalena",magdalenaCities );
+        List<String> metaCities= Arrays.asList("Villavicencio", "Acacías", "Barranca de Upía", "Castilla la Nueva", "Cochabamba", "El Calvario", "Guamal", "La Macarena", "Puerto López", "Uribe");
+        cities.put("Meta",metaCities );
+        List<String> nariñoCities= Arrays.asList("Pasto", "Ipiales", "Tuquerres", "La Unión", "Sandoná", "Leiva", "Iles", "Cumbal", "Chachagüí", "Guachucal");
+        cities.put("Nariño",nariñoCities );
+        List<String> nortedeSantanderCities= Arrays.asList("Cúcuta", "Ocaña", "Pamplona", "Los Patios", "Villa del Rosario");
+        cities.put("Norte de Santander",nortedeSantanderCities);
+        List<String> putumayoCities= Arrays.asList("Mocoa", "Puerto Asís", "Puerto Caicedo", "Puerto Guzmán", "Orito", "San Miguel", "Valle del Guamuéz", "Colón", "Sibundoy", "San Francisco");
+        cities.put("Putumayo",putumayoCities);
+        List<String> quindíoCities= Arrays.asList("Armenia", "Calarcá", "Quimbaya", "Montenegro", "Pijao", "Génova", "La Tebaida", "Filandia", "Circasia", "Córdoba", "Salento");
+        cities.put("Quindío",quindíoCities);
+        List<String> risaraldaCities= Arrays.asList("Pereira", "Dosquebradas", "Santa Rosa de Cabal", "Marsella", "Apía", "Balboa", "Belén de Umbría", "Guática", "La Celia", "La Virginia", "Quinchía", "Santuario", "Mistrató", "Pueblo Rico");
+        cities.put("Risaralda",risaraldaCities);
+        List<String> sanAndrésyProvidenciaCities= Arrays.asList("San Andrés", "Providencia", "Santa Catalina");
+        cities.put("San Andrés y Providencia",sanAndrésyProvidenciaCities);
+        List<String> santanderCities= Arrays.asList("Bucaramanga", "San Gil", "Floridablanca", "Piedecuesta", "Barrancabermeja");
+        cities.put("Santander",santanderCities);
+        List<String> sucreCities= Arrays.asList("Sincelejo", "Corozal", "San Marcos", "Tolú", "Caimito", "La Unión", "San Onofre", "Buenavista", "Santiago de Tolú", "Majagual");
+        cities.put("Sucre",sucreCities);
+        List<String> tolimaCities= Arrays.asList("Ibagué", "Espinal", "Melgar", "Honda", "Mariquita", "Líbano", "Alvarado", "Purificación", "Chaparral", "Girardot", "Flandes");
+        cities.put("Tolima",tolimaCities);
+        List<String> valledelCaucaCities= Arrays.asList("Cali", "Yumbo", "Palmira", "Cartago", "Buga", "Fusagasugá", "Dolores", "Guacarí", "Jamundí", "La Cumbre", "La Unión", "Piendamó", "Río Claro", "San Pedro", "Toro", "Trujillo", " Tuluá");
+        cities.put("Valle del Cauca",valledelCaucaCities);
+        List<String> vaupésCities= Arrays.asList("Mitú", "Pacoa", "Papunahua", "Yavaraté", "Carurú", "Taraira", "Acaricuara", "Villa Fátima");
+        cities.put("Vaupés",vaupésCities);
+        List<String> vichadaCities= Arrays.asList("Puerto Carreño", "La Primavera", "Cumaríbo", "Santa Rosalía", "San José de Ocúñe");
+        cities.put("Vichada",vichadaCities);
     }
     
-    public static Place getPlaceByName(String namePleace){
-        if (!EmptyPlaceList()) {
-            for (Place destino : myTouristPlaces) {
-                if (destino.getNamePlace().equalsIgnoreCase(namePleace)) {
-                    return destino;
-                }
-            }
-        }
-        return null;
-    }*/
-    //THIS FUNCTION VALIDATE IF THE ID IS IN
-    public static Place SearchPlaceID(int placeID, List<Place> dataList) {
-        for (Place destino : dataList) {
-            if (destino.getID() == placeID) {
-                return destino;
-            }
-        }
-        return null;
-    }
+   public static HashMap getHashCities(){
+        return cities;
+   }
+   
+   public static List<String> getListCities(String ciudad){
+        return cities.get(ciudad);
+   }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     //THIS CHECK if empty state
-    public static boolean EmptyPlaceList() {
+   /* public static boolean EmptyPlaceList() {
         return myTouristPlaces.isEmpty();
     }
 

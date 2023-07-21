@@ -2,6 +2,7 @@ package data.controller;
 
 import com.model.User;
 import com.model.Vehicle;
+import data.functions.GenericFunctions;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,15 +26,16 @@ public class UserData {
     
 
     public static void addAdmin() {
-        User Admin = new User("Camilo", "camilo@", "3144777990", "123");
+        User Admin = new User("Camilo", "camilo@", "3144777990", "123",1);
         Admin.addVehicle(new Vehicle("Motocicleta", "Pulsar 220", 120, 220));
         Admin.addVehicle(new Vehicle("Motocicleta", "Boxer 100", 200, 570));
         Admin.addVehicle(new Vehicle("Motocicleta", "Gs 500", 80, 320));
         Admin.addVehicle(new Vehicle("Motocicleta", "Z1000", 40, 675));
+        Admin.setLastUpDate("Ultima Actualizacion\n  "+GenericFunctions.todayDateAndHour());
         usersList.add(Admin);
     }
     
-    public static User activeUser(String email) {
+    public static User searchActiveUser(String email) {
         for (User user : usersList) {
             if (user.getEmail().equalsIgnoreCase(email)) {
                 return user;
@@ -41,13 +43,6 @@ public class UserData {
         }
         return null;
     } 
-
-    public static void LogInTimes(User user) {
-        int times = user.getLoginTimes();
-        times++;
-        user.setLoginTimes(times);
-
-    }
 
     //THIS FUNCTION CHECK IF userList IS EMPTY
     public static boolean EmptyUserList() {
@@ -69,11 +64,11 @@ public class UserData {
     }
     
     public static boolean validateEmail(String email) {
-        return email.length() > 4 && !email.contains(" ") && email.contains("@");
+        return email.length() > 5 && !email.contains(" ") && email.contains("@");
     }  
 
     public static boolean validatePassword(String password, String repeatPassword ) {
-        return password.length() > 4 && !password.contains(" ") && password.equals(repeatPassword);
+        return password.length() > 5 && !password.contains(" ") && password.equals(repeatPassword);
     }
     
     public static boolean validateNumber(String number) {
@@ -81,10 +76,11 @@ public class UserData {
     }
 
     //THIS FUNCTION add new users
-    public static boolean AddUser(String name, String email, String password, String repeatPassword, String number) {
+    public static boolean AddUser(String name, String email, String password, String repeatPassword, String number, int gender) {
         if (!DuplicateUser(email)) {
-            if (validateName(name) && validateEmail(email) && validatePassword(password, repeatPassword) && validateNumber(number)){
-                User user= new User(name, email, number, password);
+            if (validateName(name) && validateEmail(email) && validatePassword(password, repeatPassword) && validateNumber(number) && gender > 0){
+                User user= new User(name, email, number, password, gender);
+                user.setLastUpDate("Ultima Actualizacion\n  "+GenericFunctions.todayDateAndHour());
                 usersList.add(user);
                 System.out.println("\n USUARIO CREADO \n");
                 return true;

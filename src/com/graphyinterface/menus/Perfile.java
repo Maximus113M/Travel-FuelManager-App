@@ -8,25 +8,41 @@ import data.functions.GenericFunctions;
 import java.awt.BorderLayout;
 import javax.swing.border.Border;
 import java.awt.Color;
+import java.awt.Cursor;
+import java.awt.Image;
 import javax.swing.BorderFactory;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JTextField;
 
 public class Perfile extends javax.swing.JPanel {
 
-    private User activeUser = UserData.getActiveUser();
-    private Border border = BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(190, 190, 190));
+    private final User activeUser = UserData.getActiveUser();
+    private final Border border = BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(190, 190, 190));
     private boolean changePassword;
-    private boolean editDate;
+    private int passwordSize = 0;
+    private int userGender = activeUser.getGender();
+    private final Icon iconMale = new ImageIcon(new ImageIcon(getClass().getResource("/com/Images/gatoSmokinRecortada70x90.jpg")).getImage().getScaledInstance(70, 90, 0));
+    private final Icon iconFemale = new ImageIcon(new ImageIcon(getClass().getResource("/com/Images/gataRecortada70x90.jpg")).getImage().getScaledInstance(70, 90, 0));
 
     public Perfile() {
         initComponents();
         changePassword = false;
-        editDate = false;
+        
+        if (userGender == 1) {
+            UserImage.setIcon(iconMale);
+            chooseMale.setSelected(true);
+        } else {
+            UserImage.setIcon(iconFemale);
+            chooseFemale.setSelected(true);
+        }
         jUserLabel.setText(activeUser.getEmail());
         nameUserField.setText(activeUser.getName());
         notEditableColor(nameUserField);
         phoneNumberField.setText(activeUser.getNumber());
         notEditableColor(phoneNumberField);
+        textLastUpDate.setText(activeUser.getLastUpDate());
+        textLastConection.setText(activeUser.getLastConection());
     }
 
     public void defaultEditable(JTextField field) {
@@ -38,7 +54,7 @@ public class Perfile extends javax.swing.JPanel {
     }
 
     public void notEditableColor(JTextField field) {
-        field.setForeground(new java.awt.Color(130, 130, 130));
+        field.setForeground(new java.awt.Color(150, 150, 150));
     }
 
     public void reLoadPanel() {
@@ -48,6 +64,24 @@ public class Perfile extends javax.swing.JPanel {
         this.add(perf, BorderLayout.CENTER);
         this.revalidate();
         this.repaint();
+    }
+
+    public void upDateDate() {
+        activeUser.setLastUpDate("Ultima Actualizacion\n  " + GenericFunctions.todayDateAndHour());
+        System.out.println("--> " + activeUser.getLastUpDate());
+    }
+
+    public void enableChooseGender(String yes_not) {
+        switch (yes_not.toLowerCase()) {
+            case "yes":
+                chooseMale.setEnabled(true);
+                chooseFemale.setEnabled(true);
+                break;
+            case "not":
+                chooseMale.setEnabled(false);
+                chooseFemale.setEnabled(false);
+                break;
+        }
     }
 
     /**
@@ -70,22 +104,19 @@ public class Perfile extends javax.swing.JPanel {
         nameUserField = new javax.swing.JTextField();
         phoneNumber = new javax.swing.JLabel();
         phoneNumberField = new javax.swing.JTextField();
-        jEditPassword = new javax.swing.JButton();
         passwordTitle = new javax.swing.JLabel();
         jInputPassword = new javax.swing.JPasswordField();
         newPasswordTitle1 = new javax.swing.JLabel();
-        newPasswordTitle2 = new javax.swing.JLabel();
         jPasswordField1 = new javax.swing.JPasswordField();
-        jPasswordField2 = new javax.swing.JPasswordField();
         jSaveForm = new javax.swing.JButton();
         jEditForm = new javax.swing.JButton();
         jWarning = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        textLastConection = new javax.swing.JTextArea();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTextArea2 = new javax.swing.JTextArea();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
+        textLastUpDate = new javax.swing.JTextArea();
+        chooseMale = new javax.swing.JRadioButton();
+        chooseFemale = new javax.swing.JRadioButton();
         phoneNumber1 = new javax.swing.JLabel();
         rightBackGround = new javax.swing.JLabel();
         leftBackGround = new javax.swing.JLabel();
@@ -160,7 +191,7 @@ public class Perfile extends javax.swing.JPanel {
         name.setFont(new java.awt.Font("Roboto", 3, 14)); // NOI18N
         name.setText("NOMBRE");
 
-        nameUserField.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(230, 230, 230)));
+        nameUserField.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(204, 204, 204)));
         nameUserField.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         nameUserField.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         nameUserField.setFocusable(false);
@@ -178,7 +209,7 @@ public class Perfile extends javax.swing.JPanel {
         phoneNumber.setFont(new java.awt.Font("Roboto", 3, 14)); // NOI18N
         phoneNumber.setText("TELEFONO");
 
-        phoneNumberField.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(230, 230, 230)));
+        phoneNumberField.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(204, 204, 204)));
         phoneNumberField.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         phoneNumberField.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         phoneNumberField.setFocusable(false);
@@ -188,23 +219,14 @@ public class Perfile extends javax.swing.JPanel {
             }
         });
 
-        jEditPassword.setBackground(new java.awt.Color(204, 204, 204));
-        jEditPassword.setFont(new java.awt.Font("Roboto Black", 0, 14)); // NOI18N
-        jEditPassword.setText("CAMBIAR");
-        jEditPassword.setPreferredSize(new java.awt.Dimension(100, 35));
-        jEditPassword.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jEditPasswordActionPerformed(evt);
-            }
-        });
-
         passwordTitle.setFont(new java.awt.Font("Roboto", 3, 14)); // NOI18N
         passwordTitle.setText("CAMBIAR CONTRASENA");
 
         jInputPassword.setForeground(new java.awt.Color(204, 204, 204));
         jInputPassword.setText("jPasswordField1");
-        jInputPassword.setToolTipText("Ingrese su Contraseña");
         jInputPassword.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(204, 204, 204)));
+        jInputPassword.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jInputPassword.setFocusable(false);
         jInputPassword.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 jInputPasswordFocusGained(evt);
@@ -213,20 +235,17 @@ public class Perfile extends javax.swing.JPanel {
                 jInputPasswordFocusLost(evt);
             }
         });
+        jInputPassword.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jInputPasswordKeyTyped(evt);
+            }
+        });
 
         newPasswordTitle1.setFont(new java.awt.Font("Roboto Black", 3, 12)); // NOI18N
 
-        newPasswordTitle2.setFont(new java.awt.Font("Roboto Black", 3, 12)); // NOI18N
-
-        jPasswordField1.setEditable(false);
         jPasswordField1.setBorder(null);
         jPasswordField1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jPasswordField1.setFocusable(false);
-
-        jPasswordField2.setEditable(false);
-        jPasswordField2.setBorder(null);
-        jPasswordField2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jPasswordField2.setFocusable(false);
 
         jSaveForm.setBackground(new java.awt.Color(0, 0, 0));
         jSaveForm.setFont(new java.awt.Font("Roboto Black", 0, 14)); // NOI18N
@@ -261,15 +280,16 @@ public class Perfile extends javax.swing.JPanel {
         jScrollPane1.setFocusable(false);
         jScrollPane1.setOpaque(false);
 
-        jTextArea1.setColumns(4);
-        jTextArea1.setFont(new java.awt.Font("Serif", 0, 10)); // NOI18N
-        jTextArea1.setForeground(new java.awt.Color(153, 153, 153));
-        jTextArea1.setLineWrap(true);
-        jTextArea1.setRows(5);
-        jTextArea1.setText("Ultima Conexion\n    15/11/2023");
-        jTextArea1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        jTextArea1.setFocusable(false);
-        jScrollPane1.setViewportView(jTextArea1);
+        textLastConection.setColumns(4);
+        textLastConection.setFont(new java.awt.Font("Serif", 0, 10)); // NOI18N
+        textLastConection.setForeground(new java.awt.Color(153, 153, 153));
+        textLastConection.setLineWrap(true);
+        textLastConection.setRows(5);
+        textLastConection.setText("Ultima Conexion\n    15/11/2023");
+        textLastConection.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        textLastConection.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        textLastConection.setFocusable(false);
+        jScrollPane1.setViewportView(textLastConection);
 
         jScrollPane2.setBorder(null);
         jScrollPane2.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
@@ -277,23 +297,36 @@ public class Perfile extends javax.swing.JPanel {
         jScrollPane2.setFocusable(false);
         jScrollPane2.setOpaque(false);
 
-        jTextArea2.setColumns(4);
-        jTextArea2.setFont(new java.awt.Font("Serif", 0, 10)); // NOI18N
-        jTextArea2.setForeground(new java.awt.Color(153, 153, 153));
-        jTextArea2.setLineWrap(true);
-        jTextArea2.setRows(5);
-        jTextArea2.setText("Ultima Actualizacion\n    15/11/2023");
-        jTextArea2.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        jTextArea2.setFocusable(false);
-        jScrollPane2.setViewportView(jTextArea2);
+        textLastUpDate.setColumns(4);
+        textLastUpDate.setFont(new java.awt.Font("Serif", 0, 10)); // NOI18N
+        textLastUpDate.setForeground(new java.awt.Color(153, 153, 153));
+        textLastUpDate.setLineWrap(true);
+        textLastUpDate.setRows(5);
+        textLastUpDate.setText("Ultima Actualizacion\n    15/11/2023");
+        textLastUpDate.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        textLastUpDate.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        textLastUpDate.setFocusable(false);
+        jScrollPane2.setViewportView(textLastUpDate);
 
-        jRadioButton1.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
-        jRadioButton1.setForeground(new java.awt.Color(51, 51, 51));
-        jRadioButton1.setText("Hombre");
+        chooseMale.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
+        chooseMale.setForeground(new java.awt.Color(51, 51, 51));
+        chooseMale.setText("Hombre");
+        chooseMale.setEnabled(false);
+        chooseMale.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chooseMaleActionPerformed(evt);
+            }
+        });
 
-        jRadioButton2.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
-        jRadioButton2.setForeground(new java.awt.Color(51, 51, 51));
-        jRadioButton2.setText("Mujer");
+        chooseFemale.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
+        chooseFemale.setForeground(new java.awt.Color(51, 51, 51));
+        chooseFemale.setText("Mujer");
+        chooseFemale.setEnabled(false);
+        chooseFemale.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chooseFemaleActionPerformed(evt);
+            }
+        });
 
         phoneNumber1.setFont(new java.awt.Font("Roboto", 3, 14)); // NOI18N
         phoneNumber1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -309,51 +342,46 @@ public class Perfile extends javax.swing.JPanel {
                     .addComponent(jWarning, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jFormLayout.createSequentialGroup()
                         .addGroup(jFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jUserLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(jFormLayout.createSequentialGroup()
-                                .addGap(36, 36, 36)
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(UserImage, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(12, 12, 12)
-                                .addComponent(jScrollPane1))
-                            .addGroup(jFormLayout.createSequentialGroup()
+                                .addGap(42, 42, 42)
                                 .addGroup(jFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(phoneNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(phoneNumberField, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(jFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(nameUserField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 202, Short.MAX_VALUE)
+                                        .addComponent(name, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addComponent(phoneNumber1, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(newPasswordTitle1)
+                                    .addComponent(passwordTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jInputPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(jFormLayout.createSequentialGroup()
-                                        .addGap(42, 42, 42)
+                                        .addGap(6, 6, 6)
                                         .addGroup(jFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(phoneNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(phoneNumberField, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jRadioButton1)
-                                            .addComponent(jRadioButton2)
-                                            .addGroup(jFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                                .addComponent(nameUserField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 202, Short.MAX_VALUE)
-                                                .addComponent(name, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                            .addComponent(phoneNumber1, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGroup(jFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                .addGroup(jFormLayout.createSequentialGroup()
-                                                    .addComponent(jInputPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                    .addComponent(jEditPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                .addComponent(newPasswordTitle1)
-                                                .addComponent(newPasswordTitle2)
-                                                .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(jPasswordField2, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(passwordTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                                    .addGroup(jFormLayout.createSequentialGroup()
-                                        .addGap(57, 57, 57)
-                                        .addComponent(jEditForm, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jSaveForm, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(0, 0, Short.MAX_VALUE)))
-                        .addContainerGap())))
+                                            .addComponent(chooseMale)
+                                            .addComponent(chooseFemale)))))
+                            .addGroup(jFormLayout.createSequentialGroup()
+                                .addGap(57, 57, 57)
+                                .addComponent(jEditForm, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jSaveForm, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 38, Short.MAX_VALUE))
+                    .addComponent(jUserLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jFormLayout.createSequentialGroup()
+                        .addGap(36, 36, 36)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(UserImage, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(12, 12, 12)
+                        .addComponent(jScrollPane1)))
+                .addContainerGap())
         );
         jFormLayout.setVerticalGroup(
             jFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jFormLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(UserImage)
+                    .addComponent(UserImage, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -366,33 +394,27 @@ public class Perfile extends javax.swing.JPanel {
                 .addComponent(phoneNumber)
                 .addGap(0, 0, 0)
                 .addComponent(phoneNumberField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(phoneNumber1)
-                .addGap(0, 0, 0)
-                .addComponent(jRadioButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jRadioButton2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(phoneNumber1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(chooseMale)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(chooseFemale)
+                .addGap(18, 18, 18)
                 .addComponent(passwordTitle)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jEditPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jInputPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jInputPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(newPasswordTitle1)
                 .addGap(0, 0, 0)
                 .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(newPasswordTitle2)
-                .addGap(0, 0, 0)
-                .addComponent(jPasswordField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(28, 28, 28)
                 .addGroup(jFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jEditForm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jSaveForm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(3, 3, 3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jWarning)
-                .addContainerGap(54, Short.MAX_VALUE))
+                .addContainerGap(44, Short.MAX_VALUE))
         );
 
         rightBackGround.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -430,8 +452,12 @@ public class Perfile extends javax.swing.JPanel {
     private void jEditFormActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jEditFormActionPerformed
         defaultEditable(nameUserField);
         defaultEditable(phoneNumberField);
+        jInputPassword.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        
+        enableChooseGender("yes");
+        jInputPassword.setFocusable(true);
+        jInputPassword.setForeground(new java.awt.Color(100, 100, 100));
         jSaveForm.setEnabled(true);
-        editDate = true;
     }//GEN-LAST:event_jEditFormActionPerformed
 
     private void nameUserFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameUserFieldActionPerformed
@@ -441,28 +467,56 @@ public class Perfile extends javax.swing.JPanel {
     private void jSaveFormActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jSaveFormActionPerformed
         jWarning.setText(" ");
         if (changePassword) {
-            if (String.valueOf(jPasswordField1.getPassword()).equals(String.valueOf(jPasswordField2.getPassword()))) {
-                if (!String.valueOf(jPasswordField1.getPassword()).isBlank() && String.valueOf(jPasswordField1.getPassword()).length() >= 5) {
+            if (String.valueOf(jInputPassword.getPassword()).equals(String.valueOf(jPasswordField1.getPassword()))) {
+                if (phoneNumberField.getText().length() != 10 || nameUserField.getText().isBlank()) {
+                    jWarning.setText("Campos vacios o Incorrectos");
+                } else {
                     activeUser.setName(nameUserField.getText());
                     activeUser.setNumber(phoneNumberField.getText());
+                    activeUser.setGender(userGender);
                     activeUser.setPassword(String.valueOf(jPasswordField1.getPassword()));
                     Home.msgSucessfulAction("Datos Actualizados");
+                    upDateDate();
                     reLoadPanel();
-                } else if (String.valueOf(jPasswordField1.getPassword()).isBlank() && editDate) {
+                }
+            } else {
+                jWarning.setText("Las Contraseñas No Coinciden");
+            }
+        } else {
+            if (phoneNumberField.getText().length() != 10 || nameUserField.getText().isBlank()) {
+                jWarning.setText("Campos vacios o Incorrectos");
+            } else {
+                activeUser.setName(nameUserField.getText());
+                activeUser.setNumber(phoneNumberField.getText());
+                activeUser.setGender(userGender);
+                Home.msgSucessfulAction("Datos Actualizados");
+                upDateDate();
+                reLoadPanel();
+            }
+        }
+
+        /*if (changePassword) {
+            if (String.valueOf(jInputPassword.getPassword()).equals(String.valueOf(jPasswordField1.getPassword()))) {
+                if (String.valueOf(jPasswordField1.getPassword()).length() > 5) {
                     activeUser.setName(nameUserField.getText());
                     activeUser.setNumber(phoneNumberField.getText());
+                    activeUser.setGender(userGender);
+                    activeUser.setPassword(String.valueOf(jPasswordField1.getPassword()));
                     Home.msgSucessfulAction("Datos Actualizados");
+                    upDateDate();
                     reLoadPanel();
-                } else if (String.valueOf(jPasswordField1.getPassword()).isBlank()){
-                    Home.msgSucessfulAction("Sin Cambios");
+                } else if (String.valueOf(jInputPassword.getPassword()).isBlank() && editDate) {
+                    activeUser.setName(nameUserField.getText());
+                    activeUser.setNumber(phoneNumberField.getText());
+                    activeUser.setGender(userGender);
+                    Home.msgSucessfulAction("Datos Actualizados");
+                    upDateDate();
                     reLoadPanel();
-                } else if(String.valueOf(jPasswordField1.getPassword()).length() < 5){
-                    jWarning.setText("Contraseña Invalida o No Coincide");
                 }
-            }else{
-                jWarning.setText("Contraseña Invalida o No Coincide");
+            } else {
+                jWarning.setText("Las Contraseñas No Coinciden");
             }
-        } else {           
+        } else {
             if (phoneNumberField.getText().length() != 10 || nameUserField.getText().isBlank()) {
                 if (phoneNumberField.getText().length() != 10) {
                     jWarning.setText("Telefono Incorrecto");
@@ -472,30 +526,14 @@ public class Perfile extends javax.swing.JPanel {
             } else {
                 activeUser.setName(nameUserField.getText());
                 activeUser.setNumber(phoneNumberField.getText());
+                activeUser.setGender(userGender);
                 Home.msgSucessfulAction("Datos Actualizados");
+                upDateDate();
                 reLoadPanel();
             }
-        }
+        }*/
 
     }//GEN-LAST:event_jSaveFormActionPerformed
-
-    private void jEditPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jEditPasswordActionPerformed
-        if (activeUser.getPassword().equals(String.valueOf(jInputPassword.getPassword()))) {
-
-            newPasswordTitle1.setText("NUEVA CONTRASEÑA");
-            defaultEditable(jPasswordField1);
-            jPasswordField1.setBorder(border);
-
-            newPasswordTitle2.setText("REPITA LA CONTRASEÑA");
-            defaultEditable(jPasswordField2);
-            jPasswordField2.setBorder(border);
-
-            jSaveForm.setEnabled(true);
-            changePassword = true;
-        } else {
-            Home.msgError("Contraseña Incorrecta");
-        }
-    }//GEN-LAST:event_jEditPasswordActionPerformed
 
     private void phoneNumberFieldKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_phoneNumberFieldKeyTyped
         GenericFunctions.inputOnlyNumber(evt);
@@ -509,6 +547,10 @@ public class Perfile extends javax.swing.JPanel {
             jInputPassword.setText("");
             jInputPassword.setForeground(Color.BLACK);
         }
+        if (String.valueOf(jInputPassword.getPassword()).equals("")) {
+            newPasswordTitle1.setText(" ");
+            jPasswordField1.setVisible(false);
+        }
     }//GEN-LAST:event_jInputPasswordFocusGained
 
     private void jInputPasswordFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jInputPasswordFocusLost
@@ -519,36 +561,77 @@ public class Perfile extends javax.swing.JPanel {
     }//GEN-LAST:event_jInputPasswordFocusLost
 
     private void nameUserFieldKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nameUserFieldKeyTyped
-        if(nameUserField.getText().length() > 30){
+        if (nameUserField.getText().length() > 30) {
             evt.consume();
         }
     }//GEN-LAST:event_nameUserFieldKeyTyped
 
+    private void jInputPasswordKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jInputPasswordKeyTyped
+        if (evt.getKeyChar() > 32 && evt.getKeyChar() < 256) {
+            passwordSize += 1;
+        } else if (evt.getKeyChar() == 8) {
+            passwordSize = passwordSize - 1;
+        }
+        if (passwordSize < 0) {
+            passwordSize = 0;
+        }
+        if (!String.valueOf(jInputPassword.getPassword()).equals("jPasswordField1")) {
+            System.out.println("-->" + passwordSize);
+            if (passwordSize > 5) {
+                newPasswordTitle1.setText("REINGRESE LA CONTRASEÑA");
+                defaultEditable(jPasswordField1);
+                jPasswordField1.setVisible(true);
+                jSaveForm.setEnabled(true);
+                changePassword = true;
+            } else if (passwordSize < 6) {
+                newPasswordTitle1.setText(" ");
+                jPasswordField1.setVisible(false);
+                changePassword = false;
+                //jSaveForm.setEnabled(false);
+            }
+        }
+    }//GEN-LAST:event_jInputPasswordKeyTyped
+
+    private void chooseMaleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chooseMaleActionPerformed
+        if (chooseMale.isSelected()) {
+            userGender = 1;
+            UserImage.setIcon(iconMale);
+            chooseFemale.setSelected(false);
+        } else {
+            chooseMale.setSelected(true);
+        }
+    }//GEN-LAST:event_chooseMaleActionPerformed
+
+    private void chooseFemaleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chooseFemaleActionPerformed
+        if (chooseFemale.isSelected()) {
+            userGender = 2;
+            UserImage.setIcon(iconFemale);
+            chooseMale.setSelected(false);
+        } else {
+            chooseFemale.setSelected(true);
+        }
+    }//GEN-LAST:event_chooseFemaleActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel UserImage;
+    private javax.swing.JRadioButton chooseFemale;
+    private javax.swing.JRadioButton chooseMale;
     private javax.swing.JPanel jContent;
     private javax.swing.JButton jEditForm;
-    private javax.swing.JButton jEditPassword;
     private javax.swing.JPanel jForm;
     private javax.swing.JPasswordField jInputPassword;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JPasswordField jPasswordField2;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JButton jSaveForm;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextArea jTextArea2;
     private javax.swing.JLabel jUserLabel;
     private javax.swing.JLabel jWarning;
     private javax.swing.JLabel leftBackGround;
     private javax.swing.JLabel name;
     private javax.swing.JTextField nameUserField;
     private javax.swing.JLabel newPasswordTitle1;
-    private javax.swing.JLabel newPasswordTitle2;
     private javax.swing.JLabel passwordTitle;
     private javax.swing.JLabel phoneNumber;
     private javax.swing.JLabel phoneNumber1;
@@ -556,5 +639,7 @@ public class Perfile extends javax.swing.JPanel {
     private javax.swing.JLabel rightBackGround;
     private javax.swing.JPanel sectionHeader;
     private javax.swing.JLabel sectionTitle;
+    private javax.swing.JTextArea textLastConection;
+    private javax.swing.JTextArea textLastUpDate;
     // End of variables declaration//GEN-END:variables
 }

@@ -151,6 +151,7 @@ public class VSavedVehiclesPanelOption extends javax.swing.JPanel {
         searchVehicleButton.setFont(new java.awt.Font("Roboto Black", 0, 14)); // NOI18N
         searchVehicleButton.setForeground(new java.awt.Color(255, 255, 255));
         searchVehicleButton.setText("BUSCAR");
+        searchVehicleButton.setEnabled(false);
         searchVehicleButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 searchVehicleButtonActionPerformed(evt);

@@ -12,6 +12,7 @@ public class User {
     private String email;
     private String number;
     private String password;
+    private int gender=0;
     private final List<Place> mySavedPlaces = new ArrayList();
     private final List<Vehicle> myVehicles = new ArrayList(30);
     private final ArrayList<BudgetReport> budgetReports = new ArrayList();
@@ -19,13 +20,15 @@ public class User {
     private double fuelPrice = 12000;
     private int defaultNumber=0;
 
-    private int loginTimes = 0;
+    private String lastUpDate ="";
+    private ArrayList<String>lastConection = new ArrayList(2);
 
-    public User(String name, String email, String number, String password) {
+    public User(String name, String email, String number, String password, int gender) {
         this.name = name;
         this.email = GenericFunctions.capitalizeWord(email);
         this.number = number;
         this.password = password;
+        this.gender= gender;
     }
 
     public String getName() {
@@ -60,6 +63,14 @@ public class User {
         this.password = password;
     }
 
+    public int getGender() {
+        return gender;
+    }
+
+    public void setGender(int gender) {
+        this.gender = gender;
+    }
+
     public double getFuelPrice() {
         return fuelPrice;
     }
@@ -68,12 +79,22 @@ public class User {
         this.fuelPrice = fuelPrice;
     }
 
-    public int getLoginTimes() {
-        return loginTimes;
+    public String getLastUpDate() {
+        return lastUpDate;
     }
 
-    public void setLoginTimes(int loginTimes) {
-        this.loginTimes = loginTimes;
+    public void setLastUpDate(String lastUpDate) {
+        this.lastUpDate ="";
+        this.lastUpDate = lastUpDate;
+    }
+
+    public String getLastConection() {
+        return lastConection.get(1);
+    }
+
+    public void setLastConection(String lastConection) {   
+        this.lastConection.add(lastConection);
+        this.lastConection.add(lastConection);
     }
 
     public int getDefaultNumber() {
@@ -89,8 +110,34 @@ public class User {
         return mySavedPlaces;
     }
 
-    //THIS FUNCTION VALIDATE IF THE ID IS IN
-    public boolean searchDuplicatePlace(int placeID) {
+    //THIS GENERATE A NOT DUPLICATE ID
+    public int GeneratePlaceID() {
+        boolean successfulId = false;
+        int IdNumber = 0;
+        do {
+            int newIDNumber = GenericFunctions.GenerateRandomID();
+            if (!searchDuplicateGlobalPlacesID(newIDNumber)) {
+                IdNumber = newIDNumber;
+                successfulId = true;
+            }
+        } while (!successfulId);
+        return IdNumber;
+    }
+
+    //THIS FUNCTION VALIDATE IF THE ID IS FOUND
+    public boolean searchDuplicateGlobalPlacesID(int placeID) {
+        if(DefaultPlaces.searchDuplicateDefaultPlaceID(placeID)){
+            return true;
+        }
+        for (Place place : mySavedPlaces) {
+            if (place.getID() == placeID) {
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    public boolean searchDuplicateMyPlacesID(int placeID) {
         for (Place place : mySavedPlaces) {
             if (place.getID() == placeID) {
                 return true;
@@ -100,7 +147,7 @@ public class User {
     }
 
     //This functions get a place from list index
-    public Place searchPlaceID(int placeID) {
+    public Place getPlaceFromID(int placeID) {
         Place placeDefaultPlaces = DefaultPlaces.searchPlaceDefaultPlaces(placeID);
         if (placeDefaultPlaces != null) {
             return placeDefaultPlaces;
@@ -368,7 +415,7 @@ public class User {
     }*/
     @Override
     public String toString() {
-        return "               ► USUARIO: " + name + "\n\n                   CORREO: " + email + "\n                   N. TELEFONO: " + number + "\n                   INICIOS DE SESION: " + loginTimes + "\n\n";
+        return "               ► USUARIO: " + name + "\n\n                   CORREO: " + email + "\n                   N. TELEFONO: " + number + "\n                   ULTIMO INICIO DE SESION: " + lastConection + "\n\n";
     }
 
 }

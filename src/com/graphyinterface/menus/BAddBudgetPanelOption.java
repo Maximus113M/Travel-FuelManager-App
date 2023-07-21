@@ -51,8 +51,10 @@ public class BAddBudgetPanelOption extends javax.swing.JPanel {
             String place = jListPlaces.getSelectedValue();
             System.out.println("***place: " + place);
             String[] splitPlace = place.split(" - ");
-            SelectedPlace.setText(splitPlace[0] + " - " + splitPlace[2]);
+
+            SelectedPlace.setText(splitPlace[0]);           
             SelectedPlace.setToolTipText(splitPlace[0] + " - " + splitPlace[2]);
+            
 
         }
     }
@@ -213,6 +215,7 @@ public class BAddBudgetPanelOption extends javax.swing.JPanel {
         jTextFuelPrice.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jTextFuelPrice.setText("Precio/Galon");
         jTextFuelPrice.setToolTipText("Ingresa el Precio si ha Cambiado");
+        jTextFuelPrice.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(180, 180, 180)));
         jTextFuelPrice.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 jTextFuelPriceFocusGained(evt);
@@ -277,16 +280,21 @@ public class BAddBudgetPanelOption extends javax.swing.JPanel {
             }
         });
 
-        SelectedPlace.setEditable(false);
-        SelectedPlace.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        SelectedPlace.setFont(new java.awt.Font("Serif", 0, 13)); // NOI18N
+        SelectedPlace.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         SelectedPlace.setAutoscrolls(false);
+        SelectedPlace.setBorder(null);
+        SelectedPlace.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        SelectedPlace.setFocusable(false);
 
         selectedPlaceTitle.setFont(new java.awt.Font("Roboto", 3, 14)); // NOI18N
         selectedPlaceTitle.setText("DESTINO SELECCIONADO");
 
+        reportName.setFont(new java.awt.Font("Serif", 0, 12)); // NOI18N
         reportName.setForeground(new java.awt.Color(153, 153, 153));
         reportName.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         reportName.setText("NOMBRE DE PRESUPUESTO");
+        reportName.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(180, 180, 180)));
         reportName.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 reportNameFocusGained(evt);
@@ -317,20 +325,25 @@ public class BAddBudgetPanelOption extends javax.swing.JPanel {
                                 .addComponent(jSaveBudgetButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGap(18, 18, 18)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(fuelTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jTextFuelPrice)
-                                    .addComponent(touristPlaces, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(savedPlaces, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(comboBoxChooseVehicle, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(selectedPlaceTitle, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(modelTitle, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(categorieTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(reportName)
-                                    .addComponent(SelectedPlace, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(39, 39, 39)
-                        .addComponent(selectDefaultVehicle)))
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addGap(6, 6, 6)
+                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                            .addComponent(touristPlaces, javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(savedPlaces, javax.swing.GroupLayout.Alignment.LEADING)))
+                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(categorieTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(reportName))
+                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(fuelTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jTextFuelPrice)
+                                        .addComponent(comboBoxChooseVehicle, javax.swing.GroupLayout.Alignment.LEADING, 0, 190, Short.MAX_VALUE)
+                                        .addComponent(selectedPlaceTitle, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(modelTitle, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(SelectedPlace, javax.swing.GroupLayout.Alignment.LEADING))
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addGap(15, 15, 15)
+                                        .addComponent(selectDefaultVehicle)))))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -346,7 +359,7 @@ public class BAddBudgetPanelOption extends javax.swing.JPanel {
                 .addComponent(touristPlaces)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(savedPlaces)
-                .addGap(18, 18, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(selectedPlaceTitle)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(SelectedPlace, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -360,7 +373,7 @@ public class BAddBudgetPanelOption extends javax.swing.JPanel {
                 .addComponent(fuelTitle)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTextFuelPrice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
                 .addComponent(jSaveBudgetButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jWarning)

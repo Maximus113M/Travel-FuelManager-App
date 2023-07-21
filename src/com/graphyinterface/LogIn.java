@@ -1,10 +1,10 @@
 package com.graphyinterface;
 
 import com.model.User;
+import data.controller.PlacesData;
 import data.controller.UserData;
 import java.awt.Color;
-import com.graphyinterface.Home;
-import data.controller.VehicleData;
+import data.functions.GenericFunctions;
 
 public class LogIn extends javax.swing.JFrame {
 
@@ -224,9 +224,10 @@ public class LogIn extends javax.swing.JFrame {
         String userPassword = String.valueOf(jPasswordField.getPassword());
 
         if (UserData.validateUser(userEmail, userPassword)) {
-            User user = UserData.activeUser(userEmail);
+            User user = UserData.searchActiveUser(userEmail);
             new Home(user).setVisible(true);
             
+            user.setLastConection("Ultima Conexion\n    "+GenericFunctions.todayDate().substring(GenericFunctions.todayDate().lastIndexOf(" ")));
             UserData.setActiveUser(user);
             System.out.println("*** " + UserData.getActiveUser());
             dispose();
@@ -295,6 +296,7 @@ public class LogIn extends javax.swing.JFrame {
         }
         //</editor-fold>
         UserData.addAdmin();
+        PlacesData.fillCities();
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {

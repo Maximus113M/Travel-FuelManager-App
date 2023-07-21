@@ -2,15 +2,20 @@ package com.graphyinterface.menus;
 
 import com.graphyinterface.Home;
 import com.model.Place;
+import com.model.User;
+import data.controller.PlacesData;
+import data.controller.UserData;
 import data.functions.GenericFunctions;
 import java.awt.Color;
+import java.util.List;
 
 public class PCreatePlacesPanel extends javax.swing.JFrame {
+
+    private final User activeUser = UserData.activeUser;
 
     public PCreatePlacesPanel() {
         initComponents();
         this.setLocationRelativeTo(null);
-        
     }
 
     /**
@@ -27,41 +32,38 @@ public class PCreatePlacesPanel extends javax.swing.JFrame {
         sectionTitle = new javax.swing.JLabel();
         namePlaceTitle = new javax.swing.JLabel();
         cityTitle = new javax.swing.JLabel();
-        jTextCity = new javax.swing.JTextField();
         stateTitle = new javax.swing.JLabel();
-        jTextState = new javax.swing.JTextField();
         jSaveVehicleButton = new javax.swing.JButton();
         jTextNamePlace = new javax.swing.JTextField();
         distanceTitle = new javax.swing.JLabel();
         jTextDistance = new javax.swing.JTextField();
         waring = new javax.swing.JLabel();
         jSaveVehicleButton1 = new javax.swing.JButton();
+        jStateComboBox = new javax.swing.JComboBox<>();
+        jSelectCity = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(366, 520));
         setResizable(false);
 
-        editBackGround.setBorder(javax.swing.BorderFactory.createCompoundBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 4, true), javax.swing.BorderFactory.createMatteBorder(30, 30, 90, 30, new javax.swing.ImageIcon(getClass().getResource("/com/Images/FondoBosqueCarretera.jpg"))))); // NOI18N
+        editBackGround.setBorder(javax.swing.BorderFactory.createCompoundBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 4, true), javax.swing.BorderFactory.createMatteBorder(30, 30, 90, 30, new javax.swing.ImageIcon(getClass().getResource("/com/Images/Fondomariposas (1) (1).jpg"))))); // NOI18N
         editBackGround.setPreferredSize(new java.awt.Dimension(340, 495));
 
         editFormPanel.setBackground(new java.awt.Color(255, 255, 255));
         editFormPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         editFormPanel.setPreferredSize(new java.awt.Dimension(275, 372));
 
-        sectionTitle.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
+        sectionTitle.setFont(new java.awt.Font("Serif", 1, 20)); // NOI18N
         sectionTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         sectionTitle.setText("AÑADE TUS DESTINOS");
 
-        namePlaceTitle.setFont(new java.awt.Font("Serif", 2, 14)); // NOI18N
+        namePlaceTitle.setFont(new java.awt.Font("Serif", 3, 14)); // NOI18N
         namePlaceTitle.setText("NOMBRE DEL DESTINO");
 
-        cityTitle.setFont(new java.awt.Font("Serif", 2, 14)); // NOI18N
+        cityTitle.setFont(new java.awt.Font("Serif", 3, 14)); // NOI18N
         cityTitle.setText("CIUDAD");
 
-        stateTitle.setFont(new java.awt.Font("Serif", 2, 14)); // NOI18N
+        stateTitle.setFont(new java.awt.Font("Serif", 3, 14)); // NOI18N
         stateTitle.setText("DEPARTAMENTO");
-
-        jTextState.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         jSaveVehicleButton.setBackground(new java.awt.Color(0, 0, 0));
         jSaveVehicleButton.setFont(new java.awt.Font("Roboto Black", 0, 14)); // NOI18N
@@ -74,13 +76,19 @@ public class PCreatePlacesPanel extends javax.swing.JFrame {
             }
         });
 
-        distanceTitle.setFont(new java.awt.Font("Serif", 2, 14)); // NOI18N
+        jTextNamePlace.setFont(new java.awt.Font("Serif", 0, 13)); // NOI18N
+        jTextNamePlace.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        jTextNamePlace.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(180, 180, 180)));
+
+        distanceTitle.setFont(new java.awt.Font("Serif", 3, 14)); // NOI18N
         distanceTitle.setText("DISTANCIA");
 
+        jTextDistance.setFont(new java.awt.Font("Serif", 0, 13)); // NOI18N
         jTextDistance.setForeground(new java.awt.Color(153, 153, 153));
         jTextDistance.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jTextDistance.setText("Distancia desde Bucaramanga");
         jTextDistance.setToolTipText("Distancia en Kilometros");
+        jTextDistance.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(180, 180, 180)));
         jTextDistance.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 jTextDistanceFocusGained(evt);
@@ -111,6 +119,15 @@ public class PCreatePlacesPanel extends javax.swing.JFrame {
             }
         });
 
+        jStateComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", "Amazonas", "Antioquia", "Arauca", "Atlántico", "Bolívar", "Boyacá", "Caldas", "Caquetá", "Casanare", "Cauca", "Cesar", "Chocó", "Córdoba", "Cundinamarca", "Guainía", "Guaviare", "Huila", "La Guajira", "Magdalena", "Meta", "Nariño", "Norte de Santander", "Putumayo", "Quindío", "Risaralda", "San Andrés y Providencia", "Santander", "Sucre", "Tolima", "Valle del Cauca", "Vaupés", "Vichada" }));
+        jStateComboBox.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jStateComboBoxItemStateChanged(evt);
+            }
+        });
+
+        jSelectCity.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar" }));
+
         javax.swing.GroupLayout editFormPanelLayout = new javax.swing.GroupLayout(editFormPanel);
         editFormPanel.setLayout(editFormPanelLayout);
         editFormPanelLayout.setHorizontalGroup(
@@ -121,17 +138,6 @@ public class PCreatePlacesPanel extends javax.swing.JFrame {
                         .addContainerGap()
                         .addComponent(sectionTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(editFormPanelLayout.createSequentialGroup()
-                        .addGap(37, 37, 37)
-                        .addGroup(editFormPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(namePlaceTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(cityTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jTextCity)
-                            .addComponent(stateTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jTextState)
-                            .addComponent(jTextNamePlace, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(distanceTitle, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jTextDistance, javax.swing.GroupLayout.DEFAULT_SIZE, 202, Short.MAX_VALUE)))
-                    .addGroup(editFormPanelLayout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(editFormPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(waring, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -140,7 +146,19 @@ public class PCreatePlacesPanel extends javax.swing.JFrame {
                                 .addComponent(jSaveVehicleButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jSaveVehicleButton, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(27, 27, 27)))))
+                                .addGap(27, 27, 27))))
+                    .addGroup(editFormPanelLayout.createSequentialGroup()
+                        .addGap(37, 37, 37)
+                        .addGroup(editFormPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(namePlaceTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(cityTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(stateTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jTextNamePlace, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(distanceTitle, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jTextDistance, javax.swing.GroupLayout.DEFAULT_SIZE, 202, Short.MAX_VALUE)
+                            .addComponent(jStateComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jSelectCity, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         editFormPanelLayout.setVerticalGroup(
@@ -148,29 +166,29 @@ public class PCreatePlacesPanel extends javax.swing.JFrame {
             .addGroup(editFormPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(sectionTitle)
-                .addGap(18, 18, 18)
+                .addGap(20, 20, 20)
                 .addComponent(namePlaceTitle)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTextNamePlace, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(cityTitle)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextCity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(3, 3, 3)
+                .addComponent(jSelectCity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(stateTitle)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextState, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jStateComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(9, 9, 9)
                 .addComponent(distanceTitle)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTextDistance, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addComponent(waring)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(editFormPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jSaveVehicleButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jSaveVehicleButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(51, Short.MAX_VALUE))
+                .addContainerGap(52, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout editBackGroundLayout = new javax.swing.GroupLayout(editBackGround);
@@ -201,10 +219,22 @@ public class PCreatePlacesPanel extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jSaveVehicleButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jSaveVehicleButtonActionPerformed
-        if (jTextNamePlace.getText().isEmpty() || jTextCity.getText().isEmpty() || jTextState.getText().isEmpty() || jTextDistance.getText().isEmpty()) {
-            waring.setText("Complete los Campos Vacios");
+        double distance=0;
+        if(!jTextDistance.getText().equals("Distancia desde Bucaramanga")){
+            distance= Double.parseDouble(jTextDistance.getText());
+        }
+        if (jTextNamePlace.getText().isBlank() || jSelectCity.getSelectedItem().toString().equals("Seleccionar")
+                || jStateComboBox.getSelectedItem().toString().equals("Seleccionar") || jTextDistance.getText().isBlank() || distance < 1) {
+            if(distance < 1){
+                waring.setText("Distancia Mayor de 0 Km");
+            }else{
+                waring.setText("Complete Todos los Campos");
+            }
         } else {
-            Place place= new Place(jTextNamePlace.getText(),jTextCity.getText(),jTextState.getText(),Double.parseDouble(jTextDistance.getText()),1);
+            int ID = activeUser.GeneratePlaceID();
+            Place place = new Place(jTextNamePlace.getText(), jSelectCity.getSelectedItem().toString(),
+                    jStateComboBox.getSelectedItem().toString(), distance, ID);
+            activeUser.addToMySavedList(place);
             waring.setText(" ");
             Home.msgSucessfulAction("Destino Creado");
             this.dispose();
@@ -233,6 +263,22 @@ public class PCreatePlacesPanel extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jSaveVehicleButton1ActionPerformed
 
+    private void jStateComboBoxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jStateComboBoxItemStateChanged
+        System.out.println("--> "+ jStateComboBox.getSelectedItem().toString());
+        if (!jStateComboBox.getSelectedItem().toString().equalsIgnoreCase("Seleccionar")) {
+            jSelectCity.removeAllItems();
+            jSelectCity.addItem("Seleccionar");
+            List<String> cities = PlacesData.getListCities(jStateComboBox.getSelectedItem().toString());
+            for (String city : cities) {
+                jSelectCity.addItem(city);
+            }
+            jSelectCity.addItem("Otro...");
+        }else{
+            jSelectCity.removeAllItems();
+            jSelectCity.addItem("Seleccionar");
+        }
+    }//GEN-LAST:event_jStateComboBoxItemStateChanged
+
     /**
      * @param args the command line arguments
      */
@@ -244,10 +290,10 @@ public class PCreatePlacesPanel extends javax.swing.JFrame {
     private javax.swing.JPanel editFormPanel;
     private javax.swing.JButton jSaveVehicleButton;
     private javax.swing.JButton jSaveVehicleButton1;
-    private javax.swing.JTextField jTextCity;
+    private javax.swing.JComboBox<String> jSelectCity;
+    private javax.swing.JComboBox<String> jStateComboBox;
     private javax.swing.JTextField jTextDistance;
     private javax.swing.JTextField jTextNamePlace;
-    private javax.swing.JTextField jTextState;
     private javax.swing.JLabel namePlaceTitle;
     private javax.swing.JLabel sectionTitle;
     private javax.swing.JLabel stateTitle;

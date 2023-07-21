@@ -7,26 +7,29 @@ import data.functions.GenericFunctions;
 import java.awt.Color;
 
 public class VSavedVehiclesPanelEditScreen extends javax.swing.JFrame {
+
     private Vehicle vehicle;
     private User user;
+
     /**
      * Creates new form VSavedVehiclesPanelEditScreen
-     * @param selectedVehicle     
+     *
+     * @param selectedVehicle
      */
     public VSavedVehiclesPanelEditScreen(Vehicle selectedVehicle, User user) {
         initComponents();
         this.setLocationRelativeTo(null);
-        vehicle= selectedVehicle;
-        this.user=user;
-        for(int i=0;i<4;i++){
+        vehicle = selectedVehicle;
+        this.user = user;
+        for (int i = 0; i < 4; i++) {
             String item = comboBoxTypeVehicle.getItemAt(i);
-            if(item.equalsIgnoreCase(selectedVehicle.getType())){               
-                comboBoxTypeVehicle.setSelectedIndex(i);  
+            if (item.equalsIgnoreCase(selectedVehicle.getType())) {
+                comboBoxTypeVehicle.setSelectedIndex(i);
                 System.out.println("**Set");
                 break;
-            }else{
+            } else {
                 System.out.println("No set");
-            }        
+            }
         }
         jTextVehicleModel.setText(selectedVehicle.getModel());
         jTextVehiclePerformance.setText(String.valueOf(selectedVehicle.getPerformance()));
@@ -52,7 +55,7 @@ public class VSavedVehiclesPanelEditScreen extends javax.swing.JFrame {
         jTextVehiclePerformance = new javax.swing.JTextField();
         jCheckBoxSelectDefault = new javax.swing.JCheckBox();
         jSaveVehicleButton = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
+        jWarning = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(350, 520));
@@ -75,12 +78,15 @@ public class VSavedVehiclesPanelEditScreen extends javax.swing.JFrame {
         comboBoxTypeVehicle.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", "Carro", "Motocicleta", "Camioneta" }));
 
         modelTitle.setFont(new java.awt.Font("Roboto", 3, 14)); // NOI18N
-        modelTitle.setText("MODELO");
+        modelTitle.setText("REFERENCIA DEL VEHICULO");
+
+        jTextVehicleModel.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(180, 180, 180)));
 
         performanceTitle.setFont(new java.awt.Font("Roboto", 3, 14)); // NOI18N
         performanceTitle.setText("RENDIMIENTO");
 
         jTextVehiclePerformance.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextVehiclePerformance.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(180, 180, 180)));
         jTextVehiclePerformance.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 jTextVehiclePerformanceFocusGained(evt);
@@ -111,40 +117,38 @@ public class VSavedVehiclesPanelEditScreen extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 51, 51));
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText(" ");
+        jWarning.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jWarning.setForeground(new java.awt.Color(255, 51, 51));
+        jWarning.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jWarning.setText(" ");
 
         javax.swing.GroupLayout editFormPanelLayout = new javax.swing.GroupLayout(editFormPanel);
         editFormPanel.setLayout(editFormPanelLayout);
         editFormPanelLayout.setHorizontalGroup(
             editFormPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(editFormPanelLayout.createSequentialGroup()
-                .addGap(84, 84, 84)
-                .addComponent(jSaveVehicleButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(editFormPanelLayout.createSequentialGroup()
                 .addGroup(editFormPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(editFormPanelLayout.createSequentialGroup()
-                        .addGap(30, 30, 30)
-                        .addGroup(editFormPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(comboBoxTypeVehicle, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(typeTitle, javax.swing.GroupLayout.DEFAULT_SIZE, 202, Short.MAX_VALUE)
-                            .addComponent(modelTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jTextVehicleModel)
-                            .addComponent(performanceTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jTextVehiclePerformance))
+                        .addGroup(editFormPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(editFormPanelLayout.createSequentialGroup()
+                                .addGap(84, 84, 84)
+                                .addComponent(jSaveVehicleButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(editFormPanelLayout.createSequentialGroup()
+                                .addGap(34, 34, 34)
+                                .addGroup(editFormPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(comboBoxTypeVehicle, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(typeTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(modelTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jTextVehicleModel)
+                                    .addComponent(performanceTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jTextVehiclePerformance, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(editFormPanelLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(sectionTitle, javax.swing.GroupLayout.DEFAULT_SIZE, 256, Short.MAX_VALUE))
-                    .addGroup(editFormPanelLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(editFormPanelLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jCheckBoxSelectDefault, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGroup(editFormPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(sectionTitle, javax.swing.GroupLayout.DEFAULT_SIZE, 256, Short.MAX_VALUE)
+                            .addComponent(jWarning, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jCheckBoxSelectDefault, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         editFormPanelLayout.setVerticalGroup(
@@ -152,7 +156,7 @@ public class VSavedVehiclesPanelEditScreen extends javax.swing.JFrame {
             .addGroup(editFormPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(sectionTitle)
-                .addGap(18, 18, 18)
+                .addGap(28, 28, 28)
                 .addComponent(typeTitle)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(comboBoxTypeVehicle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -169,7 +173,7 @@ public class VSavedVehiclesPanelEditScreen extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jSaveVehicleButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel1)
+                .addComponent(jWarning)
                 .addGap(18, 18, 18))
         );
 
@@ -219,30 +223,41 @@ public class VSavedVehiclesPanelEditScreen extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextVehiclePerformanceKeyTyped
 
     private void jSaveVehicleButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jSaveVehicleButtonActionPerformed
-        vehicle.setType(String.valueOf(comboBoxTypeVehicle.getSelectedItem()));
-        vehicle.setModel(String.valueOf(jTextVehicleModel.getText()));
-        vehicle.setPerformance(Double.parseDouble(jTextVehiclePerformance.getText()));
-        if(jCheckBoxSelectDefault.isSelected()){
+        if (!comboBoxTypeVehicle.getSelectedItem().toString().equals("Seleccionar") && !jTextVehicleModel.getText().isBlank()
+                && Double.parseDouble(jTextVehiclePerformance.getText()) > 0) {
+            vehicle.setType(String.valueOf(comboBoxTypeVehicle.getSelectedItem()));
+            vehicle.setModel(String.valueOf(jTextVehicleModel.getText()));
+            vehicle.setPerformance(Double.parseDouble(jTextVehiclePerformance.getText()));
+            if (jCheckBoxSelectDefault.isSelected()) {
                 user.setDefaultVehicle(vehicle);
             }
-        Home.msgSucessfulAction("Datos Actualizados");
-        this.dispose();
+            Home.defaultWarningLabel(" ", jWarning);
+            Home.msgSucessfulAction("Datos Actualizados");
+            this.dispose();
+        }else{
+            if(Double.parseDouble(jTextVehiclePerformance.getText()) < 1){
+                jWarning.setText("El Rendimiento no puede ser 0");
+            }else{
+                jWarning.setText("Complete todos los campos");
+            }
+            
+        }
+
     }//GEN-LAST:event_jSaveVehicleButtonActionPerformed
 
     /**
      * @param args the command line arguments
      */
-   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> comboBoxTypeVehicle;
     private javax.swing.JPanel editBackGround;
     private javax.swing.JPanel editFormPanel;
     private javax.swing.JCheckBox jCheckBoxSelectDefault;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JButton jSaveVehicleButton;
     private javax.swing.JTextField jTextVehicleModel;
     private javax.swing.JTextField jTextVehiclePerformance;
+    private javax.swing.JLabel jWarning;
     private javax.swing.JLabel modelTitle;
     private javax.swing.JLabel performanceTitle;
     private javax.swing.JLabel sectionTitle;

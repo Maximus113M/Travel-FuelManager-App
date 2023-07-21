@@ -168,7 +168,7 @@ public class PTouristPlacesPanelOption extends javax.swing.JPanel {
         createBudgetsButton.setBackground(new java.awt.Color(0, 0, 0));
         createBudgetsButton.setFont(new java.awt.Font("Roboto Black", 0, 14)); // NOI18N
         createBudgetsButton.setForeground(new java.awt.Color(255, 255, 255));
-        createBudgetsButton.setText("GENERAR PRESUPUESTO");
+        createBudgetsButton.setText("NUEVO PRESUPUESTO");
         createBudgetsButton.setPreferredSize(new java.awt.Dimension(190, 35));
         createBudgetsButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -241,7 +241,8 @@ public class PTouristPlacesPanelOption extends javax.swing.JPanel {
     private void tblTouristPlacesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblTouristPlacesMouseClicked
         warningLabel.setText(" ");
     }//GEN-LAST:event_tblTouristPlacesMouseClicked
-
+    
+    //This functions validate if the tourist place was save, else, saves the place
     private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
         if (Home.msgIsNotSelectedFila(tblTouristPlaces)) {
             Home.msgNotSelected("Seleccione un Destino");
@@ -250,9 +251,9 @@ public class PTouristPlacesPanelOption extends javax.swing.JPanel {
             System.out.println("selected");
             int selectedId = Integer.parseInt(tblTouristPlaces.getValueAt(tblTouristPlaces.getSelectedRow(), 0).toString());
             System.out.println("***" + selectedId);
-            Place placeSelected = PlacesData.SearchPlaceID(selectedId, DefaultPlaces.defaultListPlaces());
+            Place placeSelected = DefaultPlaces.searchPlaceDefaultPlaces(selectedId);
 
-            if (!UserData.getActiveUser().searchDuplicatePlace(placeSelected.getID())) {
+            if (!UserData.getActiveUser().searchDuplicateMyPlacesID(placeSelected.getID())) {
                 UserData.getActiveUser().addToMySavedList(placeSelected);
                 Home.defaultWarningLabel("El destino ya ha sido añadido", warningLabel);
                 Home.msgSucessfulAction("El Destino ha sido Guardado");
@@ -267,10 +268,9 @@ public class PTouristPlacesPanelOption extends javax.swing.JPanel {
             Home.msgNotSelected("Seleccione un Destino");
             System.out.println("no selected");
         } else {
-            Place seletedPlace= UserData.activeUser.searchPlaceID(Integer.parseInt(model.getValueAt(tblTouristPlaces.getSelectedRow(), 0).toString()));
+            Place seletedPlace= UserData.activeUser.getPlaceFromID(Integer.parseInt(model.getValueAt(tblTouristPlaces.getSelectedRow(), 0).toString()));
             new PQuickBudgets(seletedPlace).setVisible(true);
         }
-
     }//GEN-LAST:event_createBudgetsButtonActionPerformed
 
 

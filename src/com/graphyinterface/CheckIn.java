@@ -5,17 +5,18 @@ import data.functions.GenericFunctions;
 import java.awt.Color;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
-import javax.swing.border.BevelBorder;
-
 
 public class CheckIn extends javax.swing.JFrame {
     
     UIManager UI;
+    private int gender;
     
     public CheckIn() {
         initComponents();
+        gender=0;
         this.setLocationRelativeTo(null);
     }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -29,22 +30,24 @@ public class CheckIn extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
-        jLabelName = new javax.swing.JLabel();
         jTextName = new javax.swing.JTextField();
-        jLabelLastName = new javax.swing.JLabel();
         jTextUserEmail = new javax.swing.JTextField();
-        jLabelEmail = new javax.swing.JLabel();
         jTextNumber = new javax.swing.JTextField();
-        jLabelPassword = new javax.swing.JLabel();
         jButtonSubmit = new javax.swing.JButton();
-        jLabelRepeatPassword = new javax.swing.JLabel();
         jPasswordField = new javax.swing.JPasswordField();
         jRepeatPasswordField = new javax.swing.JPasswordField();
+        jLabelRepeatPassword = new javax.swing.JLabel();
+        jLabelPassword = new javax.swing.JLabel();
+        jLabelEmail = new javax.swing.JLabel();
+        jLabelLastName = new javax.swing.JLabel();
+        jLabelName = new javax.swing.JLabel();
+        chooseMale = new javax.swing.JRadioButton();
+        chooseFemale = new javax.swing.JRadioButton();
+        jTitleGender = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("♥ CheckIn");
         setName("JCheckIn"); // NOI18N
-        setPreferredSize(new java.awt.Dimension(370, 570));
         setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(0, 0, 0));
@@ -61,42 +64,34 @@ public class CheckIn extends javax.swing.JFrame {
         jPanel2.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createMatteBorder(0, 30, 50, 30, new javax.swing.ImageIcon(getClass().getResource("/com/Images/FondoBosque.jpg"))), javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)))); // NOI18N
         jPanel2.setPreferredSize(new java.awt.Dimension(280, 415));
 
-        jLabelName.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-        jLabelName.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabelName.setText("NOMBRE");
-
         jTextName.setToolTipText("Ingresa tu Nombre");
+        jTextName.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(204, 204, 204)));
         jTextName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextNameActionPerformed(evt);
             }
         });
 
-        jLabelLastName.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-        jLabelLastName.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabelLastName.setText(" CORREO ELECTRONICO*");
-
-        jTextUserEmail.setToolTipText("Debe tener mas de 1 Caracter, Sin espacios y Contener \"@\"");
+        jTextUserEmail.setToolTipText("Debe tener mas de 5 Caracter, Sin espacios y Contener \"@\"");
+        jTextUserEmail.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(204, 204, 204)));
         jTextUserEmail.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextUserEmailActionPerformed(evt);
             }
         });
-
-        jLabelEmail.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-        jLabelEmail.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabelEmail.setText(" TELEFONO");
+        jTextUserEmail.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextUserEmailKeyTyped(evt);
+            }
+        });
 
         jTextNumber.setToolTipText("Numero de 10 Digitos");
+        jTextNumber.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(204, 204, 204)));
         jTextNumber.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 jTextNumberKeyTyped(evt);
             }
         });
-
-        jLabelPassword.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-        jLabelPassword.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabelPassword.setText(" CONTRASEÑA*");
 
         jButtonSubmit.setBackground(new java.awt.Color(0, 0, 0));
         jButtonSubmit.setFont(new java.awt.Font("Roboto Black", 0, 12)); // NOI18N
@@ -108,11 +103,8 @@ public class CheckIn extends javax.swing.JFrame {
             }
         });
 
-        jLabelRepeatPassword.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-        jLabelRepeatPassword.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabelRepeatPassword.setText(" REPETIR CONTRASEÑA*");
-
         jPasswordField.setToolTipText("Debe ser mayor a 5 caracteres, Sin espacios");
+        jPasswordField.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(204, 204, 204)));
         jPasswordField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jPasswordFieldActionPerformed(evt);
@@ -120,61 +112,122 @@ public class CheckIn extends javax.swing.JFrame {
         });
 
         jRepeatPasswordField.setToolTipText("Ingrese nuevamente su Contraseña");
+        jRepeatPasswordField.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(204, 204, 204)));
         jRepeatPasswordField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jRepeatPasswordFieldActionPerformed(evt);
             }
         });
 
+        jLabelRepeatPassword.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        jLabelRepeatPassword.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabelRepeatPassword.setText(" REPETIR CONTRASEÑA*");
+
+        jLabelPassword.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        jLabelPassword.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabelPassword.setText(" CONTRASEÑA*");
+
+        jLabelEmail.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        jLabelEmail.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabelEmail.setText(" TELEFONO");
+
+        jLabelLastName.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        jLabelLastName.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabelLastName.setText(" CORREO ELECTRONICO*");
+
+        jLabelName.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        jLabelName.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabelName.setText("NOMBRE");
+
+        chooseMale.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
+        chooseMale.setForeground(new java.awt.Color(51, 51, 51));
+        chooseMale.setText("Hombre");
+        chooseMale.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chooseMaleActionPerformed(evt);
+            }
+        });
+
+        chooseFemale.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
+        chooseFemale.setForeground(new java.awt.Color(51, 51, 51));
+        chooseFemale.setText("Mujer");
+        chooseFemale.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chooseFemaleActionPerformed(evt);
+            }
+        });
+
+        jTitleGender.setFont(new java.awt.Font("Roboto", 3, 14)); // NOI18N
+        jTitleGender.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jTitleGender.setText("GENERO");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(39, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabelEmail, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jRepeatPasswordField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelRepeatPassword, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPasswordField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelPassword, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextNumber, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelLastName, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextName, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextUserEmail, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelName, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(43, 43, 43))
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(58, 58, 58)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                            .addGap(41, 41, 41)
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(jLabelName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabelLastName, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+                                .addComponent(jLabelEmail, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+                                .addComponent(jLabelPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+                                .addComponent(jLabelRepeatPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+                                .addComponent(jTextName)))
+                        .addGroup(jPanel2Layout.createSequentialGroup()
+                            .addGap(24, 24, 24)
+                            .addComponent(jTextUserEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jRepeatPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel2Layout.createSequentialGroup()
+                            .addGap(6, 6, 6)
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(chooseMale)
+                                .addComponent(chooseFemale)
+                                .addComponent(jTitleGender, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(41, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jButtonSubmit)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(62, 62, 62))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addComponent(jLabelName)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(0, 0, 0)
                 .addComponent(jTextName, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabelLastName)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(0, 0, 0)
                 .addComponent(jTextUserEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabelEmail)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(0, 0, 0)
                 .addComponent(jTextNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabelPassword)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(0, 0, 0)
                 .addComponent(jPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jLabelRepeatPassword)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabelRepeatPassword)
+                .addGap(0, 0, 0)
                 .addComponent(jRepeatPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(9, 9, 9)
+                .addComponent(jTitleGender)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(chooseMale)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(chooseFemale)
                 .addGap(18, 18, 18)
                 .addComponent(jButtonSubmit, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(58, Short.MAX_VALUE))
+                .addContainerGap(40, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -221,41 +274,48 @@ public class CheckIn extends javax.swing.JFrame {
         String password=String.valueOf(jPasswordField.getPassword());
         String repeatPassword=String.valueOf(jRepeatPasswordField.getPassword());
         
-        if(UserData.AddUser(userName, userEmail, password, repeatPassword, userNumber)){
+        
+        
+        if(UserData.AddUser(userName, userEmail, password, repeatPassword, userNumber, gender)){
             JOptionPane.showMessageDialog(null, "USUARIO CREADO", "REGISTRO EXITOSO", JOptionPane.INFORMATION_MESSAGE);
             this.dispose();
         }else{
             if(!UserData.validateName(userName)){
-                jTextName.setBorder(javax.swing.BorderFactory.createLineBorder(Color.RED));
+                jTextName.setBorder(GenericFunctions.getWrongBorder());
             }else{
-                jTextName.setBorder(javax.swing.BorderFactory.createSoftBevelBorder(BevelBorder.RAISED, Color.DARK_GRAY, Color.lightGray, Color.DARK_GRAY, Color.lightGray));
+                jTextName.setBorder(GenericFunctions.getDefaultBorder());
             }
             
             if(!UserData.validateEmail(userEmail)){
-                jTextUserEmail.setBorder(javax.swing.BorderFactory.createLineBorder(Color.RED));
+                jTextUserEmail.setBorder(GenericFunctions.getWrongBorder());
             }else{
-                jTextUserEmail.setBorder(javax.swing.BorderFactory.createSoftBevelBorder(BevelBorder.RAISED, Color.DARK_GRAY, Color.lightGray, Color.DARK_GRAY, Color.lightGray));
+                jTextUserEmail.setBorder(GenericFunctions.getDefaultBorder());
             }
             
             if(!UserData.validateNumber(userNumber)){
-                jTextNumber.setBorder(javax.swing.BorderFactory.createLineBorder(Color.RED));
+                jTextNumber.setBorder(GenericFunctions.getWrongBorder());
             }else{
-                jTextNumber.setBorder(javax.swing.BorderFactory.createSoftBevelBorder(BevelBorder.RAISED, Color.DARK_GRAY, Color.lightGray, Color.DARK_GRAY, Color.lightGray));
+                jTextNumber.setBorder(GenericFunctions.getDefaultBorder());
             }
             
             if(!UserData.validatePassword(password,repeatPassword)){
-                jPasswordField.setBorder(javax.swing.BorderFactory.createLineBorder(Color.RED));
-                jRepeatPasswordField.setBorder(javax.swing.BorderFactory.createLineBorder(Color.RED));
+                jPasswordField.setBorder(GenericFunctions.getWrongBorder());
+                jRepeatPasswordField.setBorder(GenericFunctions.getWrongBorder());
             }else{
-                jPasswordField.setBorder(javax.swing.BorderFactory.createSoftBevelBorder(BevelBorder.RAISED, Color.DARK_GRAY, Color.lightGray, Color.DARK_GRAY, Color.lightGray));
-                jRepeatPasswordField.setBorder(javax.swing.BorderFactory.createSoftBevelBorder(BevelBorder.RAISED, Color.DARK_GRAY, Color.lightGray, Color.DARK_GRAY, Color.lightGray));
+                jPasswordField.setBorder(GenericFunctions.getDefaultBorder());
+                jRepeatPasswordField.setBorder( GenericFunctions.getDefaultBorder());
             }
             
-            if(!UserData.DuplicateUser(userEmail)){
-                JOptionPane.showMessageDialog(null, "Datos Incorrectos", "Proceso no completado", JOptionPane.QUESTION_MESSAGE);
-            }else{
-                jTextUserEmail.setBorder(javax.swing.BorderFactory.createLineBorder(Color.RED));
+            if(UserData.DuplicateUser(userEmail)){
+                jTextUserEmail.setBorder(GenericFunctions.getWrongBorder());
                 JOptionPane.showMessageDialog(null, "El correo ya ha sido resgistrado", "Proceso no completado", JOptionPane.OK_CANCEL_OPTION);
+            }else{
+                //jTextUserEmail.setBorder(GenericFunctions.getDefaultBorder());
+            }
+            if(gender < 1){
+                jTitleGender.setForeground(Color.red);
+            }else{
+                jTitleGender.setForeground(Color.BLACK);
             }
         }
         
@@ -279,10 +339,39 @@ public class CheckIn extends javax.swing.JFrame {
     }//GEN-LAST:event_jRepeatPasswordFieldActionPerformed
 
     private void jTextNumberKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextNumberKeyTyped
+        if(jTextNumber.getText().length() > 9){
+            evt.consume();
+        }
         GenericFunctions.inputOnlyNumber(evt);
     }//GEN-LAST:event_jTextNumberKeyTyped
 
+    private void jTextUserEmailKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextUserEmailKeyTyped
+        if(jTextUserEmail.getText().length() > 30){
+            evt.consume();
+        }
+    }//GEN-LAST:event_jTextUserEmailKeyTyped
+
+    private void chooseMaleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chooseMaleActionPerformed
+        if(chooseMale.isSelected()){           
+            chooseFemale.setSelected(false);
+            gender=1;
+        } else {
+            chooseMale.setSelected(true);
+        }
+    }//GEN-LAST:event_chooseMaleActionPerformed
+
+    private void chooseFemaleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chooseFemaleActionPerformed
+        if(chooseFemale.isSelected()){
+            chooseMale.setSelected(false);
+            gender=2;
+        } else {
+            chooseFemale.setSelected(true);     
+        }
+    }//GEN-LAST:event_chooseFemaleActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JRadioButton chooseFemale;
+    private javax.swing.JRadioButton chooseMale;
     private javax.swing.JButton jButtonSubmit;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabelEmail;
@@ -297,6 +386,7 @@ public class CheckIn extends javax.swing.JFrame {
     private javax.swing.JTextField jTextName;
     private javax.swing.JTextField jTextNumber;
     private javax.swing.JTextField jTextUserEmail;
+    private javax.swing.JLabel jTitleGender;
     // End of variables declaration//GEN-END:variables
 
     

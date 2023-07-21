@@ -3,7 +3,10 @@ package data.functions;
 //lista.stream().sorted().forEach(System.out::println);
 
 import java.time.LocalDateTime;
+//import java.util.Date;
 import com.model.Day;
+import javax.swing.BorderFactory;
+import javax.swing.border.Border;
 
 //touristPlaces.stream().sorted(Comparator.comparing(Destino::getNameplace)).forEach(System.out::println);
 //touristPlaces.stream().filter(Destino->!Destino.getNameplace().equalsIgnoreCase("Hola")).sorted(Comparator.comparingDouble(Destino::getDistance));
@@ -11,9 +14,20 @@ import com.model.Day;
 //List<Curso>cursoList = cursos.stream().filter(curso->!curso.getNombre().equalsIgnoreCase("Ruby")).sorted(Comparator.comparingInt(Curso::getTiempo)).collect(Collectors.toList());
 public class GenericFunctions {
     
-    public static LocalDateTime today = LocalDateTime.now();
+    //private Date today = new Date();
+    private final static Border defaultBorder = BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(190, 190, 190));
+    private static final Border errorBorder = BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(252, 0, 0));
+    
+    public static Border getDefaultBorder(){
+        return defaultBorder;
+    }
+    
+    public static Border getWrongBorder(){
+        return errorBorder;
+    }
     
     public static String dayOfWeek(){
+        LocalDateTime today = LocalDateTime.now();
         String[]days={"Lunes","Martes","Miércoles","Jueves","Viernes","Sábado","Domingo"};
         for(Day day: Day.values()){
            if(today.getDayOfWeek().toString().equalsIgnoreCase(day.toString())){
@@ -24,11 +38,13 @@ public class GenericFunctions {
         return "NotData";      
     }
     
-    public static String todayDate(){     
+    public static String todayDate(){
+        LocalDateTime today = LocalDateTime.now();
         return dayOfWeek()+", " + today.getDayOfMonth()+"/"+today.getMonthValue()+"/"+today.getYear();
     }
     
     public static String todayDateAndHour(){
+        LocalDateTime today = LocalDateTime.now();
         return today.getDayOfMonth()+"/"+today.getMonthValue()+"/"+today.getYear()+", "+today.getHour()+":"+today.getMinute();
     }
     
